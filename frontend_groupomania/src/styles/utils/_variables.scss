@@ -1,0 +1,16 @@
+// Ce fichier contient les variables 
+
+//Les couleurs principalement utilisées 
+$color-primary: #091F43;
+$color-secondary: #D1515A;
+$color-optional: #c2c2c2;
+$couleur-degradee: linear-gradient($color-primary, $color-secondary);
+$background-blocs: #bebebe;
+$color-black:black;
+$color-white: white;
+//Les polices utilisées
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,200&display=swap');
+
+$font-Montserrat:'Montserrat';

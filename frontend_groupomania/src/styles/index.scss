@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+//VERSION MOBILE
+//Import des fichiers _partials relatifs à la version mobile
+// Dossier utils contient: les variables, fonctions et mixins.
+@import "./utils/variables";
+@import "./utils/mixins";
+
+// Dossier vendors peut être créé si besoin un jour d'utiliser du code externe.
+
+// Dossier base contient: la police et les normes utilisées pour la structure du site.
+@import "./base/base";
+
+// Dossier composants contient: les blocs indépendants
+@import "./components/log"; 
+
+// Dossier layout contient: les blocs que l'on retrouve sur la majorité des pages du site.
+@import "./layout/banner";
+@import "./layout/footer";
+
+// Dossier pages contient: les blocs qui ne sont présents que sur une page du site.
+@import "./pages/loading";
+// Dossier themes peut être créé si besoin d'en appliquer un pour une occasion (Nouvel an, Saint-Valentin, etc.).

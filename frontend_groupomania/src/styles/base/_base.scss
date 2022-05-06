@@ -1,0 +1,18 @@
+// breakpoint à respecter
+// polices à utiliser
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+// Code correspondant au body
+body {
+	margin: 0;
+	font-family: 'Montserrat','Segoe UI', 'Roboto', 'Oxygen',
+	  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+	  sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+   }
+   
+   code {
+	font-family: 'Montserrat', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+	  monospace;
+   }

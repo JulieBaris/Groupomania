@@ -1,0 +1,94 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+
+.bloc-log{
+	@include bloc-log
+}
+.connect{
+	@include connect
+}
+
+.connect-cart{
+	@include connect-cart
+}
+.connect-cart:hover{
+	box-shadow: 7px 7px 12px $color-secondary;
+}
+
+input
+{
+	@include input;
+	&:placeholder
+	{
+		color: #091F43;
+		font-family: $font-Montserrat;
+	}
+	&:focus-visible{
+		
+		border: 2px solid $color-secondary;
+		color: #091F43;
+		font-family: $font-Montserrat;
+	}
+	&:focus{
+		border: 2px solid $color-secondary;
+		color: #091F43;
+		font-family: $font-Montserrat;
+	}
+}
+
+
+button 
+{ 
+	@include btn
+}
+	button:hover 
+	{
+		background-position: right center; /* change the direction of the change here */
+		color: #fff;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	button:focus 
+	{
+		background-position: right center; /* change the direction of the change here */
+		font-weight: 700;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+.groupomania-h1
+{
+	@include h1
+}
+.groupomania-h2
+{
+	@include h2-bold	
+}
+
+p
+{
+	@include _
+}
+legend
+{
+	@include legend;
+}
+.iconInInput{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: nowrap;
+	width: 100%;
+	text-align: center;
+	
+}
+.fa-eye-slash{
+	font-size: 14px;
+	color: $color-white;
+	border: 2px solid $color-secondary;
+	border-radius: 150px;
+	background-color: $color-secondary;
+	padding: 10px;
+	margin: 10px 0 0 -37px;
+}

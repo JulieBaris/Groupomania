@@ -1,0 +1,344 @@
+// TOUTES LES MIXINS SONT SUR CE FICHIER. 
+@import './variables';
+// Mixins des valeurs attribuées aux sections et aux blocs
+
+//utilisé dans ../layout/_banner.scss
+@mixin banner
+{
+    color: black;
+	background-color: $color-secondary;
+	text-align: center;
+	display: flex;
+	justify-content: space-around;
+	flex-direction:column;
+	align-items: center;
+	max-height: 200px;;
+}
+//utilisés dans ../components/_log.scss
+@mixin bloc-log
+{
+    width: 100%;
+	flex-direction: column;
+	margin-bottom: 20px;
+	font-family:'Montserrat-VariableFont_wght','Sans-Serif','Calibri';
+    src: url('../Montserrat/Montserrat-VariableFont_wght.ttf');
+}
+@mixin connect
+{
+    background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: auto;
+}
+@mixin connect-cart
+{
+    margin: 20px 0px;
+	border: 1px solid $color-secondary;
+	border-radius: 20px 20px;
+	background-color: white;
+	color: $color-primary;
+	width: 70%;
+	height: auto;
+	box-shadow: 7px 7px 8px $color-secondary;
+}
+
+@mixin input
+{
+    width: 80%;
+	height: auto;
+	border: 1px solid $color-secondary;
+	border-radius: 20px 20px;
+	padding: 10px;
+	font-family: $font-Montserrat;
+	color: #091F43;
+	font-size: 14px;
+	margin: 15px 0px 5px 0px;
+}
+
+@mixin btn
+{
+    background-image: linear-gradient(to right, $color-secondary 0%, #cb6f76  70%, $color-secondary   100%);
+    font-family: $font-Montserrat;
+	font-size: 14px;
+    margin: 10px;
+    padding: 10px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 30px;
+    border: none;
+    display: block;
+}
+
+
+// Les valeurs attribuées aux Titres, Sous-titre et texte 
+@mixin h1 
+{
+    font-family: $font-Montserrat;
+    margin: 50px 0;
+	color: #091F43;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+}
+@mixin h2-bold 
+{
+    font-family: $font-Montserrat;
+	color: #091F43;
+	font-size: 20px;
+    font-weight: bold;
+	text-align: left;
+	margin:5% 0% 0% 10%;
+}
+@mixin p
+{
+    font-family: $font-Montserrat;
+	color: $color-black;
+	font-size: 18px;
+	text-align: left;
+	margin:0% 0% 0% 10%;
+}
+@mixin _
+{
+    font-family: $font-Montserrat;
+	color: $color-secondary;
+	font-size: 18px;
+	font-weight: bolder;
+	text-align: left;
+	margin:0% 0% 0% 10%;
+
+}
+@mixin legend
+{
+    font-family: $font-Montserrat;
+	color: $color-primary;
+	font-size: 14px;
+	text-align: left;
+	margin:5% 0% 0% 10%;
+	font-style: italic;
+    font-weight: bold;
+}
+
+
+// Animations qui concerne le loading spinner
+
+@mixin icone-loading 
+{
+    position:absolute;
+    top: 17%;
+    left: 25%;
+    font-size: 10em;
+    @include couleur-degradee;
+    z-index: 3;
+    @include anim-iconeloading;   
+}
+@mixin anim-loading 
+{
+    animation: 3000ms linear forwards;
+    -moz-animation: anim-disp 3000ms linear forwards; /* Firefox */
+    -webkit-animation: anim-disp 3000ms linear forwards; /* Safari et Chrome */
+    -o-animation: anim-disp 3000ms linear forwards; /* Opera */
+    @keyframes anim-disp
+    {
+        0%, 75% 
+        {
+            z-index: 2;
+            opacity:1;
+            background: $color-optional;
+            cursor : wait;
+        }
+        100%
+        {
+            z-index: -1;
+            opacity:0;
+            cursor: initial;
+        }
+    }
+}
+@mixin anim-iconeloading
+{
+    -webkit-animation: i-taille 2700ms linear forwards;
+    animation: i-taille 2700ms linear forwards;
+    -webkit-animation: i-rotate 2700ms linear forwards;
+    animation: i-rotate 2700ms linear forwards;
+    @-webkit-keyframes i-rotate 
+    { 
+        100% 
+        { 
+            opacity: 0;
+            z-index: -1;
+            -webkit-transform: rotate(360deg)                   
+        }
+        
+    }
+    @keyframes i-rotate 
+    { 
+        100% 
+        { 
+            opacity: 0;
+            z-index: -1;
+            transform: rotate(360deg); 
+            -webkit-transform: rotate(360deg)
+        }
+    }
+    @-webkit-keyframes i-taille 
+    {
+        0%, 100% 
+        { 
+            opacity: 0;
+            z-index: -1;
+            -webkit-transform: scale(0.0)
+        }
+        50% 
+        { 
+            opacity: 1;
+            -webkit-transform: scale(1.0) 
+        }
+    }
+    @keyframes i-taille 
+    {
+        0%, 100% 
+        { 
+            opacity: 0;
+            z-index: -1;
+            transform: scale(0.0);
+            -webkit-transform: scale(0.0);
+        } 
+        50% 
+        { 
+            opacity: 1;
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+    }
+}
+
+
+
+// utils plus tard
+
+@mixin btn-degrade
+{
+    background: $couleur-degradee;
+    color:$color-white;
+    border-style: none;
+    border-radius: 40px;
+    margin: 20px auto 50px auto;
+    padding: 15px;
+    cursor: pointer;
+    &:hover
+    {
+        opacity: 0.8;
+    }
+}
+@mixin bloc-cards
+{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    margin: 10px auto 30px auto;
+    background-color: $color-white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px darken($background-blocs, 15%);
+}
+@mixin Nouveau 
+{
+    display: inline-block;
+    @include p-petite;
+    z-index: 1;
+    position: absolute;
+    right: 15%;
+    background: $color-optional;
+    color: darken($color-optional,40%);
+    padding: 5px 10px 5px 10px;    
+    border-radius: 5px;
+}
+// Couleurs attribuées aux coeurs et à l'icône du loading spinner
+@mixin couleur-degradee
+{
+    color: transparent;
+    background: $couleur-degradee;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+// Les transitions et animations sont les mêmes pour tout type d'écran
+
+@mixin trans_coeur 
+{
+    transition-property: opacity,transform;
+    transition-timing-function: linear;
+    transition-duration: 0.3s;
+    opacity: 1;
+}
+@mixin trans_coeur_disp 
+{
+    transition-property: opacity,transform;
+    transition-timing-function: linear;
+    transition-duration: 0.2s;
+    opacity: 0;
+}
+@mixin icone_pastille //Version mobile
+{
+    position: relative;   
+    color:$color-white;
+    background-color: $color-optional;
+    font-size:1.5em;
+    border-radius: 0px 15px 15px 0px;
+    padding-top: 25px;
+    transform-origin: right;
+    width: 0;
+    transform: scaleX(0);
+    height: 47px;
+    text-align: center;
+}
+@mixin transition_pastille 
+{
+    transition-property: width, transform;
+    transition-timing-function: linear;
+    transition-duration: 0.4s;
+    width: 70px;
+    transform: scaleX(1);
+}
+@mixin anim-menu 
+{
+    transform-origin: top;
+    animation: 2000ms linear 1 forwards;
+    -moz-animation: anim-menu 2000ms linear 1 forwards; /* Firefox */
+    -webkit-animation: anim-menu 2000ms linear 1 forwards; /* Safari et Chrome */
+    -o-animation: anim-menu 2000ms linear 1 forwards; /* Opera */
+    @keyframes anim-menu
+    {
+        0%
+        {
+            transform: scaleY(0);
+            opacity:0;
+        }
+        100%
+        {
+            transform: scaleY(1);
+            opacity:1;
+        }
+    }
+}
+
+@mixin liens_fleche
+{
+    @include liens-apparence;
+    position: absolute;
+    left: 30px;
+}
+@mixin liens-apparence
+{
+    text-decoration: none;
+    border-style: none;
+    cursor: pointer;
+    color: $color-black;
+    padding: 0%;
+    margin: 0%;
+}

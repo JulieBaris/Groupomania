@@ -1,0 +1,19 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+
+//Ce code correspond au loading spinner présent sur la page d'accueil
+.spinner
+{
+    .loading 
+    {
+        position : fixed;
+        top : 0px;
+        height : 100%;
+        width : 100%;
+        @include anim-loading;
+        & i 
+        {
+            @include icone-loading;        
+        }
+    }
+}

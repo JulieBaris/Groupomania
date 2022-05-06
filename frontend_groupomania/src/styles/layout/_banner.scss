@@ -1,0 +1,11 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+
+.groupomania-banner {
+	@include banner
+}
+
+.groupomania-logo {
+	max-width: 250px;
+	max-height: 250px;
+}
