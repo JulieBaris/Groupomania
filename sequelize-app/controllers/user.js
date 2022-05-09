@@ -18,10 +18,9 @@ signUp: (req, res, next) => {
       .hash(req.body.password, 10)
       .then((hash) => {
         // on crée un nouveau modèle qui prend en compte le cryptage du mot de passe
-        let {firstName, lastName, email, password} = req.body
+        let {userName, email, password} = req.body
         User.create({
-            firstName,
-            lastName,
+            userName,
           email: cryptojsEmail,
           password: hash
 

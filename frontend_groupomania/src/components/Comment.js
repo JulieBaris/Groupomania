@@ -7,7 +7,7 @@ function AllComments()
      axios.get('http://localhost:3300/api/comments')
      .then(response => response.json())
      .then( comments => {
-          console.log(comments.firstName)
+          console.log(comments)
           for( let comment of comments)
           {
                const inserText = JSON.parse(

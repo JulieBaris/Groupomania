@@ -51,8 +51,9 @@ function Login() {
                          password : formDataLog.password
                     }
                })
-               .then(function () {
+               .then(function (response) {
                     // handle success
+                    
                     window.location.href = `dashbord`;
                   })
                .catch(function (error) {

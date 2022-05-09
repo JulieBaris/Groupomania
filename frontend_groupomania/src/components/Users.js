@@ -7,7 +7,7 @@ function ProfilsUsers()
      axios.get('http://localhost:3300/api/allProfils')
      .then(response => response.json())
      .then( users => {
-          console.log(users.id)
+          console.log(users)
           for( let user of users)
           {
                const inserText = JSON.parse(

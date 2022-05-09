@@ -1,0 +1,36 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+.bloc{
+     @include bloc-log;
+     align-items: center;
+     margin-bottom: 30px;
+     text-align: center;
+     justify-content: center;
+}
+h1 {
+     @include h1
+}
+nav{
+     margin-bottom: 20px;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+    
+}
+link,a{
+     text-decoration:none;
+     cursor: pointer;
+     @include p;
+     border:none;
+     margin: 0px 30px;
+     text-align: center;
+     color: $color-primary;
+
+    
+    
+}
+link:hover, link:active, a:hover, a:active{
+     border-bottom : 2px solid $color-secondary;
+     color: $color-primary;
+     font-weight: 500;
+}

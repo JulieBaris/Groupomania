@@ -10,8 +10,9 @@ function SignUp() {
      // const et function nécessaires à la récupération des valeurs des inputs et à leur envoi dans la BDD
      const [formDataSignup, setFormDataSignup] = React.useState(
           {
-              email: "", 
-              password: ""
+               userName:'',
+               email: "",
+               password: ""
           } 
      )
      //const pour cacher le mot-de-passe lorsqu'un utilisateur l'écrit
@@ -46,6 +47,7 @@ function SignUp() {
                          url: 'http://localhost:3300/api/sign-up',
                          data: 
                          {
+                              userName: formDataSignup.userName,
                               email : formDataSignup.email,
                               password : formDataSignup.password
                          }
@@ -74,6 +76,14 @@ function SignUp() {
                <div className='connect'>
                    
                     <form onSubmit={handleSubmitSignUp} className='connect connect-cart'>
+                         <input
+                              type="text"
+                              placeholder="Nom d'utilisateur"
+                              onChange={handleChangeSignup}
+                              name="userName"
+                              value={formDataSignup.userName}
+                              required={true}
+                         />
                          <input
                               type="email"
                               placeholder="Email"
