@@ -4,6 +4,9 @@
 @import "../utils/_mixins.scss";
 // Code correspondant au body
 body {
+
+	width: 100%;
+	height: max-content;
 	margin: 0;
 	font-family: 'Montserrat','Segoe UI', 'Roboto', 'Oxygen',
 	  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

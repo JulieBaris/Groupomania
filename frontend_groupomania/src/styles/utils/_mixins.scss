@@ -23,6 +23,17 @@
 	font-family:'Montserrat-VariableFont_wght','Sans-Serif','Calibri';
     src: url('../Montserrat/Montserrat-VariableFont_wght.ttf');
 }
+@mixin bloc-home
+{
+    width: 100%;
+	flex-direction: row;
+	margin-bottom: 20px;
+	font-family:'Montserrat-VariableFont_wght','Sans-Serif','Calibri';
+    src: url('../Montserrat/Montserrat-VariableFont_wght.ttf');
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
 @mixin connect
 {
     background-color: white;
@@ -51,10 +62,11 @@
 	border: 1px solid $color-secondary;
 	border-radius: 20px 20px;
 	padding: 10px;
-	font-family: $font-Montserrat;
 	color: #091F43;
 	font-size: 14px;
 	margin: 15px 0px 5px 0px;
+    font-family:'Montserrat-VariableFont_wght','Sans-Serif','Calibri';
+    src: url('../Montserrat/Montserrat-VariableFont_wght.ttf');
 }
 
 @mixin btn
@@ -98,8 +110,8 @@
 @mixin p
 {
     font-family: $font-Montserrat;
-	color: $color-black;
-	font-size: 18px;
+	color: $color-primary;
+	font-size: 16px;
 	text-align: left;
 	margin:0% 0% 0% 10%;
 }
@@ -126,13 +138,20 @@
 
 
 // Animations qui concerne le loading spinner
-
+// Couleurs attribuées aux coeurs et à l'icône du loading spinner
+@mixin couleur-degradee
+{
+    color: transparent;
+    background: $couleur-degradee;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
 @mixin icone-loading 
 {
     position:absolute;
-    top: 17%;
-    left: 25%;
-    font-size: 10em;
+    top: 25%;
+    left: 35%;
+    font-size: 12em;
     @include couleur-degradee;
     z-index: 3;
     @include anim-iconeloading;   
@@ -149,7 +168,7 @@
         {
             z-index: 2;
             opacity:1;
-            background: $color-optional;
+            background: $color-primary;
             cursor : wait;
         }
         100%
@@ -259,14 +278,7 @@
     padding: 5px 10px 5px 10px;    
     border-radius: 5px;
 }
-// Couleurs attribuées aux coeurs et à l'icône du loading spinner
-@mixin couleur-degradee
-{
-    color: transparent;
-    background: $couleur-degradee;
-    background-clip: text;
-    -webkit-background-clip: text;
-}
+
 // Les transitions et animations sont les mêmes pour tout type d'écran
 
 @mixin trans_coeur 

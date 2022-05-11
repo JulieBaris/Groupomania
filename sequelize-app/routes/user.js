@@ -17,9 +17,9 @@ const {
 router.post('/sign-up', password, signUp)
 router.post('/login', loginUser)
 //options : profils utilisateurs -> 
-router.put('/profil/:id', password, authentification, updateProfil)
+router.put('/profil/:id', authentification, updateProfil)
 router.get('/allProfils' , getAllProfils)
-router.get('/profil/:id', getSingleProfil)
+router.get('/profil/:id', authentification, getSingleProfil)
 router.delete('/profil/:id',authentification, deleteSingleProfil)
 router.delete('/allProfils', deleteAllProfils)
 

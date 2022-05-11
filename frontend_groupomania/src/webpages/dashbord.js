@@ -1,15 +1,18 @@
 
-import AllArticles from '../components/Post'
-import AllComments from '../components/Comment'
-import PersonList from '../components/Users'
+import Home from '../components/Home'
+// import AllArticles from '../components/Post'
+// import AllComments from '../components/Comment'
+// import Users from '../components/Users'
 
 function Dashbord() {
 	return (
-			<div>
-				<AllArticles/>
-				<AllComments/>
-				<PersonList/>
-			</div>
+			<main>
+				
+				<div>
+					<Home/>
+				</div>
+				
+			</main>
 		)
 }
 

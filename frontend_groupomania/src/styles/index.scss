@@ -12,7 +12,9 @@
 @import "./base/base";
 
 // Dossier composants contient: les blocs indépendants
-@import "./components/log"; 
+@import "./components/log";
+@import "./components/home";
+@import "./components/profilUser";
 
 // Dossier layout contient: les blocs que l'on retrouve sur la majorité des pages du site.
 @import "./layout/banner";

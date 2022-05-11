@@ -1,5 +1,7 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
 .groupomania-footer {
-	color: black;
+	color: $color-primary;
 	background-color: #D1515A;
 	padding: 32px;
 	text-align: center;

@@ -1,17 +1,12 @@
-import Loading from '../components/Loading'
-import Banner from '../layout/Banner'
-import Footer from '../layout/Footer'
-import Profil from '../components/ProfilUser'
 
-function ProfilUser() {
+import ProfilUser from '../components/ProfilUser'
+
+function Count() {
 	return (
 		<div>
-			<Loading/>
-			<Banner/>
-			<Profil/>
-			<Footer />
+			<ProfilUser/>
 		</div>
 	)
 }
 
-export default ProfilUser
+export default Count

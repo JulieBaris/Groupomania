@@ -1,12 +1,12 @@
 
-import App from './webpages/app'
+import Menu from './webpages/app'
 
-function Menu() {
+function App() {
 	return (
 		<div>
-			<App/>
+			<Menu/>
 		</div>
 	)
 }
 
-export default Menu
+export default App

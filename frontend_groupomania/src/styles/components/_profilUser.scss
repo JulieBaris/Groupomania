@@ -1,0 +1,77 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+
+.bloc-profilUser{
+     @include bloc-log;
+     text-align: center;
+     justify-content: center;
+}
+h2{
+     color: $color-primary;
+}
+p{
+     @include p;
+     width: 80%;
+     text-align: center;
+     margin: 10px auto;
+}
+label{
+     @include p;
+     text-align: center;
+     margin: 0;
+     font-size: 14px;
+     font-weight: 500;
+}
+input{
+     @include input;
+     margin: 10px auto 10px auto;
+     &::placeholder
+	{
+		color: #091F43;
+		font-family: $font-Montserrat;
+	}
+     &:focus, &:active{
+		
+		border: 2px solid $color-secondary;
+		color: #091F43;
+		font-family: $font-Montserrat;
+	}
+     &:focus-visible {
+          appearance: menulist-button;
+          background-image: none !important;
+          border: 2px solid $color-secondary;
+          background-color: -internal-light-dark(rgb(232, 240, 254), $color-optional(70, 90, 126, 0.4)) !important;
+          color: -internal-light-dark($color-primary, white) !important;
+      }
+}
+.input-file{
+     width: 92px;
+     margin: 10px auto;
+     padding: 50px 15px;
+     cursor: pointer;
+     font-weight: 500;
+     border-radius: 300px;
+     outline: none;
+     white-space: nowrap;
+     -webkit-user-select: none;
+     &::-webkit-file-upload-button {
+          visibility: hidden;
+        }
+     &::before {
+          content: "Photo de profil";
+          display: inline-block;
+          font-size: 14px;
+        }
+     &:hover::before {
+          border-color: $color-secondary;
+          font-size: 14px;
+        }
+     &:active::before {
+          color: $color-primary;
+          font-size: 14px
+        }
+}
+.btn{
+     @include btn;
+     margin : 30px auto;
+}
