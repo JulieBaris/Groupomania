@@ -6,7 +6,7 @@ const express = require('express');
 // Importation des routes de "express"
 const router = express.Router();
 // Importation du "middleware" relatif à l'authentification
-//const authentification = require('../middleware/auth');
+const {validateTocken} = require('../middleware/auth');
 // Importation du "middleware" relatif à "multer" pour la gestion des fichiers images
 //const multer = require('../middleware/multer_config');
 // Importation du "controller" relatif au sauce

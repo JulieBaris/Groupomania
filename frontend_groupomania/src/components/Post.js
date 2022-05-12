@@ -1,40 +1,39 @@
 import '../styles/index.scss'
-//import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "axios"
 //function pricipale
 
-function AllArticles() 
-{
-     axios.all([
-          axios.get('http://localhost:3300/api/articles'),
-          axios.get('http://localhost:3300/api/comments')
-        ])
-        .then(function (response) {
-          // handle success
-          const article = response[0].data;
-          const comment = response[1].data.comments;
+function AllArticles(){
 
-          console.log(article[2].firstName)
-          console.log(comment[0].firstName)
-
-          const inserText =
-               (
-                    <div>
-                         <h3 className="firstName">${article[2].firstName}</h3>
-                         <p className="object">${article[2].object}</p>
-                         <p className="article">${article[2].article}</p>
-                         <legend className='creat-at'>${article[2].updatedAt}</legend>
-                    </div>
+     const [posts, setPosts] = useState([])
+     useEffect(() => {
           
-               )
-               return inserText
-        })
-        .catch(function (error) {
-          alert(error, 'un problème est survenu lors du chargement des articles.')
-          console.log(error);
-        })
-        
-}
+          let endpoints = 'http://localhost:3300/api/articles'
+          axios.get(endpoints)
+          .then(res => {
+               setPosts(res.data)
+          }
+          )
+          .catch(error => {console.log(error);})
+     }, [])
 
-   
+     
+     return ( 
+              
+          <section>
+          <h2>Articles parus</h2>
+          
+          <div>
+               {posts.map((post) => (
+               <div key={post.id}>
+                    <img src={post.imageUrl} alt={post.object} />
+                    <p>{post.firstName}</p>
+                    <p>Objet: {post.object}</p>
+                    <p>Article: {post.article}</p>
+               </div>
+               ))}
+          </div>
+          </section>
+     )
+}
 export default AllArticles
