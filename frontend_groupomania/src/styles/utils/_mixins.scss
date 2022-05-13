@@ -34,6 +34,25 @@
     text-align: center;
     justify-content: center;
 }
+@mixin bloc-card-user{
+    width: 100%;
+     flex-direction: row;
+     display: flex;
+     flex-wrap: wrap;
+     background-color: $color-optional;
+     justify-content: center;
+}
+@mixin container-article {
+    display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+     max-width: 90%;
+     height: auto;
+     flex-wrap: wrap;
+     margin: 15px auto;
+     border: 3px solid $color-primary;
+     border-radius: 20px
+}
 @mixin connect
 {
     background-color: white;
@@ -68,7 +87,28 @@
     font-family:'Montserrat-VariableFont_wght','Sans-Serif','Calibri';
     src: url('../Montserrat/Montserrat-VariableFont_wght.ttf');
 }
-
+@mixin input-contact{
+    .search{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+   }
+   .input-container{
+        position: relative;
+       left: 6%;
+       width: 276px;
+       right: 83px;
+   }
+   .search-input{
+        width: 70%;
+   }
+   .submit-input{
+        width: 20%;
+        margin-left: -17%;
+        background-color: $color-secondary;
+        color: white;
+   }
+}
 @mixin btn
 {
     background-image: linear-gradient(to right, $color-secondary 0%, #cb6f76  70%, $color-secondary   100%);
@@ -86,8 +126,47 @@
     border: none;
     display: block;
 }
+@mixin btn-home
+{
+    background-image: linear-gradient(to right, $color-secondary 0%, #cb6f76  70%, $color-secondary   100%);
+    font-family: $font-Montserrat;
+	font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 30px;
+    border: none;
+}
+@mixin card-user{
+    max-width: 45%;
+     flex-wrap: wrap;
+     height: auto;
+     margin: 20px 10px;
+     background-color: $color-white;
+     border-radius: 15%;
+     box-shadow: 7px 7px 12px $color-primary;
+}
 
-
+@mixin image-user
+{
+    max-width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin: 15px auto 0px auto;
+    object-fit: cover;
+    background-color: $color-primary;
+}
+@mixin image-article{
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px 20px 0px 0px;
+    margin: 0px auto;
+    object-fit: cover;
+}
 // Les valeurs attribuées aux Titres, Sous-titre et texte 
 @mixin h1 
 {
@@ -103,6 +182,15 @@
     font-family: $font-Montserrat;
 	color: #091F43;
 	font-size: 20px;
+    font-weight: bold;
+	text-align: left;
+	margin:5% 0% 0% 10%;
+}
+@mixin h3 
+{
+    font-family: $font-Montserrat;
+	color: #091F43;
+	font-size: 18px;
     font-weight: bold;
 	text-align: left;
 	margin:5% 0% 0% 10%;
@@ -254,17 +342,6 @@
     {
         opacity: 0.8;
     }
-}
-@mixin bloc-cards
-{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: auto;
-    margin: 10px auto 30px auto;
-    background-color: $color-white;
-    border-radius: 15px;
-    box-shadow: 5px 5px 10px darken($background-blocs, 15%);
 }
 @mixin Nouveau 
 {

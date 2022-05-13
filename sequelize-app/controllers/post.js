@@ -101,6 +101,22 @@ exports.deletePost = (req, res, next) => {
       message: "Une erreur est survenue."
     }));
 };
+// controller pour supprimer un article
+exports.deleteAllPosts = (req, res, next) => {
+  Post.destroy({
+    truncate: true
+  }).then(() => {
+    return res.status(200).json({
+        success: true,
+        message: "Tous les articles ont été supprimés."
+    })
+  }).catch(err => {
+      return res.status(400).json({
+          err, 
+          message:"les articles n'ont pas été supprimés."
+      })
+  })
+};
 //___________________________Création des "controllers" pour la gestion des likes____________________//
 
 // controller pour gérer les likes/dislikes

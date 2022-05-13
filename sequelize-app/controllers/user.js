@@ -68,12 +68,12 @@ signUp: (req, res, next) => {
 
   // update account
   updateProfil: (req, res, next) => {
-      let { firstName, lastName, email, password, imageUrl} = req.body
+      let { firstName, lastName, email, password, phone, imageUrl} = req.body
       let id = req.params.id
       User.findByPk(id)
       .then( user => {
           if (user){
-              user.update({firstName, lastName, email,password,imageUrl})
+              user.update({firstName, lastName, email,password,phone,imageUrl})
               .then((updateUser) => {
                   return res.status(202).json({
                       message: "L'utilisateur a mis son profil à jour",

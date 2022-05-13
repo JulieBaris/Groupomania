@@ -8,7 +8,7 @@ import App from './App'
 import Login from './webpages/login'
 import SignUp from "./webpages/signup";
 import Dashbord from './webpages/dashbord.js'
-import Reseau from './webpages/reseau'
+import Contacts from './webpages/contacts'
 import Articles from './webpages/articles'
 import Count from './webpages/profilUser'
 
@@ -21,7 +21,7 @@ root.render(
 			<Route path="login" element={<Login />}/>
 			<Route path="signup" element={<SignUp />}/>
 			<Route path="dashbord" element={<Dashbord />}/>
-				<Route path="dashbord/reseau" element={<Reseau />} />
+				<Route path="dashbord/contacts" element={<Contacts />} />
 				<Route path="dashbord/articles" element={<Articles/>} />
 				<Route path="dashbord/compte" element={<Count />} />
 			</Route>			

@@ -112,7 +112,7 @@ export default function ProfilUser() {
             <br />
             <h2>Compte Utilisateur</h2>
             
-            <p>Mettre à jour les informations de son profil :</p>
+            <p className='p-profilUser'>Mettre à jour les informations de son profil :</p>
             <br />
             <form onSubmit={handleClick} name = "count-user">
                 <div className="input-container">

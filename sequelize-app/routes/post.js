@@ -23,6 +23,8 @@ router.post('/article', postCtrl.createPost);
 router.put('/article/:id', postCtrl.modifyPost);
 // permet à l'user de supprimer une sauce
 router.delete('/article/:id', postCtrl.deletePost);
+
+router.delete('/articles', postCtrl.deleteAllPosts);
 // permet d'envoyer son avis sur la recette
 router.post('/article/:id/like', postCtrl.statusLike);
 

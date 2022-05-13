@@ -1,0 +1,47 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+.bloc-contact{
+     @include bloc-home;
+     flex-direction: row;
+     margin: 0;
+}
+
+.bloc-cards{
+     @include bloc-home
+}
+h2{
+     @include h2-bold
+}
+//mixin pour l'ensemble du bloc correspondant à l'input search-user
+@include input-contact;
+
+.bloc-card-user{
+     @include bloc-card-user
+
+}
+.card-user{
+     @include card-user
+
+}
+.imageUser{
+    @include image-user
+}
+.identity{
+     @include p;
+     font-size:12px;
+     margin: 5px 15px;
+}
+.bloc-btn-contact{
+     width: 10%;
+     display: flex;
+     padding: auto;
+
+}
+.btn-return{
+     padding: 5px 8px;
+     margin: 10px;
+}
+.fa-circle-arrow-left{
+     font-size: 16px;
+     font-weight: 600;
+}

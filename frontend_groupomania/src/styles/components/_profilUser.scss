@@ -9,7 +9,8 @@
 h2{
      color: $color-primary;
 }
-p{
+
+.p-profilUser{
      @include p;
      width: 80%;
      text-align: center;

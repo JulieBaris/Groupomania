@@ -11,13 +11,12 @@
      flex-direction: row;
      justify-content: center;
      align-items: center;
+     flex-wrap: wrap;
 }
 .btn-home{
-     @include btn;
-     width: 30%;
-     margin: 30px auto;
-     font-size: 15px;
-     padding: 10px;
+     @include btn-home;
+     width: 120px;
+     
 }
 .fa-address-book, .fa-newspaper, .fa-circle-user, .fa-circle-arrow-left{
 	font-size: 15px;

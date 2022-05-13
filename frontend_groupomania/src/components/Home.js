@@ -12,7 +12,7 @@ function Home(){
         navigate(path)
     }
     const routeAllUsers = () =>{
-        let path = 'reseau';
+        let path = 'contacts';
         navigate(path)
     }
 
@@ -31,7 +31,7 @@ function Home(){
            <h2>Home</h2>
             <div className='bloc-btn'>
                 <button className='btn-home' onClick={routeApi}><i className="fa-solid fa-circle-arrow-left"></i>Accueil</button>
-                <button className='btn-home' onClick={routeAllUsers}><i className="fa-solid fa-address-book"></i>Réseau</button>
+                <button className='btn-home' onClick={routeAllUsers}><i className="fa-solid fa-address-book"></i>Contacts</button>
                 <button className='btn-home' onClick={routeArticles}><i className="fa-solid fa-newspaper"></i>Articles</button>
                 <button className='btn-home' onClick={routeCountUser}><i className="fa-solid fa-circle-user"></i>Compte</button>
             </div>
