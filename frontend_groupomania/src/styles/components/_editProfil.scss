@@ -1,0 +1,50 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+.bloc-profilUser{
+     @include bloc-log;
+     text-align: center;
+     justify-content: center;
+}
+.profilUser-h2{
+     @include h2-bold;
+     margin: 30px auto 0px auto;
+     text-align: center
+}
+.container-profilUser{
+     @include bloc-card-user;
+     flex-direction: column;
+}
+
+.trait{
+    @include _;
+    text-align: center;
+    margin: 5px auto;
+}
+
+input{
+     @include input;
+     margin: 10px auto 10px auto;
+     &::placeholder
+	{
+		color: #091F43;
+		font-family: $font-Montserrat;
+	}
+     &:focus, &:active{
+		
+		border: 2px solid $color-secondary;
+		color: #091F43;
+		font-family: $font-Montserrat;
+	}
+     &:focus-visible {
+          appearance: menulist-button;
+          background-image: none !important;
+          border: 2px solid $color-secondary;
+          background-color: -internal-light-dark(rgb(232, 240, 254), $color-optional(70, 90, 126, 0.4)) !important;
+          color: -internal-light-dark($color-primary, white) !important;
+      }
+}
+.btn{
+     @include btn;
+     margin : 30px auto;
+     padding: 10px;
+}

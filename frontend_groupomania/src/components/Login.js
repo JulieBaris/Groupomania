@@ -1,12 +1,14 @@
 // import utils
 import '../styles/index.scss'
 import React, { useState } from "react"
+import {useNavigate} from "react-router-dom";
+
 
 //import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios"
 //function pricipale
 function Login() {
-
+     let navigate = useNavigate();
      const [formDataLog, setFormDataLog] = React.useState(
           {
               email: "", 
@@ -52,9 +54,18 @@ function Login() {
                     }
                })
                .then(function (response) {
-                    // handle success
+                    if(response.data.error)
+                    {
+                         alert(response.data.error)
+                    }
+                    else
+                    {
+                         localStorage.setItem("accessToken", response.data.token)
+
+                         // handle success
+                         navigate('/dashbord')
+                    }
                     
-                    window.location.href = `dashbord`;
                   })
                .catch(function (error) {
                     // handle error

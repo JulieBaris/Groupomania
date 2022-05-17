@@ -1,11 +1,12 @@
 @import "../utils/_variables.scss";
 @import "../utils/_mixins.scss";
+
 .bloc-article{
      @include bloc-home;
      flex-direction: row;
      margin: 0;
 }
-
+// concerne la possibilité de revenir sur Dashbord
 .btn-return{
      padding: 5px 8px;
      margin: 10px;
@@ -14,27 +15,46 @@
      font-size: 16px;
      font-weight: 600;
 }
-h2{
-     @include h2-bold
+
+// concerne la possibilité de créer un post, de le modifier et de le supprimer
+.groupomania-h2{
+     @include h2-bold;
+     margin: 30px auto 0px auto;
+     text-align: center
 }
-.bloc-cards{
-     @include bloc-home
+.trait{
+     @include _;
+     margin: 0px 0px 0px 60px;
+}
+.form-createPost{
+     @include connect-cart;
+     margin: 20px auto;
+}
+.input-text-article{
+     @include input;
+     height: 100px;
+     text-overflow: ellipsis;
+}
+.btn-createPost{
+     @include btn;
+     margin: 10px auto;
 }
 
 //mixin pour l'ensemble du bloc correspondant à l'input search-user
 @include input-contact;
 
+.bloc-cards{
+     @include bloc-home
+}
 .bloc-card-article{
      @include bloc-card-user
 }
-
 .card-article{
      @include card-user;
      max-width: 280px;
      height: auto;
      border-radius: 20px;
 }
-
 .imageArticle{
     @include image-article
 }
@@ -56,12 +76,56 @@ h2{
      @include p;
      margin: 3px 15px
 }
-
+.container-edit{
+     display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.container-btn-icone{
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     max-width: 80%;
+     margin: 10px auto;
+     .btn-icone{
+          padding: 0;
+          margin: 10px 3px;
+          .fa-pen-clip, .fa-thumbs-up, .fa-thumbs-down{
+               color: $color-white;
+               font-size: 14px;
+               padding: 10px;
+               &:hover{
+                    cursor: pointer;
+                    font-size: 20px;
+               }
+               &:active{
+                    cursor: pointer;
+                    font-size: 14px;
+                    background-image: $color-primary;
+               }
+          }
+     }
+}
+.input-text-comment{
+     @include input;
+     height: 60px;
+     margin: 0px auto;
+     text-overflow: ellipsis;
+}
+     
+     
+// concerne la possibilité de créer un commentaire, de le modifier et de le supprimer
 .comment-title{
      @include h3;
      font-size: 16px;
      margin: 3px 15px;
      border-bottom: 2px solid $color-primary;
+}
+.form-createPost{
+     @include connect-cart;
+     margin: 20px auto;
 }
 .comment-object{
      @include p;

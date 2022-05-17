@@ -1,12 +1,13 @@
 // import utils
 import '../styles/index.scss'
 import React, { useState } from "react"
+import {useNavigate} from "react-router-dom";
 
 //import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios"
 //function pricipale
 function SignUp() {
-
+     let navigate = useNavigate();
      // const et function nécessaires à la récupération des valeurs des inputs et à leur envoi dans la BDD
      const [formDataSignup, setFormDataSignup] = React.useState(
           {
@@ -54,7 +55,7 @@ function SignUp() {
                     })
                     .then(function () {
                          // handle success
-                        window.location.href = 'dashbord'
+                        navigate('/dashbord')
                         
                        
                        })

@@ -1,0 +1,8 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+
+.editPost-h2{
+     @include h2-bold;
+     text-align: center;
+     margin: 20px auto 0px auto;
+}

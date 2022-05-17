@@ -10,21 +10,10 @@ function GetAllUsers(){
         let path = '/dashbord';
         navigate(path)
     }
-    function handleClick(event) {
-     event.preventDefault();
-     // const [user, setUser] = useState(["{}"])
-     // useEffect(() => {
-     //      let endpoint = `http://localhost:3300/api/profil/${id}`
-     //      axios.get(endpoint)
-     //      .then(res => {
-     //           setUser(res.data.users)
-     //           console.log(res.data.users)
-     //      }
-     //      )
-     //      .catch(error => {console.log(error);})
-     // }, [])
-
-}
+    function handleClick(event) 
+    {
+         event.preventDefault();
+     }
 
      const [users, setUsers] = useState(["{}"])
      useEffect(() => {
@@ -32,6 +21,7 @@ function GetAllUsers(){
           axios.get(endpoints)
           .then(res => {
                setUsers(res.data.users)
+               localStorage.getItem("accessToken", res.data.token )
                console.log(res.data.users)
           }
           )
@@ -44,7 +34,7 @@ function GetAllUsers(){
                <div className='bloc-btn-contact'>
                     <button className='btn-return' onClick={routeDashbord}><i className="fa-solid fa-circle-arrow-left"></i></button>
                </div>
-               <h2>Annuaire Groupomania</h2>
+               <h2 className='groupomania-h2'>Annuaire Groupomania</h2>
                <div className='bloc-contact'>
                     <form onSubmit={handleClick} name = "search-user" className='search' method="post">
                          <div className="input-container">
@@ -62,7 +52,7 @@ function GetAllUsers(){
                               <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
                               <p className='identity'>{user.userName}</p>
                               <p className='identity'>{user.firstName} {user.lastName}</p>
-                              <p className='identity'><i class="fa-solid fa-phone"></i> {user.phone}</p>
+                              <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
                          </div>
                     ))}
                     

@@ -3,7 +3,11 @@
 
 .bloc-home{
      @include bloc-home;
-     
+}
+.home-h2{
+     @include h2-bold;
+     text-align: center;
+     margin: 20px auto;
 }
 .bloc-btn{
      width: 100%;
@@ -16,7 +20,6 @@
 .btn-home{
      @include btn-home;
      width: 120px;
-     
 }
 .fa-address-book, .fa-newspaper, .fa-circle-user, .fa-circle-arrow-left{
 	font-size: 15px;
