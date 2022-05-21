@@ -1,5 +1,5 @@
 
-import Log from '../components/Login'
+import Log from '../components/Auth/Login'
 
 function Login() {
 	return (

@@ -1,5 +1,5 @@
 
-import GetAllUsers from '../components/Contacts'
+import GetAllUsers from '../components/Users/Contacts'
 
 function Contacts() {
 	return (

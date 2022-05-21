@@ -14,28 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Post.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    object: DataTypes.STRING,
-    article: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
     imageUrl: DataTypes.STRING,
-    like: DataTypes.STRING,
-    dislike: DataTypes.STRING,
-    userliked: DataTypes.STRING,
-    userdislike: DataTypes.STRING
+    title: DataTypes.STRING,
+    content: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Post',
   });
   return Post;
 };
-
-// Posts.associate = (models) => {
-//   Posts.hasMany(models.Comments, {
-//     onDelete: "cascade",
-//   });
-
-//   Posts.hasMany(models.Likes, {
-//     onDelete: "cascade",
-//   });
-// };

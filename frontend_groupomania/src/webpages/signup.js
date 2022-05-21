@@ -1,5 +1,5 @@
 
-import Sign from '../components/SignUp'
+import Sign from '../components/Auth/SignUp'
 
 function SignUp() {
 	return (

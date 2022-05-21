@@ -1,5 +1,4 @@
 import '../styles/index.scss'
-
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 //import axios from 'axios';
@@ -12,17 +11,17 @@ function Home(){
         navigate(path)
     }
     const routeAllUsers = () =>{
-        let path = 'contacts';
+        let path = '/contacts';
         navigate(path)
     }
 
     const routeArticles = () =>{
-        let path = 'articles';
+        let path = '/articles';
         navigate(path)
     }
 
     const routeCountUser = () =>{
-        let path = 'compte/id';
+        let path = '/compte';
         navigate(path);
     }
 

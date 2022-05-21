@@ -1,32 +1,28 @@
-//_____________________________Les routes relatives aux sauces______________________//
-
-//_______________Utils pour l'importation_________________//
-// Importation de "express"
-const express = require('express');
-// Importation des routes de "express"
+// Imports utils
+const express = require("express");
 const router = express.Router();
-// Importation du "middleware" relatif à l'authentification
-const {validateTocken} = require('../middleware/auth');
-// Importation du "middleware" relatif à "multer" pour la gestion des fichiers images
-//const multer = require('../middleware/multer_config');
-// Importation du "controller" relatif au sauce
-const postCtrl = require('../controllers/post');
+//authentification
+const auth = require("../middleware/auth");
+const authAdmin = require('../middleware/authAdmin')
 
-//_______________Gestion des routes_________________//
-// permet à l'usager de trouver toutes les sauces
-router.get('/articles', postCtrl.findAllPosts);
-// permet à l'usager de trouver une sauce
-router.get('/article/:id', postCtrl.findOnePost);
-// Envoi des données du formulaire de sauce dans la collection MongoDB
-router.post('/article', postCtrl.createPost);
-// permet à l'user de modifier sa sauce, mise à jour des données de la collection MongoDB
-router.put('/article/:id', postCtrl.modifyPost);
-// permet à l'user de supprimer une sauce
-router.delete('/article/:id', postCtrl.deletePost);
+// importer les controllers
+const postCtrl = require("../controllers/post");
+// import de multer pour les images
+const multer = require('../middleware/multer-config');
 
-router.delete('/articles', postCtrl.deleteAllPosts);
-// permet d'envoyer son avis sur la recette
-router.post('/article/:id/like', postCtrl.statusLike);
 
-//___________________Exportation des routes_________________//
+// Requête POST pour poster un nouvel article
+router.post("/article", auth, postCtrl.createPost);
+// Requête PUT pour modifier un post 
+router.put("/article/:id", auth, postCtrl.modifyPost);
+// Requête DELETE pour supprimer un article 
+router.delete("/article/:id", auth, postCtrl.deletePost);
+// Requête GET pour afficher tous les articles
+router.get("/articles", auth, postCtrl.findAllPosts);
+//Requête GET pour afficher un article grâce à son id
+router.get("/article/:id", auth, postCtrl.findOnePost);
+// Requête DELETE de l'administrateur pour supprimer un article
+router.delete('/article/:id', authAdmin, postCtrl.adminDeletePost);
+
+// Export du router
 module.exports = router;

@@ -2,21 +2,21 @@
   "development": {
     "username": "root",
     "password": "]-s*U5x7X2Ud",
-    "database": "database",
+    "database": "groupomania",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "]-s*U5x7X2Ud",
-    "database": "database_test",
+    "database": "groupomania_test",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "]-s*U5x7X2Ud",
-    "database": "database_production",
+    "database": "groupomania_production",
     "host": "localhost",
     "dialect": "mysql"
   }

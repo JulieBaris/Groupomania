@@ -5,6 +5,8 @@ const path = require('path');
 
 
 // router import
+const validateToken = require('./middleware/auth')
+const auth = require('./routes/auth')
 const user = require('./routes/user')
 const post = require('./routes/post')
 const comment = require('./routes/comment')
@@ -28,6 +30,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.static('images'));
 
 // Routing
+app.use('/api', auth)
 app.use('/api', user)
 app.use('/api', post)
 app.use('/api', comment)

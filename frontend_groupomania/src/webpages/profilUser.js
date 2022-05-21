@@ -1,5 +1,5 @@
 
-import ProfilUser from '../components/ProfilUser'
+import ProfilUser from '../components/ProfilUser/ProfilUser'
 
 function Count() {
 	return (

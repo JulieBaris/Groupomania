@@ -1,5 +1,5 @@
 
-import AllArticles from '../components/Post'
+import AllArticles from '../components/Articles/Post'
 
 function Articles() {
 	return (
