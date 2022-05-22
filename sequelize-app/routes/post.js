@@ -7,9 +7,6 @@ const authAdmin = require('../middleware/authAdmin')
 
 // importer les controllers
 const postCtrl = require("../controllers/post");
-// import de multer pour les images
-const multer = require('../middleware/multer-config');
-
 
 // Requête POST pour poster un nouvel article
 router.post("/article", auth, postCtrl.createPost);

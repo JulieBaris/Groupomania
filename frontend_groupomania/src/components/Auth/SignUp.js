@@ -64,7 +64,7 @@ function SignUp() {
                          if(formDataSignup !== undefined)
                          {
                               navigate('/login')
-                              alert("Plus qu'une étape avant d'accèder à votre compte ! Connectez-vous en remplissant correctement les deux champs du formulaire.")
+                              alert("Vous êtes inscrit ! Connectez-vous maintenant au réseau social Groupomania.")
                          }
                        })
                     .catch(function (error) {

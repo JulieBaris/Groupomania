@@ -39,7 +39,7 @@ module.exports = {
 
   // get all users
   getAllProfils:(req, res, next) => {
-    User.findAll()
+    User.findAll({order: [['createdAt', 'DESC']]})
       .then(users => {
           return res.status(200).json({
               users,
@@ -52,9 +52,10 @@ module.exports = {
   },
 
   // get single user by id
-  getSingleProfil:(req, res, next) => {
+  getSingleProfil:(req, res, next) => 
+  {
     User.findOne({ where: {id: req.params.id} })
-  .then(user => {
+    .then(user => {
     res.status(200).json(user)
   })
   .catch(error => res.status(404).json({ error }));

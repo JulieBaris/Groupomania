@@ -4,29 +4,51 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios"
 //function pricipale
 
-function GetAllUsers(){
+function GetAllUsers()
+{
      let navigate = useNavigate();
-     const routeDashbord = () =>{
-        let path = '/dashbord';
-        navigate(path)
-    }
-    function handleClick(event) 
+     // Récupération du token et de l'id de l'utilisateur
+     let userId = localStorage.getItem('userIsConnected');
+     let token = "Bearer " + localStorage.getItem('accessToken');
+     // Pour revenir au menu principal
+     const routeDashbord = () =>
     {
+        navigate('/dashbord')
+    }
+     
+     function handleClick(event)
+     {
          event.preventDefault();
      }
-
+     
      const [users, setUsers] = useState(["{}"])
-     useEffect(() => {
+
+     //Pour récupérer les informations relatives à l'ensemble des utilisateurs inscrits
+     useEffect(() => 
+     {
           let endpoints = 'http://localhost:3300/api/profils'
-          axios.get(endpoints)
-          .then(res => {
-               setUsers(res.data.users)
-               localStorage.getItem("accessToken", res.data.token )
-               console.log(res.data.users)
-          }
+          axios.get(endpoints,
+               {headers: 
+                    {
+                         'Content-Type': 'application/json',
+                         'Authorization': token
+                    }
+               })
+          .then(res => 
+               {
+                    if(token !== null && userId !== null)
+                    {
+                         setUsers(res.data.users)
+                         console.log(res.data.users)
+                    }
+                    else
+                    {
+                         alert("Veuillez vous connecter !")
+                    }                    
+               }
           )
           .catch(error => {console.log(error);})
-     }, [])
+     }, [token, userId])
 
      
      return ( 

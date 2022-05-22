@@ -2,17 +2,15 @@ import '../../styles/index.scss'
 import React from "react"
 import {useNavigate} from "react-router-dom";
 import axios from "axios"
-//function pricipale
-
 function CreatePost()
 {
-     // Récupération du token
-     const storage = localStorage.getItem('accessToken');
-     let token = "Bearer " +  storage;
-     //console.log(token)
-     const userId = localStorage.getItem('userId')
-     console.log(userId)
 
+     // Récupération de l'id de l'utilisateur et du token 
+     const userId = localStorage.getItem('userIsConnected');
+     console.log(userId)
+     const token = "Bearer " + localStorage.getItem('accessToken')
+     console.log(token)
+     
      let navigate = useNavigate();
      //utilisation de RouteDashbord pour revenir au menu principal
      const routeArticles = () =>
@@ -21,17 +19,18 @@ function CreatePost()
           navigate(path)
      }
 
-     //On récupère via axio les informations ou bien on les envoie (get/post)
+     //On intègre l'userId 
      const [post, setPost] = React.useState(
           {
-               id:"",
-              title: "", 
-              content: "", 
-              imageUrl:""
+               userId : `${userId}`,
+               title: "",
+               content: "",
+               imageUrl:""
           } 
      )
-     // "handleChangePost" écoute les changements des valeurs des input lorsqu'un utilisateur souhaite créer un post
-     function handleChangePost(event) {
+     // "handleChangePost" écoute les changements des valeurs des input du formulaire
+     function handleChangePost(event) 
+     {
           const {name, value, type, checked} = event.target
           setPost(prevPost => {
               return {
@@ -40,51 +39,64 @@ function CreatePost()
               }
           })
      }
-     function handleSubmitPost(event) {
+     function handleSubmitPost(event) 
+     {
           event.preventDefault()
           console.log(post)
-          }
+     }
      // au clique sur le button "Publier", si l'utilisateur est connecté il a la possibilité de créer un article et de la publier 
      function SubmitPost(event)
      {
+          
           // suppression des paramètres par défaut      
           event.preventDefault()
-
-          // Si le formulaire est rempli on publie l'article
-          if(post !== undefined)
+          // Si l'utilisateur n'est pas connecté
+          if(userId === null && token === null)
           {
-               axios
-               ({
-                    method: 'post',
-                    url: 'http://localhost:3300/api/article',
-                    headers: { 
-                         'Content-Type': 'application/json',
-                         'Authorization': token
-                     },
-                    data: 
-                    {
-                         id: post.id,
-                         title : post.title,
-                         content : post.content,
-                         imageUrl: post.imageUrl
-                    }
-               })
-               .then(function (response) {
-                    // handle success
-                    if(response.error){
-                         alert("Votre article n'a pas pu être publié : " + response.error);
-                    }
-                    else{
-                         localStorage.setItem("articleId", response.data.id)
-                         return(alert("L'article a été créé avec succès ! "),
-                         navigate('/articles') )
-                    }
-                  })
-               .catch(function (error) {
-                    // handle error
-               alert(error.message);
-               });
+               alert('Vous devez vous connecter !')
           }
+          // Si l'utilisateur est connecté
+          else
+          {
+               // Si le formulaire est rempli on publie l'article
+               if(post !== undefined)
+               {
+                    axios
+                    ({
+                         method: 'post',
+                         url: 'http://localhost:3300/api/article',
+                         headers: { 
+                              'Content-Type': 'application/json',
+                              'Authorization': token
+                         },
+                         credentials: "include",
+                         data: 
+                         {
+                              UserId: userId,
+                              title : post.title,
+                              content : post.content,
+                              imageUrl: post.imageUrl
+                         }
+                    })
+                    .then(function (response) {
+                        // S'il y a un problème
+                         if(response.error)
+                         {
+                             return(alert("Votre article n'a pas pu être publié 🥺 !"), response.error) 
+                         }
+                         // Si la réponse correspond
+                         else
+                         {
+                              return(alert("L'article a été créé avec succès ! 👌 "),
+                              navigate('/articles') )
+                         }
+                    })
+                    .catch(function (error) 
+                    {
+                         return(alert("Oups, une erreur s'est produite !🥺"), error.message)
+                    });
+               }
+          }          
      }
 
      return ( 

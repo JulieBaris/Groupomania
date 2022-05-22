@@ -3,11 +3,18 @@
 .groupomania-footer {
 	color: $color-primary;
 	background-color: #D1515A;
-	padding: 32px;
 	text-align: center;
-	font-weight: 500;
-	font-size: 20px;
+	width: 100%;
+	padding: 30px 0px;
 }
 .groupomania-footer-elem {
-	margin-bottom: 10px;
+	width: 100%;
+	justify-content: center;
+}
+
+.p-footer{
+	@include h2-bold;
+	color: $color-white;
+	text-align: center;
+	margin: 20px auto;
 }

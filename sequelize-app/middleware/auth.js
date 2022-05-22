@@ -1,27 +1,21 @@
-//__________________________________Gestion de l'authentification__________________________//
-// Import du package dans le middleware
-const jwt = require("jsonwebtoken"); // Vérifie les tokens
-
+const getAuthUserIdToken = require("../middleware/getAuthUserId");
+// Sécurisation de toutes les routes 
 module.exports = (req, res, next) => {
-    try {
-        // Extraire le token du header Authorization de la requête entrante (qui est après Bearer espace)
-        const token = req.headers.authorization.split(" ")[1];
-        // Décoder notre token en le vérifiant
-        const decodedToken = jwt.verify(token, "SECRET_KEY_123");
-        // Extraire l'ID utilisateur de notre token
-        const userId = decodedToken.id;
-        // Si la requête contient un identifiant userID
-        // Si après comparaison, il ne correspond pas à celui extrait du token
-        if (req.body.id && req.body.id !== userId) {
-            throw "User ID non valable !";
-            // Si après comparaison, il  correspond à celui extrait du token
-        } else {
-            // L'utilisateur est authentifié (tout fonctionne)
-            console.log("User ID valable !");
-            next();
-        }
-    } catch {
-        // Toutes les erreurs générées
-        res.status(401).json({ error: new Error("Requête non authentifiée !") });
+    // on récupère l'userId dans la requête
+    const userId = req.body.id;
+   // On récupère les headers dans la requête
+    const reqAuthorization = req.headers.authorization;
+    try 
+    {
+        // Si l'authorisation n'est pas présente dans le headers, alerte
+        if (!reqAuthorization) throw new Error("Problème d'authentification");
+        // On vérifie si l'userId envoyé avec la requête est le même que celui encodé du token
+        if (userId && userId !== getAuthUserIdToken(req)) throw new Error("userId est invalide");
+        next();
+    }
+    catch (error) 
+    {
+        res.status(401).json({error, message:'une erreur est survenue'});
     }
 };
+

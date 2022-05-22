@@ -6,134 +6,150 @@ import axios from "axios"
 
 function AllArticles()
 {
-     // Récupération du token
-     const storage = localStorage.getItem('accessToken');
-     let token = "Bearer " +  storage;
-     //console.log(token)
-    const userId = localStorage.getItem('userId')
-    console.log(userId)
+     // Récupération du token et de l'id de l'utilisateur
+     let userId = localStorage.getItem('userIsConnected');
+     let token = "Bearer " + localStorage.getItem('accessToken');
 
      //récupération de données relatives aux articles 
      const [posts, setPosts] = useState([{
-          userId : "",
           title : "",
           content : "", 
           imageUrl : ""
      }])
-     useEffect(() => {
-          
-          let endpoints = 'http://localhost:3300/api/articles'
-          axios(endpoints, 
-               {headers: {"Authorization" : token}}
+
+     useEffect(() => 
+     {
+          let endpoints = 'http://localhost:3300/api/articles/'
+          axios(endpoints,
+               {headers: 
+                    {
+                         'Content-Type': 'application/json',
+                         'Authorization': token
+                    }
+               }
                )
-          .then(res => {
-               if(userId !== undefined){
-                     setPosts(res.data)
-                     console.log(res.data)
+          .then(res => 
+               {
+                    if(token !== null && userId !== null)
+                    {
+                         setPosts(res.data)
+                         console.log(res.data)
+                    }
+                    else{
+                         alert("Veuillez vous connecter !")
+                    }
                }
-               else{
-                    alert("Veuillez vous connecter !")
-               }
-              
-          }
           )
-          .catch(error => {console.log(error);})
+          .catch(error => 
+               {
+                    console.log(error.message);
+                    alert('Connectez-vous pour accéder aux articles publiés.');
+               })
      }, [token, userId])
-
-     //envoi et récupération de données relatives aux utilisateurs
-     // const [users, setUsers] = useState([]);
-     // useEffect(() => {
-     //      axios.get("http://localhost:3300/api/profils", 
-     //          {headers: 
-     //              {"Authorization" : token}
-     //          })
-     //          .then(
-     //              (result) => {
-     //                  setUsers(result.data);
-     //              },
-     //              (error) => {
-     //                   console.log(error)
-     //              }
-     //          )
-     //      }, [token])
-
+     
      let navigate = useNavigate();
      //utilisation de RouteDashbord pour revenir au menu principal
      const routeDashbord = () =>
      {
-          let path = '/dashbord';
-          navigate(path)
+          navigate('/dashbord')
      }
+     //utilisation de RouteCreatePost pour créer un post
      const routeCreatePost = () =>
      {
-          let path = '/createPost';
-          navigate(path)
+          navigate('/createPost')
      }
-
+     // RoutePutPost pour modifier un post
+     const routePutPost = () =>
+     {
+          navigate('/article')
+     }
      //utilisation de handleClick pour écouter les événements
      function handleClick(event)
      {
          event.preventDefault();
      }
+    
 
-    
-    
-     const routePutPost = () =>{
-          let path = '/article';
-          navigate(path)
-      }
-      
      // Function et const pour créer un commentaire, afficher les commentaires et modifier un commentaire
-     const [formDataComment, setFormComment] = React.useState(
+     const [comment, setComment] = React.useState(
           {
-              title: "",
-              comment:""
+               userId:`${userId}`,
+               postId: `${posts.id}`,
+               content:""
           } 
      )
-      // écouter les changements des valeurs des input lorsqu'un utilisateur souhaite créer un commentaire
-      function handleChangeCreateComment(event) {
-          const {name, value, type, checked} = event.target
-          setFormComment(prevFormDataComment => {
-              return {
-                  ...prevFormDataComment,
-                  [name]: type === "checkbox" ? checked : value
-              }
-          })
-     }
-     function handleSubmitComment(event) {
-          event.preventDefault()
-          // submitToApi(formData)
-          console.log(formDataComment)
-          }
-     // au clique, lorsqu'un utilisateur commente un article, on vérifie son existence et on lui permet ou non de publier le commentaire
-     function SubmitComment(event)
+     // écouter les changements des valeurs des input lorsqu'un utilisateur souhaite créer un commentaire
+     function handleChangeComment(event)
      {
-          // suppression des paramètres par défaut      
-          event.preventDefault()
-
-          if(formDataComment !== undefined)
-          {
-               axios
-               ({
-                    method: 'post',
-                    url: 'http://localhost:3300/api/comment',
-                    data: 
-                    {
-                         title : formDataComment.title,
-                         comment : formDataComment.comment
+          const {name, value, type, checked} = event.target
+          setComment(prevFormComment => 
+               {
+                    return {
+                         ...prevFormComment,
+                         [name]: type === "checkbox" ? checked : value
                     }
                })
-               .then(function (response) {
-                    // handle success
-                    return(alert("Le commentaire a été créé avec succès ! "),
-                    window.location.reload())
-                    
-                  })
-               .catch(function (error) {
-                    // handle error
-               alert(error.message);
-               });
+     }
+     function handleSubmitComment(event) 
+     {
+          event.preventDefault()
+          console.log(comment)
+     }
+     // Au clic, on permet à l'utilisateur connecté de publier un commentaire
+     function SubmitComment(event)
+     {  
+          event.preventDefault()
+          if(userId === null && token === null)
+          {
+               alert('Vous devez vous connecter !')
           }
+          else
+          {
+               if(comment !== undefined)
+               {
+                    axios
+                    ({
+                         method: 'post',
+                         url: 'http://localhost:3300/api/comment',
+                         headers: 
+                         {
+                              'Content-Type': 'application/json',
+                              'Authorization': token
+                         },
+                         data:
+                         {
+                              UserId: userId,
+                              PostId: posts.id,
+                              content : comment.content
+                         }
+                    })
+                    .then(function (response)
+                    {
+                         if(response.error)
+                         {
+                              return (
+                                   console.log(response.error),
+                                   alert("Votre commentaire n'a pas pu être publié ! 😭")
+                              )
+                         }
+                         // Si la réponse correspond
+                         else
+                         {
+                              return(
+                                   alert("Le commentaire a été créé avec succès ! 👌"),
+                                   window.location.reload()
+                                   )
+                         }
+                    })
+                    .catch(function (error) 
+                    {
+                         return(
+                              console.log(error.message),
+                              alert("Le commentaire n'a pas été créé !🥺")
+                         )
+                    });
+               }
+          }          
      }
      
      return ( 
@@ -178,9 +194,9 @@ function AllArticles()
                                         <textarea
                                              type="text"
                                              placeholder="Votre commentaire ... (250 caractères maximum)"
-                                             onChange={handleChangeCreateComment}
-                                             name="comment"
-                                             value={formDataComment.comment}
+                                             onChange={handleChangeComment}
+                                             name="content"
+                                             value={comment.content}
                                              required={true}
                                              maxLength={250}
                                              className='input-text-comment'

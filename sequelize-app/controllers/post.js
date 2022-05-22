@@ -1,10 +1,10 @@
-
 //___________________________Création des "controllers" pour les posts____________________//
 // Importation du modèle d'un post
 const Post = require('../models').Post
 const Comment = require('../models').Comment
+const User = require('../models').User
 // Importation de l'outil fs (permet de supprimer les fichiers "image" inutils dans le dossier images)
-const fs = require('fs');
+//const fs = require('fs');
 
 // controller pour trouver tous les articles
 exports.findAllPosts = (req, res, next) => {
@@ -35,6 +35,7 @@ exports.createPost = async (req, res, next) => {
   const title = req.body.title;
   const content =  req.body.content;
   const imageUrl = req.body.imageUrl;
+ // const userId = User.findOne({where:{id : req.body.id}})
 
   // vérification que tous les champs sont remplis
   if(title === null || title === '' || content === null || content === ''|| imageUrl === null || imageUrl === '') {
@@ -45,7 +46,7 @@ exports.createPost = async (req, res, next) => {
 
   // Création d'un nouvel objet article
   const post = new Post({
-        ...postObject,
+        ...postObject, userId : req.body.userId
     });
   // Enregistrement de l'objet article dans la base de données
   post.save()

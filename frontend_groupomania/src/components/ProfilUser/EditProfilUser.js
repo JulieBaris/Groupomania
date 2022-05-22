@@ -13,8 +13,9 @@ function EditProfil()
         let path = '/compte';
         navigate(path)
     }
-    //permet de récupérer l'id de l'utilisateur
-    const userId = localStorage.getItem('userId')
+   // Récupération du token et de l'id de l'utilisateur
+   let userId = localStorage.getItem('userIsConnected');
+   let token = "Bearer " + localStorage.getItem('accessToken');
     
     //permet d'observer l'état des données de l'utilisateur
     const [profilUser, setProfilUser] = React.useState(
@@ -56,7 +57,7 @@ function EditProfil()
             ({
                 method: 'put',
                 url: `http://localhost:3300/api/profil/${userId}`,
-                //headers: {"Authorization" : token},
+                headers: {"Authorization" : token},
                 data: 
                 {
                     userName : profilUser.userName,
@@ -71,19 +72,19 @@ function EditProfil()
                 //Si la réponse ne correspond pas, une alerte s'affiche
                 if(response === undefined)
                 {
-                    alert("Le profil n'a pas été mis à jour !")
+                    alert("Tous les champs doivent être saisies ! 🧐")
                 }
                 //Si la réponse correspond, une alerte s'affiche et l'utilisateur est redirigé vers son compte
                 else
                 {
-                    alert("Le profil a été mis à jour avec succès ! ");
+                    alert("Le profil a été mis à jour avec succès ! 😊 ");
                     navigate('/compte')
                 }
             })
             .catch(function (error) 
             {
                 console.log(error)
-                alert("Tous les champs doivent être saisies !");
+                alert("Le profil n'a pas été mis à jour ! 🥺");
             });
         }
     }

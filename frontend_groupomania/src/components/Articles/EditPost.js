@@ -6,9 +6,11 @@ import axios from "axios"
 
 function EditPost(){
 
-     // Récupération du token
-     const storage = localStorage.getItem('accessToken');
-     let token = "Bearer " +  storage;
+     // Récupération du token et de l'id de l'utilisateur
+     let userId = localStorage.getItem('userIsConnected');
+     let token = "Bearer " + localStorage.getItem('accessToken');
+
+
      // permet de rediriger l'utilisateur vers la page /articles
      let navigate = useNavigate();
      const routeArticles = () =>
@@ -16,8 +18,7 @@ function EditPost(){
         let path = '/articles';
         navigate(path)
      }
-     //permet de récupérer l'id de l'utilisateur
-     const userId = localStorage.getItem('userId')
+     
      
      //permet d'observer l'état des données
      const [dataPost, setDataPost] = React.useState(
@@ -41,7 +42,6 @@ function EditPost(){
      function handleSubmitPost(event) 
      {
           event.preventDefault()
-          // submitToApi(formData)
           console.log(dataPost)
      }
      //au clique de l'utilisateur, on vérifie son existence(id) et on lui permet de modifier son article
@@ -50,20 +50,21 @@ function EditPost(){
           // suppression des paramètres par défaut      
           event.preventDefault()
 
-          if(userId !== undefined && dataPost !== undefined)
+          if(userId !== undefined && token !== undefined && dataPost !== undefined)
           {
                // let params = new URLSearchParams(document.location.search);
                // let id = params.get("id");
                axios
                ({
                     method: 'put',
-                    url: `http://localhost:3300/api/article/1`,
+                    url: `http://localhost:3300/api/article/18`,
                     headers: { 
                          'Content-Type': 'application/json',
                          'Authorization': token
                      },
                     data: 
                     {
+                         userId: dataPost.userId,
                          title : dataPost.title,
                          content : dataPost.content,
                          imageUrl: dataPost.imageUrl
@@ -108,7 +109,6 @@ function EditPost(){
                      },
                     data: 
                     {
-                         id: dataPost.id,
                          userId:dataPost.id,
                          title : dataPost.title,
                          content : dataPost.content,

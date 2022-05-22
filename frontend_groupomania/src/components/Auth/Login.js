@@ -35,14 +35,15 @@ function Login() {
      console.log(formDataLog)
      }
      
-     // au clique, lorsqu'un utilisateur se connecte, on vérifie son existence et on lui permet ou non l'accès à son compte
+     // Au clic, on donne accès à l'utilisateur au réseau social si la connexion est validée
      function SubmitLog(event)
      {
           // suppression des paramètres par défaut      
           event.preventDefault()
-
+          // Si le formulaire est rempli
           if(formDataLog !== undefined)
           {
+               // On envoie les données à la BDD 
                axios
                ({
                     method: 'post',
@@ -53,26 +54,37 @@ function Login() {
                          email : formDataLog.email,
                          password : formDataLog.password
                     }
-               })
-               .then(function (response) {
-                    if(response.data.error)
+               }) 
+               //Puis on sauvegarde le token et id de l'utilisateur qui est généré
+               .then(function (response) 
+               {
+                    localStorage.setItem('userIsConnected', JSON.stringify(response.data.id));
+                    let userId = localStorage.getItem('userIsConnected');
+                    localStorage.setItem('accessToken', JSON.stringify(response.data.token));
+                    let token = localStorage.getItem('accessToken');
+
+                    // si l'id et le token sont undefined on retourne une erreur
+                    if(userId === undefined && token === undefined)
                     {
-                         alert(response.data.error)
+                         return(
+                             console.log(response.error), 
+                             alert("On dirait bien qu'une erreur s'est produite ! 😭 ")
+                         )
                     }
+                    // Sinon, on permet l'accès au menu principal
                     else
                     {
-                         localStorage.setItem("accessToken", response.data.token)
-                         localStorage.setItem("userId", response.data.id)
-
-                         // handle success
                          navigate('/dashbord')
-                         alert('Bienvenue sur le réseau social Groupomania !')
+                         alert('Bienvenue sur le réseau social Groupomania ! 🤩')
                     }
                     
                   })
-               .catch(function (error) {
-                    // handle error
-               alert(error.message);
+               .catch(function (error) 
+               {
+                    return(
+                         console.log(error.message),
+                         alert("L'utilisateur n'a pas pu être identifié. Retentez de vous connecter !😧 ")
+                         )
                });
           }
      }
