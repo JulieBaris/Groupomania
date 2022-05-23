@@ -1,30 +1,46 @@
 # p7_groupomania_120422
  reseau_social
 
-//_________connexion au serveur_________________//
-1) sur le dossier frontend, avec la commande - npm start
-2) sur le dossier sequelize-app, avec la commande - nodemon app 
+//_____________________Connexion au serveur_________________//
+1) sur le dossier frontend, avec la commande - npm start ;
+2) sur le dossier sequelize-app, avec la commande - nodemon app ;
+3) accès à base de donnée MySql pour la chargée de communication  
+userName : communication_groupomania ;
+password : ************ (voir avec le développeur).
 
-// ______________connexion au réseau social______________//
-1) Signup : remplir les champs pour créer un utilisateur
-Puis Login : remplir les champs pour se connecter à son compte
+// ______________ Inscription et connexion au réseau social_____________//
+1) Signup : remplir tous les champs pour créer un utilisateur ;
+2) Login : remplir les champs pour se connecter à son compte.
+Pour faciliter la démonstration, un utilisateur a été créé : 
+userName : Démo
+email : demo@test.com
+password : DeMo01
 
 // __________________Page HOME_____________//
- _ possibilité de cliquer sur la page "Contacts" pour afficher tous les utilisateurs
- _ possibilité de cliquer sur la page "articles" pour afficher tous les articles ou en publier un nouveau
- _ possibilité de cliquer sur la page "compte" pour afficher les informations de l'utilisateur et modifier le profil
- _ possibilité de revenir à la page précédente avec le bouton retour. 
- 
+1) Icone dans le header pour se déconnecter :
+2) Lien vers la page Contacts ;
+3) Lien vers la page Articles ;
+3) Lien vers la page Compte.
 
- // Page Contacts 
-   __ impossibilité pour le moment de réaliser l'action suivante : trouver un utilisateur grâce à son "userName", "firstName" ou "lastName" via la barre de recherche dédiée. 
+  //____ Page "Contacts" ____//
+  L'utilisateur voit les fiches profils de ses collègues : 
+    - possibilité de voir l'ensemble des profils ;
+    - possibilité de faire une recherche grâce à son nom d'uilisateur, son nom ou son prénom via la barre de recherche dédiée.
+  
+  // ____Page "Articles" ____//
+  L'utilisateur voit l'ensemble des articles publiés classés du plus récents au plus ancien :
+    - possibilité de faire une recherche via la barre de recherche pour trouver un article grâce à son titre ;
+    - possibilité pour l'auteur de la publication de modifier son article en cliquant sur l'icône stylo ;
+    - depuis la page modification, l'auteur est en capacité de supprimer son article et les commentaires qui y son liés.
+  
+  // ____Page "Compte"____//
+    - Possibilité d'accèder à son profil
+    - de configurer son profil
+    - de supprimer son profil. 
 
-// Page articles 
+
+
  __ impossibilité pour le moment d'afficher les commentaires liés aux articles ou de commenter l'article
  __ impossibilité pour le moment de cacher la possibilité de modifier un article aux utilisateurs qui ne l'ont pas créé
  __ impossibilité de faire fonctionner les boutons like et dislike --> suppression du modèle, des routes etc.
- _ possibilité de modifier les articles en cliquant sur l'icône stylo et en suivant les instructions
-
-// Page Compte 
-__ Possibilité d'accèder à son profil et de le configurer ou bien de le supprimer. 
-
+ _ impossibilité de modifier les articles en cliquant sur l'icône stylo et en suivant les instructions

@@ -6,20 +6,42 @@
      flex-direction: row;
      margin: 0;
 }
+.bloc-btn-article{
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     text-align: center;
+     align-items: center;
+}
 // concerne la possibilité de revenir sur Dashbord
 .btn-return{
      padding: 5px 8px;
      margin: 10px;
 }
-.fa-circle-arrow-left{
-     font-size: 16px;
-     font-weight: 600;
+i.fa-circle-arrow-left{
+     font-size: 1.5em;
+     font-weight: bold;
+     margin: 30px 0px 0px 30px;
 }
-
+i.fa-magnifying-glass
+{
+     font-size: 1.1em;
+     font-weight: bold;
+     color: white;
+     background-color: #D1515A;
+     padding: 15px;
+     border-radius: 50%;
+     margin: 30px 0px auto -34px;
+     &:hover{
+          cursor: pointer;
+          box-shadow: 7px 7px 12px $color-primary
+     }
+ }
 // concerne la possibilité de créer un post, de le modifier et de le supprimer
 .groupomania-h2{
      @include h2-bold;
-     margin: 30px auto 0px auto;
+     width: 180px;
+     margin: 30px auto 20px auto;
      text-align: center
 }
 .trait{
@@ -32,22 +54,32 @@
 }
 .input-text-article{
      @include input;
+     font-size: 1.2em;
      height: 100px;
      text-overflow: ellipsis;
 }
 .btn-createPost{
      @include btn;
      margin: 10px auto;
+     padding: 10px;
+     font-size: 1em;
+     font-weight: bold;
+     &:hover{
+          cursor: pointer;
+          box-shadow: 7px 7px 12px $color-primary
+     }
 }
 
 //mixin pour l'ensemble du bloc correspondant à l'input search-user
 @include input-contact;
 
 .bloc-cards{
-     @include bloc-home
+     @include bloc-home;
+     margin-bottom : 0px;
 }
 .bloc-card-article{
-     @include bloc-card-user
+     @include bloc-card-user;
+     margin-top: 25px
 }
 .card-article{
      @include card-user;
@@ -60,10 +92,10 @@
 }
 .container-article{
      @include container-article
-     
 }
 .article-title{
      @include h3;
+     width: 100%;
      margin: 3px 15px;
      border-bottom: 2px solid $color-primary;
      padding: 10px;
@@ -72,53 +104,48 @@
 }
 .article-post{
      @include p;
+     width: 100%;
      margin: 3px 15px; 
      padding: 15px 10px;
      text-overflow: clip;
      overflow: scroll;
 }
-.container-edit{
-     display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    
-}
+
 .container-btn-icone{
      display: flex;
      flex-direction: row;
      justify-content: center;
      max-width: 80%;
      margin: 10px auto;
-     .btn-icone{
-          padding: 0;
-          margin: 10px 3px;
-          .fa-pen-clip, .fa-thumbs-up, .fa-thumbs-down{
-               color: $color-white;
+     i.fa-pen-clip, i.fa-thumbs-up, i.fa-thumbs-down{
+          color: $color-white;
+          background-color: $color-secondary;
+          border-radius: 50%;
+          font-size: 1em;
+          padding: 10px;
+          margin: 5px;
+          &:hover{
+               cursor: pointer;
+               font-size: 1.1em;
+               box-shadow: 7px 7px 12px $color-primary
+          }
+          &:active{
+               cursor: pointer;
                font-size: 14px;
-               padding: 10px;
-               &:hover{
-                    cursor: pointer;
-                    font-size: 20px;
-               }
-               &:active{
-                    cursor: pointer;
-                    font-size: 14px;
-                    background-image: $color-primary;
-               }
+               background-image: $color-primary;
           }
      }
+     
 }
+
+// concerne la possibilité de créer un commentaire, de le modifier et de le supprimer
 .input-text-comment{
      @include input;
+     font-size: 1.1em;
      height: 60px;
      margin: 0px auto;
      text-overflow: ellipsis;
 }
-     
-     
-// concerne la possibilité de créer un commentaire, de le modifier et de le supprimer
 .comment-title{
      @include h3;
      font-size: 16px;
@@ -129,20 +156,9 @@
      @include connect-cart;
      margin: 20px auto;
 }
-.comment-object{
+.comment-content{
      @include p;
      font-size: 12px;
      margin: 3px 15px;
      border-bottom: 2px solid $color-primary;
-}
-.comment-post{
-     @include p;
-     font-size: 12px;
-     margin: 3px 15px
-}
-.bloc-btn-article{
-     width: 10%;
-     display: flex;
-     padding: auto;
-
 }

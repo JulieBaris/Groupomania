@@ -18,11 +18,12 @@ signUp: (req, res, next) => {
     const password = req.body.password;
 
     // vérification que tous les champs sont remplis
-    if(userName === null || userName === '' || email === null || email === '' || password === null || password === '') {
-        return res.status(400).json({'error': "Veuillez remplir tous les champs du formulaire"});
+    if(userName === null || userName === '' || userName < 3 || email === null || email === '' || password === null || password === '') {
+        return res.status(400).json({error, message: "Veuillez remplir tous les champs du formulaire"});
     }
-
-    // Masquage de l'adresse mail
+    else
+    {
+      // Masquage de l'adresse mail
     let buff = new Buffer.from(email);
     let emailInbase64 = buff.toString('base64');
     // vérification si l'user existe dans DB
@@ -48,14 +49,16 @@ signUp: (req, res, next) => {
                 })
                 // Sauvegarde dans la base de données
                 user.save()
-                .then(() => res.status(201).json({ message: 'Utilisateur créé !'}))
-                .catch(error => res.status(400).json({ error }));
+                .then(() => res.status(201).json({ message: " L'utilisateur a été créé avec succès !"}))
+                .catch(error => res.status(400).json({ error, message: "L'utilisateur n'a pas pu être créé !" }));
             })
-        } else if(userFound) {
-            return res.status(409).json({error: "L'utilisateur existe déjà !"})
+        } else if(userFound) 
+        {
+            return res.status(409).json({error, message: "L'utilisateur existe déjà !"})
         }
     })
-    .catch(error => res.status(500).json({ error }));
+    .catch(error => res.status(500).json({ error, message:"Nous n'avons pas pu vous connecter à votre compte." }));
+    };
   },
   loginUser: async (req, res, next) => {
     let buff = new Buffer.from(req.body.email);
@@ -66,13 +69,13 @@ signUp: (req, res, next) => {
     .then(user => {
         // Si on ne trouve pas l'utilisateur
         if(!user) {
-            return res.status(401).json({ error: 'Utilisateur non trouvé !'})
+            return res.status(401).json({ error, message: 'Utilisateur non trouvé !'})
         }
         // On compare le mot de passe de la requete avec celui de la base de données
         bcrypt.compare(req.body.password, user.password)
         .then(valid => {
             if(!valid) {
-                return res.status(401).json({ error: 'Mot de passe incorrect !'})
+                return res.status(401).json({ error, message: 'Mot de passe incorrect !'})
             }
             res.status(200).json({
                 id: user.id,
@@ -86,8 +89,8 @@ signUp: (req, res, next) => {
                 )
             });
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(500).json({ error, message:"Nous n'avons pas réussi à vous identifier !" }));
     })
-    .catch(error => res.status(500).json({ error }));
+    .catch(error => res.status(500).json({ error, message:"Aie, un problème a été rencontré !" }));
 }
 }

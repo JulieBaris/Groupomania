@@ -9,8 +9,11 @@
 .bloc-cards{
      @include bloc-home
 }
-h2{
-     @include h2-bold
+.contact-h2{
+     @include h2-bold;
+     width:100px;
+     align-items: center;
+     margin : 5% auto 0% auto;
 }
 //mixin pour l'ensemble du bloc correspondant à l'input search-user
 @include input-contact;
@@ -27,21 +30,22 @@ h2{
     @include image-user
 }
 .identity{
-     @include p;
-     font-size:12px;
-     margin: 5px 15px;
+     @include identity;
 }
 .bloc-btn-contact{
-     width: 10%;
+     width: 30%;
      display: flex;
-     padding: auto;
+     justify-content: center;
+     font-size: 1.2em;
 
 }
-.btn-return{
-     padding: 5px 8px;
-     margin: 10px;
-}
-.fa-circle-arrow-left{
-     font-size: 16px;
+i.fa-circle-arrow-left{
+     font-size: 1.6em;
      font-weight: 600;
+     color: $color-secondary;
+     margin-bottom: 30px;
+}
+.identity{
+     @include identity;
+     padding: 0;
 }

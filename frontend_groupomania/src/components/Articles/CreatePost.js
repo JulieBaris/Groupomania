@@ -102,15 +102,18 @@ function CreatePost()
      return ( 
               
           <div className="bloc-cards">
-               <div className='bloc-btn-contact'>
-                    <button className='btn-return' onClick={routeArticles}><i className="fa-solid fa-circle-arrow-left"></i></button>
+               <div className='bloc-btn-article'>
+                    <i className="fa-solid fa-circle-arrow-left"
+                    aria-label='retour'
+                    onClick={routeArticles}
+                    tabIndex={0}
+                    name='retour'
+                    role="button"></i>
                </div>
-               
                <div className='bloc-card-article'>
                
                     <div className='bloc-article'>
                          <h2 className='groupomania-h2'>Créez un article :</h2>
-                         <p className='trait'>______________</p>
                          <legend>* Tous les champs sont obligatoires</legend>
                     
                          <form onSubmit={handleSubmitPost} className='form-createPost'>
@@ -139,7 +142,7 @@ function CreatePost()
                                    name='imageUrl' 
                                    onChange = {handleChangePost} 
                                    type="text" 
-                                   placeholder="copier l'adresse de l'image" value={post.imageUrl}
+                                   placeholder="copier l'URL de l'image" value={post.imageUrl}
                               />
                               
                               <button className='btn-createPost' onClick={SubmitPost}>

@@ -2,7 +2,6 @@ import '../../styles/index.scss'
 import React, { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom";
 import axios from "axios"
-//function pricipale
 
 function AllArticles()
 {
@@ -16,7 +15,6 @@ function AllArticles()
           content : "", 
           imageUrl : ""
      }])
-
      useEffect(() => 
      {
           let endpoints = 'http://localhost:3300/api/articles/'
@@ -59,17 +57,19 @@ function AllArticles()
           navigate('/createPost')
      }
      // RoutePutPost pour modifier un post
-     const routePutPost = () =>
+     // const routePutPost = () =>
+     // {
+     //      navigate('/article')          
+     // }
+     const routeMyArticles = () =>
      {
-          navigate('/article')
+          navigate('/myArticles')          
      }
      //utilisation de handleClick pour écouter les événements
      function handleClick(event)
      {
          event.preventDefault();
      }
-    
-
      // Function et const pour créer un commentaire, afficher les commentaires et modifier un commentaire
      const [comment, setComment] = React.useState(
           {
@@ -152,67 +152,104 @@ function AllArticles()
           }          
      }
      
-     return ( 
-              
-          <div className="bloc-cards">
-               <div className='bloc-btn-article'>
-                    <button className='btn-return' onClick={routeDashbord}><i className="fa-solid fa-circle-arrow-left"></i></button>
-                    <button className='btn-createPost' onClick={routeCreatePost}>Créez un article</button>
-                    <button className='btn-createPost' onClick={routeCreatePost}>Tous vos articles</button>
-               </div>               
-               <div className='bloc-card-article'>
-               
+     const inserText = ( 
+     <main className="bloc-cards">           
+          <div className='bloc-card-article'>
                <div className='bloc-article'>
-                   <h2 className='groupomania-h2'>Articles parus</h2>
-                   <p className='trait'>______________</p>               
-                    <form onSubmit={handleClick} name = "search-article" className='search' method="post">
-                         <div className="input-container">
-                              <input className='search-input' type="search" name="search" placeholder="ex : Ecologie" />
-                              <input className="submit-input" type="submit" name="submit" value='GO' />
-                         </div>
-                    </form>
-               </div>
-                    {posts.map((post) => (
-                         
-                         <div key={post.id} className='card-article'>
-                              <img src={post.imageUrl} alt={post.title} className='imageArticle' />
-                              <div className='container-article'>
-                                   <div className='container-edit'>
-                                        <h3 className='article-title'>{post.title}</h3>
-                                   </div>
-                                   <div className='container-edit'>
-                                        <p className='article-post'>{post.content}</p>
-                                   </div>
-                                   <div className='container-btn-icone'>
-                                        <button className='btn-icone' onClick={routePutPost}><i className="fa-solid fa-pen-clip"></i></button>
-                                        <button className='btn-icone'><i className="fa-solid fa-thumbs-up"></i></button>
-                                        <button className='btn-icone'><i className="fa-solid fa-thumbs-down"></i></button>
-                                   </div>
-                              </div>
-                              <div>
-                                   <form onSubmit={handleSubmitComment} className='form-createComment'>
-                                        <textarea
-                                             type="text"
-                                             placeholder="Votre commentaire ... (250 caractères maximum)"
-                                             onChange={handleChangeComment}
-                                             name="content"
-                                             value={comment.content}
-                                             required={true}
-                                             maxLength={250}
-                                             className='input-text-comment'
-                                        />
-                                        <button className='btn-createPost' onClick={SubmitComment}>
-                                             Commenter
-                                        </button>
-                                   </form>
-                              </div>
-                         </div>
-                         
-                    ))}
-                    
-                    
-               </div>
+               <h2 className='groupomania-h2'>Articles parus</h2>
+               <div className='bloc-btn-article'>
+                    <i className="fa-solid fa-circle-arrow-left"
+                    aria-label='retour'
+                    onClick={routeDashbord}
+                    tabIndex={0}
+                    name='retour'
+                    role="button"></i>
+                    <button className='btn-createPost'
+                    tabIndex={0}
+                    name='créer'
+                    onClick={routeCreatePost}>
+                         Publier
+                    </button>
+                    <button className='btn-createPost'
+                    tabIndex={0}
+                    name='mes articles'
+                    onClick={routeMyArticles}>
+                         Mes articles
+                    </button>
+               </div>                  
+               <form onSubmit={handleClick} name = "search-article" className='search' method="post">
+               
+                    <input className='search-input'
+                    type="search"
+                    name="search"
+                    aria-label='rechercher'
+                    tabIndex={0}
+                    placeholder="ex : Ecologie" />
+
+                    <i className='btn-icone'
+                    tabIndex={0} 
+                    aria-label='envoyer'
+                    class="fa-solid fa-magnifying-glass"
+                    role="button"></i>
+               </form>
           </div>
-     )
+               {posts.map((post) => (
+               <div key={post.id} className='card-article' tabIndex={0}>
+                    <img src={post.imageUrl} alt={post.title} className='imageArticle'/>
+                    <div className='container-article'>
+                         <div className='container-edit'>
+                              <h3 className='article-title'>{post.title}</h3>
+                         </div>
+                         <div className='container-edit'>
+                              <p className='article-post'>{post.content}</p>
+                         </div>    
+                         {/* <div className='container-btn-icone'>
+                              <i onClick={routePutPost} 
+                              tabIndex={0}
+                              aria-label="modifier"
+                              className="fa-solid fa-pen-clip"
+                              role="button"
+                              name="modifier"></i>
+                              <i tabIndex={0}
+                              className="fa-solid fa-thumbs-up"
+                              aria-label="j'aime" 
+                              role="button"
+                              name="j'aime"></i>
+                              <i tabIndex={0}
+                              className="fa-solid fa-thumbs-down"
+                              aria-label="je n'aime pas"
+                              role="button"
+                              name="je n'aime pas"></i>
+                         </div>       */}
+                    </div>
+                    <div>
+                         <form onSubmit={handleSubmitComment} className='form-createComment'>
+                              <textarea
+                                   type="text"
+                                   placeholder="Votre commentaire ... (250 caractères maximum)"
+                                   onChange={handleChangeComment}
+                                   name="content"
+                                   value={comment.content}
+                                   required={true}
+                                   maxLength={250}
+                                   className='input-text-comment'
+                                   aria-label='commentaire'
+                                   tabIndex={0}
+                              />
+                              <button 
+                                   className='btn-createPost' 
+                                   onClick={SubmitComment} 
+                                   name='créer' 
+                                   aria-label='créer' 
+                                   tabIndex={0}>
+                                        Commenter
+                              </button>
+                         </form>
+                    </div>
+               </div>
+               ))}
+          </div>
+     </main>)
+return inserText
 }
 export default AllArticles

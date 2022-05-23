@@ -12,15 +12,16 @@ function Footer()
 				<p className='p-footer'>Nous n'attendions plus que vous !</p>
 				<p className='p-footer'>😍</p>
 			</div>
+			<a className='contact-admin' href="mailto:admin@groupomania" tabIndex={0} role="button" name='contact' type='link'>contact</a>
 		</footer>
 	)
 	const elseUserNotConnected = 
 	(
 		<footer className='groupomania-footer'>
 			<div className='groupomania-footer-elem'>
-				<p className='p-footer'>Devenez membre du réseau social Goupomania</p>
-				<p className='p-footer'>😍</p>
+				<p className='p-footer'>Devenez membre du réseau social Goupomania !</p>
 			</div>
+			<a className='contact-admin' href="mailto:admin@groupomania" tabIndex={0} role="button" name='contact' type='link'>contact</a>
 		</footer>
 	)
 

@@ -92,28 +92,71 @@ function EditProfil()
     return (
           <div className="bloc-profilUser">
             <div className='bloc-btn-contact'>
-                <button className='btn-return' onClick={routeProfilUser}><i className="fa-solid fa-circle-arrow-left"></i></button>
+                <i className="fa-solid fa-circle-arrow-left"
+                aria-label='retour'
+                onClick={routeProfilUser}
+                tabIndex={0}
+                name='retour'
+                role="button"></i>
             </div>
             
             <div className='container-profilUser'>
                 <div className='form-user'>
-                    <h2 className='profilUser-h2'>Mettre à jour le profil</h2>
-                    <p className='trait'>_____________________</p>
+                    <h2 className='editProfil-h2'>Mettre à jour le profil</h2>
                     <form onSubmit={handleSubmitProfil} name = "count-user" className='form-createPost'>
                         <div className='container-form-pro'>
-                            <input className = "input-form-box" aria-describedby="Image"  name='imageUrl' onChange = {handleChangePutProfilUser} type="text" placeholder="copier l'URL de l'image" value={profilUser.imageUrl}/>
+                            <input className = "input-form-box" 
+                            aria-label="Image"  
+                            aria-describedby="Image" 
+                            name='imageUrl' 
+                            onChange = {handleChangePutProfilUser} 
+                            type="text" placeholder="copier l'URL de l'image" 
+                            value={profilUser.imageUrl}
+                            tabIndex={0}/>
                         </div>
                         <div >
-                            <input className = "input-form-box" aria-describedby="userName"  name='userName' onChange = {handleChangePutProfilUser} type="text" placeholder="Nom d'utilisateur" value={profilUser.userName} />
+                            <input className = "input-form-box"
+                            aria-describedby="userName"
+                            aria-label='userName'
+                            name='userName'
+                            onChange = {handleChangePutProfilUser}
+                            type="text"
+                            placeholder="Nom d'utilisateur"
+                            value={profilUser.userName}
+                            tabIndex={0}/>
                         </div>
                         <div >
-                            <input className = "input-form-box" aria-describedby="FirstName" name='firstName' onChange = {handleChangePutProfilUser} type="text" placeholder="Prénom" value={profilUser.firstName}/>
+                            <input className = "input-form-box"
+                            aria-describedby="firstName"
+                            aria-label='firstName'
+                            name='firstName'
+                            onChange = {handleChangePutProfilUser}
+                            type="text"
+                            placeholder="Prénom"
+                            value={profilUser.firstName}
+                            tabIndex={0}/>
                         </div>
                         <div>
-                            <input className = "input-form-box" aria-describedby="LastName" name='lastName' onChange = {handleChangePutProfilUser} type="text" placeholder="Nom" value={profilUser.lastName} />
+                            <input className = "input-form-box"
+                            aria-describedby="LastName"
+                            aria-label='lastName'
+                            name='lastName'
+                            onChange = {handleChangePutProfilUser}
+                            type="text"
+                            placeholder="Nom"
+                            value={profilUser.lastName}
+                            tabIndex={0} />
                         </div>
                         <div>
-                            <input className = "input-form-box" aria-describedby="Phone Number" name='phone' onChange = {handleChangePutProfilUser} type="number" placeholder="Téléphone" value={profilUser.phone}/>
+                            <input className = "input-form-box"
+                            aria-describedby="Phone Number"
+                            aria-label='phone number'
+                            name='phone'
+                            onChange = {handleChangePutProfilUser}
+                            type="number"
+                            placeholder="Téléphone"
+                            value={profilUser.phone}
+                            tabIndex={0}/>
                         </div>
                         <div >
                             <button className='btn' onClick={SubmitProfilUser}>Mettre à jour</button>

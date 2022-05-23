@@ -17,9 +17,12 @@
 @import "./components/contacts";
 @import "./components/posts";
 @import "./components/editPost";
+@import './components/createPost';
+@import './components/myPosts';
 @import "./components/profilUser";
+@import "./components/editProfil";
 
-// Dossier layout contient: les blocs que l'on retrouve sur la majorité des pages du site.
+// Dossier layout contient: les blocs que l'on retrouve sur toutes les pages du site.
 @import "./layout/banner";
 @import "./layout/footer";
 

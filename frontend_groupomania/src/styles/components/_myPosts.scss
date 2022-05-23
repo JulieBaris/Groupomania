@@ -1,0 +1,13 @@
+@import "../utils/_variables.scss";
+@import "../utils/_mixins.scss";
+
+.image-profil-post{
+     @include image-user;
+     max-width: 40px;
+     max-height: 40px;
+}
+.card-myArticles{
+     width: 70%;
+     height: auto;
+     margin: 10px auto;
+}

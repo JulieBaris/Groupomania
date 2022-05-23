@@ -132,19 +132,21 @@ function EditPost(){
      
      return (
           <div className="bloc-cards">
-               <div className='bloc-btn-contact'>
-                    <button className='btn-return' onClick={routeArticles}><i className="fa-solid fa-circle-arrow-left"></i></button>
-               </div>
-               
+               <div className='bloc-btn-article'>
+                    <i className="fa-solid fa-circle-arrow-left"
+                    aria-label='retour'
+                    onClick={routeArticles}
+                    tabIndex={0}
+                    name='retour'
+                    role="button"></i>
+               </div>     
                <div className='bloc-card-article'>
-               
                     <div className='bloc-article'>
                          <h2 className='editPost-h2'>Mettre à jour votre article :</h2>
-                         <p className='trait'>___________________________</p>
                          <legend>* Tous les champs sont obligatoires</legend>
-                    
                          <form onSubmit={handleSubmitPost} className='form-createPost'>
                               <input
+                                   className = "input-form-box"
                                    type="text"
                                    placeholder="Titre... (50 caractères maximum)"
                                    onChange={ChangePost}
@@ -152,6 +154,7 @@ function EditPost(){
                                    value={dataPost.title}
                                    required={true}
                                    maxLength={50}
+                                   tabIndex={0}
                               />
                               <textarea
                                    type="text"
@@ -162,24 +165,27 @@ function EditPost(){
                                    required={true}
                                    maxLength={250}
                                    className='input-text-article'
+                                   tabIndex={0}
                               />
                               <input 
-                                   className = "input-form-box" 
-                                   aria-describedby="Image"  
+                                   className = "input-form-box"
+                                   aria-describedby="image"
+                                   aria-label='image' 
                                    name='imageUrl' 
                                    onChange = {ChangePost} 
                                    type="text" 
-                                   placeholder="copier l'adresse de l'image" value={dataPost.imageUrl}
+                                   placeholder="copier l'adresse de l'image"
+                                   value={dataPost.imageUrl}
+                                   tabIndex={0}
                               />
-                              <button className='btn-createPost' onClick={SubmitPost}>
+                              <button className='btn-createPost' onClick={SubmitPost} tabIndex={0} aria-label='envoyer'>
                                    Publier
                               </button>
                          </form>
                     </div>
                     <div className='bloc-article'>
                          <h2 className='editPost-h2'>Supprimer votre article :</h2>
-                         <p className='trait'>_________________________</p>
-                         <button className='btn-createPost' onClick={DeletePost}>
+                         <button className='btn-createPost' onClick={DeletePost} tabIndex={0} aria-label='supprimer'>
                               Supprimer
                          </button>
                     

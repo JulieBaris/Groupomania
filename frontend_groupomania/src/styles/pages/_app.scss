@@ -4,6 +4,7 @@
      @include bloc-home; 
      flex-wrap: wrap;
      width: 100%;
+     margin-bottom: 0px;
 }
 .bloc-Link{
      width: 100%;
@@ -21,7 +22,7 @@
 .Link{
     
      font-size: 1.2em;
-     margin: 20px auto;
+     margin : 10px auto
 }
 .fa-address-book, .fa-newspaper, .fa-circle-user{
 	font-size: 15px;

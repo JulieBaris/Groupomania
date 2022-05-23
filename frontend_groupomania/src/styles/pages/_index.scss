@@ -11,10 +11,11 @@ h1 {
      @include h1
 }
 nav{
-     margin-bottom: 20px;
      display: flex;
      flex-direction: row;
      justify-content: center;
+     width: 100%;
+     margin: 10px auto;
     
 }
 link,a{
@@ -22,7 +23,7 @@ link,a{
      cursor: pointer;
      @include p;
      border:none;
-     margin: 0px 30px;
+     margin: 0px auto;
      text-align: center;
      color: $color-primary;
 }

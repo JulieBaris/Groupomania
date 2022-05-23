@@ -35,8 +35,6 @@ input
 		font-family: $font-Montserrat;
 	}
 }
-
-
 button 
 { 
 	@include btn
@@ -55,16 +53,14 @@ button
 		text-decoration: none;
 		cursor: pointer;
 	}
-
-.groupomania-h1
+.log-h1
 {
 	@include h1
 }
-.groupomania-h2
+.log-h2
 {
 	@include h2-bold	
 }
-
 p
 {
 	@include _
@@ -81,14 +77,14 @@ legend
 	flex-wrap: nowrap;
 	width: 100%;
 	text-align: center;
-	
 }
-.fa-eye-slash{
+i.fa-eye-slash
+{
 	font-size: 14px;
 	color: $color-white;
 	border: 2px solid $color-secondary;
-	border-radius: 150px;
+	border-radius: 50%;
 	background-color: $color-secondary;
 	padding: 10px;
-	margin: 0 15px 0 -50px;
+	margin: 10px 0px 0 -40px
 }

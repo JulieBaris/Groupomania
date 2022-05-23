@@ -66,7 +66,7 @@ exports.modifyPost = (req, res, next) => {
       return res.status(400).json({message: "Veuillez remplir tous les champs"});
   }
   const postObject = req.body;
-  Post.update({ ...postObject, id:  req.params.id}, { where: {id: req.params.id} })
+  Post.update({ ...postObject, id:  req.params.id})
   .then(() => res.status(200).json({ message: "L'article a été modifié avec succès !"}))
   .catch(error => res.status(400).json({ error }));
    

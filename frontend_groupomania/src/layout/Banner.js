@@ -28,7 +28,7 @@ function Banner()
 				<img src={logo} alt='groupomania' className='groupomania-logo' />
 			</div>
 			<div className='bloc-btn'>
-				<i class="fa-solid fa-right-from-bracket" onClick={LogOut} name='Déconnexion'></i>
+				<i className="fa-solid fa-right-from-bracket" onClick={LogOut} aria-label='Deconnexion' tabIndex={0} role="button"></i>
 			</div>
 		</header>
 	)

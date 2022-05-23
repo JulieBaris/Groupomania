@@ -54,31 +54,38 @@ function GetAllUsers()
      return ( 
           <div className="bloc-cards">
                <div className='bloc-btn-contact'>
-                    <button className='btn-return' onClick={routeDashbord}><i className="fa-solid fa-circle-arrow-left"></i></button>
+                    <i className="fa-solid fa-circle-arrow-left" aria-label='retour' onClick={routeDashbord} tabIndex={0} name='retour' role="button"></i>
                </div>
-               <h2 className='groupomania-h2'>Annuaire Groupomania</h2>
+          <div className='bloc-card-user'>
                <div className='bloc-contact'>
-                    <form onSubmit={handleClick} name = "search-user" className='search' method="post">
-                         <div className="input-container">
-                              <input className='search-input' type="search" name="search" placeholder="ex : Thomas" />
-                              <input className="submit-input" type="submit" name="submit" value='GO' />
-                         </div>
+                    <h2 className="contact-h2">Annuaire</h2>
+                    <form onSubmit={handleClick} name = "search-article" className='search' method="post">
+                         <input className='search-input'
+                         type="search"
+                         name="search"
+                         aria-label='rechercher'
+                         tabIndex={0}
+                         placeholder="ex : Thomas Dupont" />
+
+                         <i className='btn-icone'
+                         tabIndex={0} 
+                         aria-label='envoyer'
+                         class="fa-solid fa-magnifying-glass"
+                         role="button"></i>
                     </form>
                </div>
                
-               <div className='bloc-card-user'>
-                   
-                    {users.map((user) => (
-                         
-                         <div key={user.id} className='card-user'>
-                              <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
-                              <p className='identity'>{user.userName}</p>
-                              <p className='identity'>{user.firstName} {user.lastName}</p>
-                              <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
-                         </div>
-                    ))}
+               {users.map((user) => (
                     
-               </div>
+                    <div key={user.id} className='card-user'>
+                         <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
+                         <p className='identity'>{user.userName}</p>
+                         <p className='identity'>{user.firstName} {user.lastName}</p>
+                         <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
+                    </div>
+               ))}
+               
+          </div>
           </div>
      )
 }

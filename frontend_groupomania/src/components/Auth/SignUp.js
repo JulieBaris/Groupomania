@@ -43,57 +43,54 @@ function SignUp() {
      {
           // suppression des paramètres par défaut      
           event.preventDefault()
-         
-               axios 
-                    ({
-                         method: 'post',
-                         url: 'http://localhost:3300/api/sign-up',
-                         headers: { 
-                              'Content-Type': 'application/json',
-                              'Authorization': 'Bearer token' 
-                          },
-                         data: 
-                         {
-                              userName: formDataSignup.userName,
-                              email : formDataSignup.email,
-                              password : formDataSignup.password
-                         }
-                    })
-                    .then(function () {
-                         // handle success
-                         if(formDataSignup !== undefined)
-                         {
-                              navigate('/login')
-                              alert("Vous êtes inscrit ! Connectez-vous maintenant au réseau social Groupomania.")
-                         }
-                       })
-                    .catch(function (error) {
-                         console.log(error)
-                         if(formDataSignup.userName.length < 3 || formDataSignup.userName === undefined )
-                         {   
-                              return(alert("Le nom doit contenir minimum 3 caractères"))
-                         }
-                         else if(formDataSignup.email === undefined || formDataSignup.email !== RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(formDataSignup.email)) )
-                         {
-                              return(alert("Veuillez saisir une adresse mail valide."))
-                         }
-                         else if(formDataSignup.passwordIsVisible !== RegExp(/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/).test(formDataSignup.passwordIsVisible))
-                         {
-                              return(alert("Le mot de passe doit être complexe : 6 caractères min, 2 MAJ, 2Chiffre !")) 
-                         } 
-                              
-                    });
-               
-         
+          axios 
+          ({
+               method: 'post',
+               url: 'http://localhost:3300/api/sign-up',
+               headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer token' 
+                    },
+               data: 
+               {
+                    userName: formDataSignup.userName,
+                    email : formDataSignup.email,
+                    password : formDataSignup.password
+               }
+          })
+          .then(res =>
+               {
+                    if(formDataSignup !== undefined)
+                    {
+                         navigate('/login')
+                         alert("Vous êtes inscrit ! Connectez-vous maintenant au réseau social Groupomania.")
+                    }
+                    else
+                    {
+                         alert(res.message)
+                    }
+               })
+          .catch(function (error) {
+               console.log(error)
+               if(formDataSignup.userName.length < 3 || formDataSignup.userName === undefined )
+               {   
+                    return(alert("Le nom doit contenir minimum 3 caractères"))
+               }
+               else if(formDataSignup.email === undefined || formDataSignup.email !== RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(formDataSignup.email)) )
+               {
+                    return(alert("Veuillez saisir une adresse mail valide."))
+               }
+               else if(formDataSignup.password !== RegExp(/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/).test(formDataSignup.password))
+               {
+                    return(alert("Le mot de passe doit être complexe : 6 caractères min, 2 MAJ, 2Chiffre !")) 
+               } 
+          });
      }
-     
      
      const inserText = (
           <div className="bloc-log">
-               <h1 className='groupomania-h1'>Réseau Social</h1>
-               <h2 className='groupomania-h2'>Inscription :</h2>
-               <p>______________</p>
-              
+               <h1 className='log-h1'>Réseau Social</h1>
+               <h2 className='log-h2'>Inscription :</h2>
                <legend>* Tous les champs sont obligatoires</legend>
                <div className='connect'>
                    
@@ -105,6 +102,7 @@ function SignUp() {
                               name="userName"
                               value={formDataSignup.userName}
                               required={true}
+                              tabIndex={0}
                          />
                          <input
                               type="email"
@@ -113,6 +111,7 @@ function SignUp() {
                               name="email"
                               value={formDataSignup.email}
                               required={true}
+                              tabIndex={0}
                          />
                          <div className='iconInInput'> 
                               <input
@@ -122,10 +121,11 @@ function SignUp() {
                                    name="password"
                                    value={formDataSignup.password}
                                    required={true}
+                                   tabIndex={0}
                               />
-                              <i className="fa-solid fa-eye-slash" onClick={()=> setPasswordIsVisible(!passwordIsVisible)}></i>
+                              <i className="fa-solid fa-eye-slash"  role="button" onClick={()=> setPasswordIsVisible(!passwordIsVisible)} tabIndex={0} name='crypter'></i>
                          </div>
-                         <button onClick={SubmitSignUp}>
+                         <button onClick={SubmitSignUp} tabIndex={0} name='inscription'>
                               Inscription
                          </button>
                     </form>

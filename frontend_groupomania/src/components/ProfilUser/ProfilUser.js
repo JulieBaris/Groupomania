@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 
-function ProfilUser(){
+function ProfilUser()
+{
+
     let navigate = useNavigate();
-   
     // Récupération du token et de l'id de l'utilisateur
     let userId = localStorage.getItem('userIsConnected');
     let token = "Bearer " + localStorage.getItem('accessToken');
@@ -85,16 +86,33 @@ function ProfilUser(){
     
     return (
         <div className="bloc-profilUser">
-            <div className='bloc-btn-contact'>
-                <button className='btn-return' onClick={routeDashbord}><i className="fa-solid fa-circle-arrow-left"></i></button>
-            </div>
+              
             <div className='container-profilUser'>
                 <div className='card-profilUser'>
                     <h2 className='profilUser-h2'>Compte Utilisateur</h2>
-                    <p className='trait'>___________________</p>
+                    <div className='bloc-btn-profil'>
+                        <i className="fa-solid fa-circle-arrow-left"
+                        aria-label='retour'
+                        onClick={routeDashbord}
+                        tabIndex={0}
+                        name='retour'
+                        role="button"></i>
+                        <i class="fa-solid fa-gear"
+                        aria-label='modifier compte'
+                        onClick={SubmitUser}
+                        tabIndex={0}
+                        name='modifier'
+                        role="button"></i>
+                        <i class="fa-solid fa-trash-can"
+                        aria-label='supprimer compte'
+                        onClick={DeleteUser}
+                        tabIndex={0}
+                        name='supprimer'
+                        role="button"></i>
+                    </div>       
                     {
-                        <div key={user.id} className='card-user'>
-                            <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
+                        <div key={user.id} className='card-profil'>
+                            <img src={user.imageUrl} alt={user.firstName} className='image-profil' />
                             <p className='identity'>{user.userName}</p>
                             <p className='identity'>{user.firstName} {user.lastName}</p>
                             <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
@@ -102,8 +120,8 @@ function ProfilUser(){
                     }
                 </div>
                 <div className='form-user'>
-                    <button className='btn' onClick={SubmitUser}>Mettre à jour</button>
-                    <button className='btn' onClick={DeleteUser}>Supprimer mon profil</button> 
+                    <button className='btn' onClick={SubmitUser} tabIndex={0} aria-label='modifier'>Mettre à jour</button>
+                    <button className='btn' onClick={DeleteUser} tabIndex={0} aria-label='supprimer'>Supprimer mon profil</button> 
                 </div>
             </div>
         </div>

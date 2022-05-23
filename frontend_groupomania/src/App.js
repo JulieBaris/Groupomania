@@ -5,11 +5,13 @@ import Dashbord from './webpages/dashbord.js'
 import Contacts from './webpages/contacts'
 import Articles from './webpages/articles'
 import CreatePost from './components/Articles/CreatePost';
+import MyPosts from './components/Articles/MyPosts';
 import EditPost from './components/Articles/EditPost'
 import Count from './webpages/profilUser'
 import EditProfil from "./components/ProfilUser/EditProfilUser";
 
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
+
 
 
 function App(){
@@ -21,7 +23,8 @@ function App(){
 				<Route path="signup" element={<SignUp />}/>               
 				<Route path="dashbord" element={<Dashbord />}/> 
 				<Route path="articles" element={<Articles/>}/>
-				<Route path="createPost" element={<CreatePost/>}/>		    
+				<Route path="createPost" element={<CreatePost/>}/>
+				<Route path="myArticles" element={<MyPosts/>}/>		    
 				<Route path="article" element={<EditPost/>} />
 				<Route path="contacts" element={<Contacts/>}/>
 				<Route path="compte" element={<Count />} />

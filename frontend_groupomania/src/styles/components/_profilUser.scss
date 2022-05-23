@@ -8,18 +8,13 @@
 }
 .profilUser-h2{
      @include h2-bold;
+     width: 210px;
      margin: 30px auto 0px auto;
      text-align: center
 }
 .container-profilUser{
      @include bloc-card-user;
      flex-direction: column;
-}
-
-.trait{
-    @include _;
-    text-align: center;
-    margin: 5px auto;
 }
 label{
      @include p;
@@ -29,22 +24,55 @@ label{
      font-weight: 500;
 }
 .identity{
-     @include p;
-     font-size:12px;
-     margin: 5px auto;
-     text-align: center
+     @include identity;
 }
+
 .btn{
      @include btn;
      margin : 30px auto;
      padding: 10px;
 }
-.card-user{
-    width: 250px;
+.card-profil{
+    width: 280px;
     flex-wrap: wrap;
     height: auto;
     margin: 20px auto;
     background-color: white;
     border-radius: 20%;
     box-shadow: 7px 7px 12px #091f43;
+}
+.image-profil{
+     max-width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    margin: 15px auto 0px auto;
+    object-fit: cover;
+    background-color: #091F43;
+}
+.identity{
+     @include identity;
+     padding : 5px 0px 10px 0px
+}
+.bloc-btn-profil{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+i.fa-circle-arrow-left, i.fa-trash-can, i.fa-gear{
+     font-size: 1em;
+     font-weight: bold;
+     margin: 10px;
+     color: $color-white;
+     background-color: $color-secondary;
+     border-radius:50%;
+     padding: 10px;
+     &:hover{
+          cursor: pointer;
+          box-shadow: 7px 7px 12px $color-primary;
+     }
 }

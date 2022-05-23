@@ -76,15 +76,19 @@ function Login() {
                     {
                          navigate('/dashbord')
                          alert('Bienvenue sur le réseau social Groupomania ! 🤩')
+                         window.location.reload()  
                     }
                     
                   })
                .catch(function (error) 
                {
-                    return(
+                    if(error)
+                    {
+                         return(
                          console.log(error.message),
                          alert("L'utilisateur n'a pas pu être identifié. Retentez de vous connecter !😧 ")
                          )
+                    }
                });
           }
      }
@@ -92,9 +96,7 @@ function Login() {
      const inserText = (
           <div className="bloc-log">
                <h1 className='groupomania-h1'>Réseau Social</h1>
-
                <h2 className='groupomania-h2'>Connexion :</h2>
-               <p>______________</p>
                <legend>* Tous les champs sont obligatoires</legend>
                <div className='connect'>
                
@@ -104,8 +106,10 @@ function Login() {
                               placeholder="Email"
                               onChange={handleChangeLog}
                               name="email"
+                              aria-label='email'
                               value={formDataLog.email}
                               required={true}
+                              tabIndex={0}
                          />
                          <div className='iconInInput'>
                               <input
@@ -113,13 +117,14 @@ function Login() {
                                    placeholder="Mot-de-passe"
                                    onChange={handleChangeLog}
                                    name="password"
+                                   aria-label='password'
                                    value={formDataLog.password}
                                    required={true}
-                              
+                                   tabIndex={0}
                               />
-                              <i className="fa-solid fa-eye-slash" onClick={()=> setPasswordIsVisible(!passwordIsVisible)}></i>
+                              <i className="fa-solid fa-eye-slash" role="button" onClick={()=> setPasswordIsVisible(!passwordIsVisible)} tabIndex={0} name='crypter'></i>
                          </div>
-                         <button onClick={SubmitLog}>
+                         <button onClick={SubmitLog} tabIndex={0} name='connexion'>
                               Connexion
                          </button>
                     </form>
