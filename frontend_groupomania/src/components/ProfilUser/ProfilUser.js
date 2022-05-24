@@ -82,6 +82,7 @@ function ProfilUser()
         }
 
    }
+   let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
         
     
     return (
@@ -117,7 +118,13 @@ function ProfilUser()
                             <p className='identity'>{user.firstName} {user.lastName}</p>
                             <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
                         </div>
+                        
                     }
+                </div>
+                <div key={user.id} className='createdAt'>
+                    <p className='identity'>Membre depuis le : 
+                    <time> {(new Date()).toLocaleDateString(options, user.updatedAt, "en-FR")}</time>
+                    </p>
                 </div>
                 <div className='form-user'>
                     <button className='btn' onClick={SubmitUser} tabIndex={0} aria-label='modifier'>Mettre à jour</button>

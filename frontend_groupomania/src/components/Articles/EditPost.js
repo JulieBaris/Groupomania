@@ -1,6 +1,6 @@
 import '../../styles/index.scss'
 import React from "react"
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios"
 
 
@@ -9,29 +9,30 @@ function EditPost(){
      // Récupération du token et de l'id de l'utilisateur
      let userId = localStorage.getItem('userIsConnected');
      let token = "Bearer " + localStorage.getItem('accessToken');
-
-
+     //récupération de l'id de l'article grâce à userParams
+     const {id} = useParams()
      // permet de rediriger l'utilisateur vers la page /articles
      let navigate = useNavigate();
      const routeArticles = () =>
      {
-        let path = '/articles';
+        let path = '/myArticles';
         navigate(path)
      }
-     
-     
      //permet d'observer l'état des données
-     const [dataPost, setDataPost] = React.useState(
+     const [postUpdated, setpostUpdated] = React.useState(
           {
+              id:'',
               title: "",
               content:"",
               imageUrl:""
           } 
      )
+     
+
      // écouter les changements des valeurs des input lorsqu'un utilisateur souhaite créer un post
      function ChangePost(event) {
           const {name, value, type, checked} = event.target
-          setDataPost(prevDataPost => {
+          setpostUpdated(prevDataPost => {
               return {
                   ...prevDataPost,
                   [name]: type === "checkbox" ? checked : value
@@ -42,44 +43,46 @@ function EditPost(){
      function handleSubmitPost(event) 
      {
           event.preventDefault()
-          console.log(dataPost)
+          console.log(postUpdated)
      }
-     //au clique de l'utilisateur, on vérifie son existence(id) et on lui permet de modifier son article
+     //au clic de l'utilisateur, on vérifie son existence(id) et on lui permet de modifier son article
      function SubmitPost(event)
      {
           // suppression des paramètres par défaut      
           event.preventDefault()
 
-          if(userId !== undefined && token !== undefined && dataPost !== undefined)
+          if(userId !== undefined && token !== undefined && postUpdated !== undefined)
           {
                // let params = new URLSearchParams(document.location.search);
                // let id = params.get("id");
                axios
                ({
                     method: 'put',
-                    url: `http://localhost:3300/api/article/18`,
-                    headers: { 
+                    url: `http://localhost:3300/api/article/${id}`,
+                    headers: 
+                    { 
                          'Content-Type': 'application/json',
                          'Authorization': token
-                     },
+                    },
                     data: 
                     {
-                         userId: dataPost.userId,
-                         title : dataPost.title,
-                         content : dataPost.content,
-                         imageUrl: dataPost.imageUrl
+                         title : postUpdated.title,
+                         content : postUpdated.content,
+                         imageUrl: postUpdated.imageUrl
                     }
                })
                .then(function (response) 
                {
                     //Si la réponse ne correspond pas, une alerte s'affiche
-                    if(response === undefined)
+                    if(response.data === null)
                     {
                          alert("L'article n'a pas été mis à jour !")
                     }
                     //Si la réponse correspond, une alerte s'affiche et l'utilisateur est redirigé vers la page d'article
                     else
                     {
+                         setpostUpdated(response.data)
+                         console.log(response.data)
                          alert("L'article a été mis à jour avec succès ! ");
                          navigate('/articles')
                     }
@@ -89,30 +92,32 @@ function EditPost(){
                     alert("Tous les champs doivent être saisies !");
                });
           }
+          else{
+               alert("Une erreur s'est produite.")
+          }
      }
      function DeletePost(event)
      {
           // suppression des paramètres par défaut      
           event.preventDefault()
 
-          if(dataPost !== undefined)
+          if(postUpdated !== undefined)
           {
                // let params = new URLSearchParams(document.location.search);
                // let id = params.get("id");
                axios
                ({
                     method: 'delete',
-                    url: `http://localhost:3300/api/article/1`,
+                    url: `http://localhost:3300/api/article/${id}`,
                     headers: { 
                          'Content-Type': 'application/json',
                          'Authorization': token
                      },
                     data: 
                     {
-                         userId:dataPost.id,
-                         title : dataPost.title,
-                         content : dataPost.content,
-                         imageUrl: dataPost.imageUrl
+                         title : postUpdated.title,
+                         content : postUpdated.content,
+                         imageUrl: postUpdated.imageUrl
                     }
                })
                .then(function (response) {
@@ -151,7 +156,7 @@ function EditPost(){
                                    placeholder="Titre... (50 caractères maximum)"
                                    onChange={ChangePost}
                                    name="title"
-                                   value={dataPost.title}
+                                   value={postUpdated.title}
                                    required={true}
                                    maxLength={50}
                                    tabIndex={0}
@@ -161,7 +166,7 @@ function EditPost(){
                                    placeholder="Votre article ... (250 caractères maximum)"
                                    onChange={ChangePost}
                                    name="content"
-                                   value={dataPost.content}
+                                   value={postUpdated.content}
                                    required={true}
                                    maxLength={250}
                                    className='input-text-article'
@@ -174,8 +179,8 @@ function EditPost(){
                                    name='imageUrl' 
                                    onChange = {ChangePost} 
                                    type="text" 
-                                   placeholder="copier l'adresse de l'image"
-                                   value={dataPost.imageUrl}
+                                   placeholder="copier l'URL de l'image"
+                                   value={postUpdated.imageUrl}
                                    tabIndex={0}
                               />
                               <button className='btn-createPost' onClick={SubmitPost} tabIndex={0} aria-label='envoyer'>

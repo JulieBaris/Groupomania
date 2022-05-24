@@ -44,10 +44,6 @@ i.fa-magnifying-glass
      margin: 30px auto 20px auto;
      text-align: center
 }
-.trait{
-     @include _;
-     margin: 0px 0px 0px 60px;
-}
 .form-createPost{
      @include connect-cart;
      margin: 20px auto;
@@ -69,7 +65,10 @@ i.fa-magnifying-glass
           box-shadow: 7px 7px 12px $color-primary
      }
 }
-
+time {
+     @include p;
+     margin : 0
+}
 //mixin pour l'ensemble du bloc correspondant à l'input search-user
 @include input-contact;
 
@@ -90,6 +89,18 @@ i.fa-magnifying-glass
 .imageArticle{
     @include image-article
 }
+.author-post{
+     margin: 5px 10px 10px 5px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border: 1px solid $color-optional;
+     border-radius: 15px;
+     .author{
+          @include legend;
+          padding: 3px 5px 3px 5px;
+     }
+}
 .container-article{
      @include container-article
 }
@@ -99,16 +110,16 @@ i.fa-magnifying-glass
      margin: 3px 15px;
      border-bottom: 2px solid $color-primary;
      padding: 10px;
-     text-overflow: clip;
-     overflow: scroll;
+     // text-overflow: clip;
+     // overflow: scroll;
 }
 .article-post{
      @include p;
      width: 100%;
      margin: 3px 15px; 
      padding: 15px 10px;
-     text-overflow: clip;
-     overflow: scroll;
+     // text-overflow: clip;
+     // overflow: scroll;
 }
 
 .container-btn-icone{

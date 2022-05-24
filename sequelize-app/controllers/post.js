@@ -9,15 +9,26 @@ const User = require('../models').User
 // controller pour trouver tous les articles
 exports.findAllPosts = (req, res, next) => {
   Post.findAll({
+    include : [User],
     order: [
       ['createdAt', 'DESC']
   ]})
-  .then(articles => {
-      console.log(articles);
-      res.status(200).json(articles);
+  .then(posts => {
+      console.log(posts);
+      res.status(200).json(posts);
   })
-  .catch(error => res.status(400).json({ error }));
+  .catch(error => res.status(400).json(error ));
 };
+exports.getByUser =(req, res, next) => {
+  console.log(typeof(req.body.UserId))
+  
+  Post.findAll({where:{userId: req.body.UserId}})
+  .then(articleById => {
+    console.log(articleById);
+    res.status(200).json(articleById)
+  })
+  .catch(error => res.status(404).json({ error }));
+}
 
 // controller pour trouver un post
 exports.findOnePost = (req, res, next) => {
@@ -46,7 +57,7 @@ exports.createPost = async (req, res, next) => {
 
   // Création d'un nouvel objet article
   const post = new Post({
-        ...postObject, userId : req.body.userId
+        ...postObject
     });
   // Enregistrement de l'objet article dans la base de données
   post.save()
@@ -66,7 +77,7 @@ exports.modifyPost = (req, res, next) => {
       return res.status(400).json({message: "Veuillez remplir tous les champs"});
   }
   const postObject = req.body;
-  Post.update({ ...postObject, id:  req.params.id})
+  Post.update({ ...postObject}, { where: {id: req.params.id} })
   .then(() => res.status(200).json({ message: "L'article a été modifié avec succès !"}))
   .catch(error => res.status(400).json({ error }));
    

@@ -8,43 +8,65 @@ function AllArticles()
      // Récupération du token et de l'id de l'utilisateur
      let userId = localStorage.getItem('userIsConnected');
      let token = "Bearer " + localStorage.getItem('accessToken');
+//      const [user, setUser] = useState([{
+//      id : '', 
+//      userName:'', 
+//      firstName:'',
+//      lastName:'',
+//      imageUrl:''
+// }])
 
      //récupération de données relatives aux articles 
      const [posts, setPosts] = useState([{
+          // UserId :"",
+          // userId:'',
+          // userName:'',
           title : "",
           content : "", 
           imageUrl : ""
      }])
-     useEffect(() => 
+    
+     
+     useEffect (() => 
      {
-          let endpoints = 'http://localhost:3300/api/articles/'
+          let endpoints = 'http://localhost:3300/api/articles'
           axios(endpoints,
                {headers: 
                     {
                          'Content-Type': 'application/json',
                          'Authorization': token
                     }
-               }
+               },
                )
           .then(res => 
                {
                     if(token !== null && userId !== null)
                     {
                          setPosts(res.data)
-                         console.log(res.data)
+                         // localStorage.setItem('articles', JSON.stringify(res.data))
+                         // const dataUser =localStorage.getItem("articles", res.data)
+                         // const UserData = JSON.parse(dataUser)
+                         // console.log(UserData.UserId)
+
+                         // const GetInfoUser = localStorage.getItem('articles', JSON.stringify(res.data.User))
+                         // console.log(GetInfoUser)
+                         // const storageArticles = localStorage.getItem('articles')
+                         // const arrayArticles = JSON.parse(storageArticles)
+                         // console.log(res.data)
+                         // console.log(res.data.User.userName)
                     }
                     else{
-                         alert("Veuillez vous connecter !")
+                         // alert("Veuillez vous connecter !")
                     }
                }
           )
           .catch(error => 
                {
                     console.log(error.message);
-                    alert('Connectez-vous pour accéder aux articles publiés.');
+                    //alert(error,"La requête n'a pas pu aboutir");
                })
      }, [token, userId])
-     
+
      let navigate = useNavigate();
      //utilisation de RouteDashbord pour revenir au menu principal
      const routeDashbord = () =>
@@ -56,11 +78,7 @@ function AllArticles()
      {
           navigate('/createPost')
      }
-     // RoutePutPost pour modifier un post
-     // const routePutPost = () =>
-     // {
-     //      navigate('/article')          
-     // }
+     
      const routeMyArticles = () =>
      {
           navigate('/myArticles')          
@@ -151,7 +169,9 @@ function AllArticles()
                }
           }          
      }
-     
+
+     let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+
      const inserText = ( 
      <main className="bloc-cards">           
           <div className='bloc-card-article'>
@@ -186,23 +206,29 @@ function AllArticles()
                     tabIndex={0}
                     placeholder="ex : Ecologie" />
 
-                    <i className='btn-icone'
+                    <i 
                     tabIndex={0} 
                     aria-label='envoyer'
-                    class="fa-solid fa-magnifying-glass"
+                    className="fa-solid fa-magnifying-glass"
                     role="button"></i>
                </form>
           </div>
                {posts.map((post) => (
                <div key={post.id} className='card-article' tabIndex={0}>
                     <img src={post.imageUrl} alt={post.title} className='imageArticle'/>
+                    
+                    <time>{(new Date()).toLocaleDateString(options, post.updatedAt, "en-FR")}</time>
                     <div className='container-article'>
                          <div className='container-edit'>
                               <h3 className='article-title'>{post.title}</h3>
+                              {/* {<div className='author-post'>
+                              <img className='image-profil-post' src={post.User.imageUrl} alt={post.User.userName}></img> 
+                              <legend className='author'>{post.User.userName}</legend>
+                              </div>} */}
                          </div>
                          <div className='container-edit'>
                               <p className='article-post'>{post.content}</p>
-                         </div>    
+                         </div>
                          {/* <div className='container-btn-icone'>
                               <i onClick={routePutPost} 
                               tabIndex={0}
@@ -253,3 +279,44 @@ function AllArticles()
 return inserText
 }
 export default AllArticles
+
+
+
+
+
+ // useEffect(() => 
+     // {
+     //      let endpoints = `http://localhost:3300/api/profil/${userId}`
+     //      axios(endpoints,
+     //           {headers: 
+     //                {
+     //                     'Content-Type': 'application/json',
+     //                     'Authorization': token
+     //                }
+     //           }
+     //           )
+     //      .then(res => 
+     //           {
+     //                if(token !== null && userId !== null)
+     //                {
+     //                     setUser(res.data)
+     //                     console.log(res.data)
+     //                }
+     //                else
+     //                {
+     //                     alert("Veuillez vous connecter !")
+     //                }
+     //           }
+     //      )
+     //      .catch(error => 
+     //           {
+     //                console.log(error.message);
+     //                alert("Connectez-vous pour accéder à l'historique de vos articles.");
+     //           })
+     // }, [token, userId, posts])
+
+     // RoutePutPost pour modifier un post
+     // const routePutPost = () =>
+     // {
+     //      navigate('/article')          
+     // }

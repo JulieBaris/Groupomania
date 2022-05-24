@@ -5,9 +5,19 @@
      @include image-user;
      max-width: 40px;
      max-height: 40px;
+     margin: 0px;
 }
 .card-myArticles{
-     width: 70%;
+     @include card-user;
+     max-width: 240px;
      height: auto;
      margin: 10px auto;
+     border-radius: 45px;
 }
+.images-myArticles{
+     @include image-article;
+     object-fit: cover;
+     max-width: 240px;
+    
+     border-radius: 45px 45px 0px 0px;
+ }

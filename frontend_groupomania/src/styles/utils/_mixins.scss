@@ -216,16 +216,7 @@
     margin: 10px auto;
     text-align: center
 }
-@mixin _
-{
-    font-family: $font-Montserrat;
-	color: $color-secondary;
-	font-size: 18px;
-	font-weight: bolder;
-	text-align: left;
-	margin:0% 0% 0% 10%;
 
-}
 @mixin legend
 {
     font-family: $font-Montserrat;

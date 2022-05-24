@@ -25,33 +25,29 @@ function MyPosts()
      }])
      useEffect(() => 
      {
-          let endpoints = 'http://localhost:3300/api/articles/'
-          axios(endpoints,
-               {headers: 
-                    {
-                         'Content-Type': 'application/json',
-                         'Authorization': token
-                    }
+          let endpoints = 'http://localhost:3300/api/articleByUserId'
+          axios
+          ({
+               method: 'post',
+               url: endpoints,
+               headers: { 
+                    "Content-type" : 'application/json',
+                    'Authorization': token
+          },
+               data: 
+               {
+                    UserId: userId
                }
-               )
+          }) 
           .then(res => 
                {
                     if(token !== null && userId !== null)
                     {
                          console.log(res.data)
-                         const getUserIdPost= res.data[1].userId
-                         console.log(getUserIdPost)
-                         if( getUserIdPost === userId)
-                         {
-                              setPosts(res.data)
-                         }
-                         else
-                         {
-                              alert("vous n'avez pas encore publié d'article ! Allez-y !")
-                         }
+                         setPosts(res.data)
                     }
                     else{
-                         alert("Veuillez vous connecter !")
+                        // alert("Veuillez vous connecter !")
                     }
                }
           )
@@ -93,47 +89,29 @@ function MyPosts()
                })
      }, [token, userId])
      
-     let navigate = useNavigate();
-     //utilisation de RouteDashbord pour revenir à la page 'articles'
-     const routeArticles = () =>
-     {
-          navigate('/articles')
-     }
-     
+     let navigate = useNavigate();     
      // RoutePutPost pour modifier un post
-     const routePutPost = () =>
-     {
-          navigate('/article/')          
-     }
+     // const routePutPost = () =>
+     // {
+     //      navigate(`/article/:id`)          
+     // }
      
+     let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+
      const inserText = ( 
      <main className="bloc-cards">           
           <div className='bloc-card-article'>
                <div className='bloc-article'>
                <h2 className='groupomania-h2'>Mes articles</h2>
-               <div className='bloc-btn-article'>
-                    <i className="fa-solid fa-circle-arrow-left"
-                    aria-label='retour'
-                    onClick={routeArticles}
-                    tabIndex={0}
-                    name='modifier'
-                    role="button"></i>
-                    <button className='btn-createPost'
-                    tabIndex={0}
-                    name='modifier'
-                    onClick={routePutPost}>
-                         Modifier
-                    </button>
-               </div> 
           </div>
                {posts.map((post) => (
                <div key={post.id} className='card-myArticles' tabIndex={0}>
-                    <img src={post.imageUrl} alt={post.title} className='imageArticle'/>
+                    <img src={post.imageUrl} alt={post.title} className='images-myArticles'/>
+                    <time>{(new Date()).toLocaleDateString(options, post.updatedAt, "en-FR")}</time>
                     <div className='container-article'>
                          <div className='container-edit'>
                               <h3 className='article-title'>{post.title}</h3>
-                              {
-                              (<div key={user.id}>
+                              {(<div key={user.id}>
                               <img className='image-profil-post' src={user.imageUrl} alt={user.userName}></img>
                               </div>)}
                          </div>
@@ -141,7 +119,7 @@ function MyPosts()
                               <p className='article-post'>{post.content}</p>
                          </div>    
                          <div className='container-btn-icone'>
-                              <i onClick={routePutPost} 
+                              <i onClick={function () {navigate(`/article/${post.id}`)}} 
                               tabIndex={0}
                               aria-label="modifier"
                               className="fa-solid fa-pen-clip"

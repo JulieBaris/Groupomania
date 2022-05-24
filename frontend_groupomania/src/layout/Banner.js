@@ -10,9 +10,8 @@ function Banner()
 	let navigate = useNavigate();
 	function LogOut ()
 	{
-		// suppression des infos contenues dans le localstorage lors de la déconnexion
-		localStorage.removeItem("userIsConnected")
-		localStorage.removeItem('accessToken')
+		// suppression des infos contenues dans le localstorage lors de la déconnexion puis retour à l'accueil
+		window.localStorage.clear();
 		navigate('/')
 		window.location.reload()  
 	}

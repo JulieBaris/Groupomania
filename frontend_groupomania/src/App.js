@@ -25,7 +25,7 @@ function App(){
 				<Route path="articles" element={<Articles/>}/>
 				<Route path="createPost" element={<CreatePost/>}/>
 				<Route path="myArticles" element={<MyPosts/>}/>		    
-				<Route path="article" element={<EditPost/>} />
+				<Route path="article/:id" element={<EditPost/>} />
 				<Route path="contacts" element={<Contacts/>}/>
 				<Route path="compte" element={<Count />} />
 				<Route path="profil" element={<EditProfil/>} />
