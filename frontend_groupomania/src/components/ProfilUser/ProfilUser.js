@@ -32,7 +32,6 @@ function ProfilUser()
                 else
                 {
                     setUser(res.data)
-                    //console.log(res.data)
                 }
             }
         )
@@ -46,12 +45,14 @@ function ProfilUser()
         event.preventDefault()
         navigate("/profil")
     }
+    // Pour supprimer le profil, au clic 
     function DeleteUser(event)
     {
        event.preventDefault()
+       // si user est identifié
        if(user !== undefined)
         {
-            alert("le profil utilisateur a été supprimé. 👋")
+            // faire une requête DELETE auprès de l'API
             axios({
                     method: 'delete',
                     headers: {"Authorization" : token},
@@ -66,25 +67,24 @@ function ProfilUser()
                         imageUrl : user.imageUrl
                     }
             })
-            .then(function () {
-                    // handle success
-                navigate('/signup') 
-                
-                })
-            .catch(function (error) {
-                    // handle error
-            alert(error.message);
+            .then(function () 
+            {
+                alert("Le profil a été supprimé avec succès ! 👋")
+                navigate('/signup')
+            })
+            .catch(function (error) 
+            {
+                alert(error.message, "Le profil n'a pas été supprimé ! 😒 ");
             });
         }
         else
         {
             alert(`Aïe 😒! Votre profil n'a pas pu être supprimé.`)
         }
-
    }
+   // paramétrage de la date 
    let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
-        
-    
+
     return (
         <div className="bloc-profilUser">
               
@@ -98,7 +98,7 @@ function ProfilUser()
                         tabIndex={0}
                         name='retour'
                         role="button"></i>
-                        <i class="fa-solid fa-gear"
+                        <i className="fa-solid fa-gear"
                         aria-label='modifier compte'
                         onClick={SubmitUser}
                         tabIndex={0}

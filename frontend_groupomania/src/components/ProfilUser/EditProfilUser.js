@@ -77,7 +77,7 @@ function EditProfil()
                 //Si la réponse correspond, une alerte s'affiche et l'utilisateur est redirigé vers son compte
                 else
                 {
-                    alert("Le profil a été mis à jour avec succès ! 😊 ");
+                    alert("Le profil a été mis à jour avec succès ! 👌 ");
                     navigate('/compte')
                 }
             })

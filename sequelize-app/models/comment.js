@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.Comment.belongsTo(models.User, {
         foreignKey: {
-          //name: 'userId',
           allowNull: false
         },
         onDelete: 'CASCADE',
@@ -21,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       });
       models.Comment.belongsTo(models.Post, {
         foreignKey: {
-
           allowNull: false
         },
         onDelete: 'CASCADE',

@@ -6,28 +6,15 @@ function CreatePost()
 {
 
      // Récupération de l'id de l'utilisateur et du token 
-     const userId = localStorage.getItem('userIsConnected');
-     console.log(userId)
-     const token = "Bearer " + localStorage.getItem('accessToken')
-     console.log(token)
+     const { userId, token } = AuthApi();
+     //console.log(userId, token)
      
      let navigate = useNavigate();
      //utilisation de RouteDashbord pour revenir au menu principal
-     const routeArticles = () =>
-     {
-          let path = '/articles';
-          navigate(path)
-     }
+     const routeArticles = navArticles(navigate)
 
      //On intègre l'userId 
-     const [post, setPost] = React.useState(
-          {
-               userId : `${userId}`,
-               title: "",
-               content: "",
-               imageUrl:""
-          } 
-     )
+     const [post, setPost] = useStateUser(userId)
      // "handleChangePost" écoute les changements des valeurs des input du formulaire
      function handleChangePost(event) 
      {
@@ -42,7 +29,6 @@ function CreatePost()
      function handleSubmitPost(event) 
      {
           event.preventDefault()
-          console.log(post)
      }
      // au clique sur le button "Publier", si l'utilisateur est connecté il a la possibilité de créer un article et de la publier 
      function SubmitPost(event)
@@ -61,6 +47,7 @@ function CreatePost()
                // Si le formulaire est rempli on publie l'article
                if(post !== undefined)
                {
+                    // Requête POST auprès de l'API pour enregistrer les données dans la BDD
                     axios
                     ({
                          method: 'post',
@@ -69,7 +56,6 @@ function CreatePost()
                               'Content-Type': 'application/json',
                               'Authorization': token
                          },
-                         credentials: "include",
                          data: 
                          {
                               UserId: userId,
@@ -98,60 +84,84 @@ function CreatePost()
                }
           }          
      }
+     // const relative au texte à ajouter au DOM
+     const inserText = inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, SubmitPost)
 
-     return ( 
-              
-          <div className="bloc-cards">
-               <div className='bloc-btn-article'>
-                    <i className="fa-solid fa-circle-arrow-left"
+     return inserText
+}
+export default CreatePost
+// Function et Const utils
+function inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, SubmitPost) {
+     return <div className="bloc-cards">
+          <div className='bloc-btn-article'>
+               <i className="fa-solid fa-circle-arrow-left"
                     aria-label='retour'
                     onClick={routeArticles}
                     tabIndex={0}
                     name='retour'
                     role="button"></i>
-               </div>
-               <div className='bloc-card-article'>
-               
-                    <div className='bloc-article'>
-                         <h2 className='groupomania-h2'>Créez un article :</h2>
-                         <legend>* Tous les champs sont obligatoires</legend>
-                    
-                         <form onSubmit={handleSubmitPost} className='form-createPost'>
-                              <input
-                                   type="text"
-                                   placeholder="Titre... (40 caractères maximum)"
-                                   onChange={handleChangePost}
-                                   name="title"
-                                   value={post.title}
-                                   required={true}
-                                   maxLength={40}
-                              />
-                              <textarea
-                                   type="text"
-                                   placeholder="Votre article ... (350 caractères maximum)"
-                                   onChange={handleChangePost}
-                                   name="content"
-                                   value={post.content}
-                                   required={true}
-                                   maxLength={350}
-                                   className='input-text-article'
-                              />
-                              <input 
-                                   className = "input-form-box" 
-                                   aria-describedby="Image"  
-                                   name='imageUrl' 
-                                   onChange = {handleChangePost} 
-                                   type="text" 
-                                   placeholder="copier l'URL de l'image" value={post.imageUrl}
-                              />
-                              
-                              <button className='btn-createPost' onClick={SubmitPost}>
-                                   Publier
-                              </button>
-                         </form>
-                    </div>
+          </div>
+          <div className='bloc-card-article'>
+
+               <div className='bloc-article'>
+                    <h2 className='groupomania-h2'>Créez un article :</h2>
+                    <legend>* Tous les champs sont obligatoires</legend>
+
+                    <form onSubmit={handleSubmitPost} className='form-createPost'>
+                         <input
+                              type="text"
+                              placeholder="Titre... (40 caractères maximum)"
+                              onChange={handleChangePost}
+                              name="title"
+                              value={post.title}
+                              required={true}
+                              maxLength={40} />
+                         <textarea
+                              type="text"
+                              placeholder="Votre article ... (350 caractères maximum)"
+                              onChange={handleChangePost}
+                              name="content"
+                              value={post.content}
+                              required={true}
+                              maxLength={350}
+                              className='input-text-article' />
+                         <input
+                              className="input-form-box"
+                              aria-describedby="Image"
+                              name='imageUrl'
+                              onChange={handleChangePost}
+                              type="text"
+                              placeholder="copier l'URL de l'image" value={post.imageUrl} />
+
+                         <button className='btn-createPost' onClick={SubmitPost}>
+                              Publier
+                         </button>
+                    </form>
                </div>
           </div>
-     )
+     </div>;
 }
-export default CreatePost
+
+function useStateUser(userId) {
+     return React.useState(
+          {
+               userId: `${userId}`,
+               title: "",
+               content: "",
+               imageUrl: ""
+          }
+     );
+}
+
+function navArticles(navigate) {
+     return () => {
+          let path = '/articles';
+          navigate(path);
+     };
+}
+
+function AuthApi() {
+     const userId = localStorage.getItem('userIsConnected');
+     const token = "Bearer " + localStorage.getItem('accessToken');
+     return { userId, token };
+}

@@ -67,11 +67,13 @@ function SignUp() {
                     }
                     else
                     {
-                         alert(res.message)
+                         alert(res.error)
+                         console.log(res.error)
                     }
                })
           .catch(function (error) {
                console.log(error)
+               alert(error)
                if(formDataSignup.userName.length < 3 || formDataSignup.userName === undefined )
                {   
                     return(alert("Le nom doit contenir minimum 3 caractères"))

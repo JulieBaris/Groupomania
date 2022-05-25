@@ -9,10 +9,9 @@ import MyPosts from './components/Articles/MyPosts';
 import EditPost from './components/Articles/EditPost'
 import Count from './webpages/profilUser'
 import EditProfil from "./components/ProfilUser/EditProfilUser";
+import Comments from './components/Comments/Comments';
 
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
-
-
 
 function App(){
 	return (        
@@ -23,9 +22,13 @@ function App(){
 				<Route path="signup" element={<SignUp />}/>               
 				<Route path="dashbord" element={<Dashbord />}/> 
 				<Route path="articles" element={<Articles/>}/>
+				
 				<Route path="createPost" element={<CreatePost/>}/>
 				<Route path="myArticles" element={<MyPosts/>}/>		    
 				<Route path="article/:id" element={<EditPost/>} />
+
+				<Route path='comments/:id' element={<Comments/>}/>
+
 				<Route path="contacts" element={<Contacts/>}/>
 				<Route path="compte" element={<Count />} />
 				<Route path="profil" element={<EditProfil/>} />

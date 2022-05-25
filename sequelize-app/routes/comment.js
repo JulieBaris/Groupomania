@@ -1,18 +1,16 @@
 const express = require('express')
 // Importation du "middleware" relatif à l'authentification
+const auth = require("../middleware/auth");
 const router = express.Router()
-const {
-     findAllComments,
-     findOneComment,
-     createComment,
-     deleteComment
-    } = require('../controllers/comment')
+const ctrlComment = require('../controllers/comment')
 
-// -------------------------CUSTOM ROUTE-------------------------
-router.post('/comment', createComment)
-router.get('/comments', findAllComments)
-router.get('/comment/:id', findOneComment)
-router.delete('/comment/:id', deleteComment)
+// ------------Routes relatives aux commentaires------------------//
+//Requête POST pour créer un commentaire
+router.post('/comment', auth,ctrlComment.createComment)
+//Requête GET pour voir tous les commentaires
+router.get('/comments', auth, ctrlComment.findAllComments)
 
-// -------------------------EXPORT ROUTER-------------------------
+router.get('/commentByPostId', auth, ctrlComment.getByPostId)
+
+
 module.exports = router

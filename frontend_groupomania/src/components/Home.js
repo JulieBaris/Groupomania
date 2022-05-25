@@ -27,7 +27,7 @@ function Home()
                 }
             }
         )
-        .catch(error => { return(error, alert("Oups ! 😒 Vous n'êtes peut être plus connecté."));})
+        .catch(error => { return(error, alert("Oups ! 😒 Vous n'êtes peut-être plus connecté."));})
     }, [token,userId])
     
 
@@ -53,4 +53,3 @@ function Home()
 }
 
 export default Home;
-
