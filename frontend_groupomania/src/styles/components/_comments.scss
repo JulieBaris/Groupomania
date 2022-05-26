@@ -1,3 +1,148 @@
 @import "../utils/_variables.scss";
 @import "../utils/_mixins.scss";
+.bloc-cards-comment{
+     @include bloc-card-user;
+     margin-top: 25px
+}
+.bloc-btn-comment{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     text-align: center;
+     align-items: center;
+}
+.bloc-comment{
+     @include bloc-card-user;
+     margin-top: 25px;
+     flex-direction: column;
+}
 
+.comment-h2{
+     @include h2-bold;
+     width: 180px;
+     margin: 0px auto 15px auto;
+     text-align: center
+}
+
+.container-comment{
+     display: flex;
+     flex-direction: row;
+     width: 100%;
+     margin: 5px;
+     align-items: center;
+}
+.card-profil-comment{
+     display: flex;
+     flex-direction: column;
+     width: 60px;
+     height: 68px;
+     border : 1.5px solid $color-secondary;
+     border-radius: 20px;
+     align-items: center;
+     justify-content: center
+}
+.card-comment{
+     @include card-user;
+     max-width: 90%;
+     height: auto;
+     border-radius: 20px;
+     text-align: left; 
+     margin:15px;
+}
+.author-comment{
+     display: flex;
+    flex-direction: column;
+    width: 50px;
+    height: 100%;
+    margin: 0px 5px;
+    justify-content: center;
+    align-items: center;
+}
+.image-profil-comment{
+     width: 61px;
+     height: 47px;
+     border-radius : 20px 20px 0 0;
+}
+
+.author-userName{
+     margin : 3px auto;
+}
+.time{
+     height: 15px;
+     margin: 5px 10px;
+}
+.p-time{
+     font-size: 0.7em;
+}
+
+.text-comment{
+     width: 73%;
+}
+.p-comment{
+     @include p; 
+     padding: 0;
+     font-size: 0.8em;
+     margin: 5px 10px;
+     height: auto;
+}
+.ancre{
+     width: 5px 5px;
+     height: auto;
+     margin: 10px;
+     display: flex;
+     justify-content: center;
+     background-color: none;
+     border-radius: 50%;
+     &:focus, &:hover, &:active{
+          text-decoration: none;
+          cursor: pointer;
+          border: none;
+          box-shadow: 7px 7px 12px $color-primary
+     }
+}
+i.fa-message{
+     color: $color-white;
+     background-color: $color-secondary;
+     border-radius: 50%;
+     font-size: 1em;
+     padding: 10px;
+     margin: 10px;
+}
+.btn-commenter{
+     @include p;
+     padding: 0 10px;
+     font-size: 1em;
+     color: $color-white;
+     font-weight: 500;
+     background-color: $color-secondary;
+     background-image: none;
+     border : 2px solid $color-secondary;
+     margin: 20px auto;
+     &:hover, &:focus {
+          font-size: 1.1em;
+          cursor: pointer;
+          box-shadow: 7px 7px 12px $color-primary
+     }
+}
+// concerne la possibilité de créer un commentaire, de le modifier et de le supprimer
+.input-text-comment
+{
+     @include input;
+     font-size: 1.1em;
+     text-overflow: ellipsis;
+     font-size: 0.9em;
+     height: 30px;
+     margin: 10px auto;
+}
+.btn-createComment{
+     @include btn;
+     margin: 15px auto;
+     padding: 20px;
+     font-size: 0.9em;
+     font-weight: bold;
+     &:hover{
+          cursor: pointer;
+          box-shadow: 7px 7px 12px $color-primary
+     }
+}

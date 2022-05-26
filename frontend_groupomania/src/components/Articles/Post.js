@@ -7,71 +7,29 @@ function AllArticles()
 {
      let navigate = useNavigate();
      // Récupération du token et de l'id de l'utilisateur
-     let userId = localStorage.getItem('userIsConnected');
-     let token = "Bearer " + localStorage.getItem('accessToken');
-
-
+     let { token, userId } = AuthApi();
      //récupération de données relatives aux articles 
-     const [posts, setPosts] = useState([{
-          title : "",
-          content : "", 
-          imageUrl : ""
-     }])
-    
+     const [posts, setPosts] = useState([])
      
-     useEffect (() => 
-     {
-          let endpoints = 'http://localhost:3300/api/articles'
-          axios(endpoints,
-               {headers: 
-                    {
-                         'Content-Type': 'application/json',
-                         'Authorization': token
-                    }
-               },
-               )
-          .then(res => 
-               {
-                    if(token !== null && userId !== null)
-                    {
-                         setPosts(res.data)
-                    }
-                    else
-                    {
-                         alert("Veuillez vous connecter !")
-                    }
-               }
-          )
-          .catch(error => 
-               {
-                    //console.log(error.message);
-                    alert(error,"La requête n'a pas pu aboutir");
-               })
-     }, [token, userId])
+     useEffectGetAllPosts(token, userId, setPosts);
 
-     
-     //utilisation de RouteDashbord pour revenir au menu principal
-     const routeDashbord = () =>
-     {
-          navigate('/dashbord')
-     }
-     //utilisation de RouteCreatePost pour créer un post
-     const routeCreatePost = () =>
-     {
-          navigate('/createPost')
-     }
-     
-     const routeMyArticles = () =>
-     {
-          navigate('/myArticles')          
-     }
+     //utilisation de Routes qui contient toutes les routes
+     const { routeDashbord, routeCreatePost, routeMyArticles } = Routes(navigate);
     
      // Options pour paramétrer la date
      let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
 
      //Const relatif au texte à insérer dans le DOM
-     const inserText =( 
-     <main className="bloc-cards">
+     const inserText =InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate)
+     return inserText
+}
+export default AllArticles
+
+
+//_________________________________________Utils____________________________//
+
+function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate) {
+     return <main className="bloc-cards">
           <div className='bloc-card-article'>
                <div className='bloc-article'>
                     <h2 className='groupomania-h2'>Articles parus</h2>
@@ -104,40 +62,86 @@ function AllArticles()
                          <div className='container-article'>
                               <div className='container-edit'>
                                    <h3 className='article-title'>{post.title}</h3>
-                                   {/* {<div className='author-post'>
-                                   <img className='image-profil-post' src={post.User.imageUrl} alt={post.User.userName}></img>
-                                   <legend className='author'>{post.User.userName}</legend>
-                                   </div>} */}
+                                   {<div className='author-post'>
+                                        <img className='image-profil-post' src={post.User.imageUrl} alt={post.User.userName}></img>
+                                        <legend className='author'>{post.User.userName}</legend>
+                                   </div>}
                               </div>
                               <div className='container-edit'>
                                    <p className='article-post'>{post.content}</p>
                               </div>
                               <div className='container-btn-icone'>
                                    <i tabIndex={0}
-                                   className="fa-solid fa-thumbs-up"
-                                   aria-label="j'aime"
-                                   role="button"
-                                   name="j'aime"></i>
+                                        className="fa-solid fa-thumbs-up"
+                                        aria-label="j'aime"
+                                        role="button"
+                                        name="j'aime"></i>
                                    <i tabIndex={0}
-                                   className="fa-solid fa-thumbs-down"
-                                   aria-label="je n'aime pas"
-                                   role="button"
-                                   name="je n'aime pas"></i>
+                                        className="fa-solid fa-thumbs-down"
+                                        aria-label="je n'aime pas"
+                                        role="button"
+                                        name="je n'aime pas"></i>
                                    <i tabIndex={0}
-                                   className="fa-solid fa-message"
-                                   aria-label="commenter"
-                                   role="button"
-                                   name="commenter"
-                                   onClick={function(){navigate(`/comments/${post.id}`)}}>
+                                        className="fa-solid fa-message"
+                                        aria-label="commenter"
+                                        role="button"
+                                        name="commenter"
+                                        onClick={function () { navigate(`/comments/${post.id}`); } }>
                                    </i>
-                              </div>      
+                              </div>
                          </div>
                     </div>
                ))}
           </div>
-     </main>)
-     return inserText
+     </main>;
 }
-export default AllArticles
 
+function Routes(navigate) {
+     const routeDashbord = () => {
+          navigate('/dashbord');
+     };
+     //utilisation de RouteCreatePost pour créer un post
+     const routeCreatePost = () => {
+          navigate('/createPost');
+     };
+
+     const routeMyArticles = () => {
+          navigate('/myArticles');
+     };
+     return { routeDashbord, routeCreatePost, routeMyArticles };
+}
+
+function useEffectGetAllPosts(token, userId, setPosts) {
+     useEffect(() => {
+          let endpoints = 'http://localhost:3300/api/articles';
+          axios(endpoints,
+               {
+                    headers: {
+                         'Content-Type': 'application/json',
+                         'Authorization': token
+                    }
+               }
+          )
+               .then(res => {
+                    if (token !== null && userId !== null) {
+                         setPosts(res.data);
+                    }
+
+                    else {
+                         alert("Veuillez vous connecter !");
+                    }
+               }
+               )
+               .catch(error => {
+                    //console.log(error.message);
+                    alert(error, "La requête n'a pas pu aboutir");
+               });
+     }, [token, userId, setPosts]);
+}
+
+function AuthApi() {
+     let userId = localStorage.getItem('userIsConnected');
+     let token = "Bearer " + localStorage.getItem('accessToken');
+     return { token, userId };
+}
 

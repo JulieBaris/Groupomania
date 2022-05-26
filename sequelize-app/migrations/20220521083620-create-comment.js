@@ -25,15 +25,17 @@ module.exports = {
         },
       },
       content: {
-        allowNull: false,
+        type: Sequelize.STRING
+      },
+      imageUrl: {
         type: Sequelize.STRING
       },
       createdAt: {
-        // allowNull: false,
+        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        //  allowNull: false,
+         allowNull: false,
         type: Sequelize.DATE
       }
     });

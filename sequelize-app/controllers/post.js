@@ -13,7 +13,7 @@ exports.createPost = async (req, res, next) => {
   // vérification que tous les champs sont remplis
   if(title === null || title === '' || content === null || content === ''|| imageUrl === null || imageUrl === '')
   {
-      return res.status(400).json({error, message: "Merci de remplir tous les champs du formulaire."});
+      return res.status(400).json({message: "Merci de remplir tous les champs du formulaire."});
   }
   const postObject = req.body;
   // Création d'un nouvel objet article

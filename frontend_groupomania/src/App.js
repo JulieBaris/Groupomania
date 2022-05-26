@@ -10,8 +10,10 @@ import EditPost from './components/Articles/EditPost'
 import Count from './webpages/profilUser'
 import EditProfil from "./components/ProfilUser/EditProfilUser";
 import Comments from './components/Comments/Comments';
+import CreateComment from './components/Comments/CreateComment';
 
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
+
 
 function App(){
 	return (        
@@ -28,6 +30,7 @@ function App(){
 				<Route path="article/:id" element={<EditPost/>} />
 
 				<Route path='comments/:id' element={<Comments/>}/>
+				<Route path='createComment/:id' element={<CreateComment/>}/>
 
 				<Route path="contacts" element={<Contacts/>}/>
 				<Route path="compte" element={<Count />} />

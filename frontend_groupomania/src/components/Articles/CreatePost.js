@@ -110,7 +110,7 @@ function inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, Submi
                     <form onSubmit={handleSubmitPost} className='form-createPost'>
                          <input
                               type="text"
-                              placeholder="Titre... (40 caractères maximum)"
+                              placeholder="Titre... (35 caractères maximum)"
                               onChange={handleChangePost}
                               name="title"
                               value={post.title}
@@ -118,7 +118,7 @@ function inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, Submi
                               maxLength={40} />
                          <textarea
                               type="text"
-                              placeholder="Votre article ... (350 caractères maximum)"
+                              placeholder="Votre article ... (180 caractères maximum)"
                               onChange={handleChangePost}
                               name="content"
                               value={post.content}

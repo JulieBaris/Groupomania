@@ -36,11 +36,11 @@
 }
 @mixin bloc-card-user{
     width: 100%;
-     flex-direction: row;
-     display: flex;
-     flex-wrap: wrap;
-     background-color: $color-optional;
-     justify-content: center;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $color-optional;
+    justify-content: center;
 }
 @mixin container-article {
     display: flex;

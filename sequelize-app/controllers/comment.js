@@ -8,18 +8,23 @@ const User = require('../models').User
 exports.createComment = async (req, res, next) => {
   // éléments de la requète
   const content =  req.body.content;
+  const imageUrl = req.body.imageUrl
   // vérification que tous les champs sont remplis
-  if( content === null || content === '')
-  {
-      return res.status(400).json({error, message: "Merci d'écrire votre commentaire avant de l'envoyer."});
-  }
-  const commentObject = req.body;
+  // if( content === null || content === '')
+  // {
+  //     return res.status(400).json({message: "Merci d'écrire votre commentaire avant de l'envoyer."});
+  // }
+  // else{
+    const commentObject = req.body;
   // Création d'un nouvel objet commentaire
   const comment = new Comment({...commentObject});
   // Enregistrement de l'objet commentaire dans la base de données
   comment.save()
     .then(() => res.status(201).json({ message: 'Le commentaire a été créé !'}))
     .catch(error => res.status(400).json({ error }))
+
+  // }
+  
 };
 // controller pour modifier un commentaire
 exports.modifyComment = (req, res, next) => {
@@ -49,18 +54,16 @@ exports.findOneComment = (req, res, next) => {
 };
 // controller pour trouver tous les commentaires
 exports.findAllComments = (req, res, next) => {
-  Comment.findAll({
-    include : {
-      model : Post,
-      attributes : ["id","title","content", "imageUrl"]
-    },
-    order: [['createdAt', 'DESC']]},
-    {
-      include : {
-        model : User,
-        attributes : ["id","imageUrl","userName"]
-      },
-      order: [['createdAt', 'DESC']]})
+
+  console.log('Body',req.body)
+  Comment.findAll(
+    { where :{ postId : req.body.id},
+    include :[User],   
+    order: [['createdAt', 'DESC']]
+    }, { where :{ postId : req.body.id},
+    include :[Post],   
+    order: [['createdAt', 'DESC']]
+    } )
   .then(comments => {res.status(200).json(comments)})
   .catch(error => res.status(400).json({error, message:"Aucun commentaire n'a été trouvé."} ));
 };

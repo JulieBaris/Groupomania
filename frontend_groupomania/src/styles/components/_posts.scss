@@ -85,6 +85,7 @@ time {
      max-width: 280px;
      height: auto;
      border-radius: 20px;
+     margin: 20px auto;
 }
 .imageArticle{
     @include image-article
@@ -149,27 +150,8 @@ time {
      
 }
 
-// concerne la possibilité de créer un commentaire, de le modifier et de le supprimer
-.input-text-comment{
-     @include input;
-     font-size: 1.1em;
-     height: 60px;
-     margin: 0px auto;
-     text-overflow: ellipsis;
-}
-.comment-title{
-     @include h3;
-     font-size: 16px;
-     margin: 3px 15px;
-     border-bottom: 2px solid $color-primary;
-}
+
 .form-createPost{
      @include connect-cart;
      margin: 20px auto;
-}
-.comment-content{
-     @include p;
-     font-size: 12px;
-     margin: 3px 15px;
-     border-bottom: 2px solid $color-primary;
 }
