@@ -9,6 +9,5 @@ const {
 // -------------------------CUSTOM ROUTE-------------------------
 router.post('/sign-up', password, signUp)
 router.post('/login', loginUser)
-
 // -------------------------EXPORT ROUTER-------------------------
 module.exports = router

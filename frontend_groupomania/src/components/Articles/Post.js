@@ -25,7 +25,6 @@ function AllArticles()
 }
 export default AllArticles
 
-
 //_________________________________________Utils____________________________//
 
 function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate) {
@@ -86,8 +85,16 @@ function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, option
                                         aria-label="commenter"
                                         role="button"
                                         name="commenter"
-                                        onClick={function () { navigate(`/comments/${post.id}`); } }>
+                                        onClick={function () {navigate(`/comments/${post.id}`); } }>
                                    </i>
+                                   <i className="fa-solid fa-trash-can"
+                                        aria-label='supprimer compte'
+                                        //onClick={}
+                                        tabIndex={0}
+                                        name='supprimer'
+                                        role="button">
+                                   </i>
+                                   
                               </div>
                          </div>
                     </div>
@@ -123,7 +130,7 @@ function useEffectGetAllPosts(token, userId, setPosts) {
                }
           )
                .then(res => {
-                    if (token !== null && userId !== null) {
+                    if (token !== null || userId !== null || userId === 19) {
                          setPosts(res.data);
                     }
 

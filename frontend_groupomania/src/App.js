@@ -1,6 +1,7 @@
 import Menu from './webpages/app'
 import Login from './webpages/login'
 import SignUp from "./webpages/signup";
+import LoginAdmin from './components/Auth/LoginAmin';
 import Dashbord from './webpages/dashbord.js'
 import Contacts from './webpages/contacts'
 import Articles from './webpages/articles'
@@ -15,12 +16,14 @@ import CreateComment from './components/Comments/CreateComment';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
+
 function App(){
 	return (        
 	<BrowserRouter>            
 		 <Routes>
 			<Route path='/' element={<Menu />}>                 
-				<Route path="login" element={<Login />}/>  
+				<Route path="login" element={<Login />}/>
+				<Route path="loginAdmin" element={<LoginAdmin />}/>   
 				<Route path="signup" element={<SignUp />}/>               
 				<Route path="dashbord" element={<Dashbord />}/> 
 				<Route path="articles" element={<Articles/>}/>

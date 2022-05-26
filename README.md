@@ -4,9 +4,16 @@
 //_____________________Connexion au serveur_________________//
 1) sur le dossier frontend, avec la commande - npm start ;
 2) sur le dossier sequelize-app, avec la commande - nodemon app ;
+Peut être y aura-t-il besoin de faire un "npm init" pour que les modules puissent se lancer
+
 3) accès à base de donnée MySql pour la chargée de communication  
 userName : communication_groupomania ;
 password : ************ (voir avec le développeur).
+
+4) Login personnalisé pour l'administrateur
+userName : AdminGroupomania
+email : groupomania@admin.com
+password : AdminGroupomania22
 
 // ______________ Inscription et connexion au réseau social_____________//
 1) Signup : remplir tous les champs pour créer un utilisateur ;
@@ -24,8 +31,7 @@ password : DeMo01
 
   //____ Page "Contacts" ____//
   L'utilisateur voit les fiches profils de ses collègues : 
-    - possibilité de voir l'ensemble des profils ;
-    - possibilité de faire une recherche grâce à son nom d'uilisateur, son nom ou son prénom via la barre de recherche dédiée.
+    - possibilité de consulter l'ensemble des profils ;
   
   // ____Page "Articles" ____//
   L'utilisateur voit l'ensemble des articles publiés classés du plus récents au plus ancien :

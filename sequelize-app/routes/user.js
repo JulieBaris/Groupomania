@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const auth = require("../middleware/auth")
 const {
      updateProfil,
      getAllProfils,
@@ -9,11 +10,11 @@ const {
     } = require('../controllers/user')
 
 // Profils utilisateurs -> 
-router.put('/profil/:id', updateProfil)
-router.get('/profils', getAllProfils)
-router.get('/profil/:id', getSingleProfil)
-router.delete('/profil/:id', deleteSingleProfil)
-//router.delete('/allProfils', authentification, deleteAllProfils)
+router.put('/profil/:id', auth, updateProfil)
+router.get('/profils', auth, getAllProfils)
+router.get('/profil/:id', auth, getSingleProfil)
+router.delete('/profil/:id', auth, deleteSingleProfil)
+//router.delete('/allProfils', auth, deleteAllProfils)
 
 
 // -------------------------EXPORT ROUTER-------------------------

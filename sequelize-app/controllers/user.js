@@ -8,6 +8,7 @@ const Like =  require('../models').Like
 const fs = require('fs');
 
 module.exports = {
+ 
 
  // update account
  updateProfil: (req, res, next) => {
@@ -41,7 +42,7 @@ module.exports = {
   // Controllers pour retrouver un profil en particulier
   getSingleProfil:(req, res, next) => 
   {
-    User.findOne({ where: {id: req.params.id} })
+    User.findOne({ where: {id: req.params.id} }, {})
     .then(user => {
     res.status(200).json(user)
   })
@@ -55,39 +56,7 @@ module.exports = {
     let id = req.params.id
     User.destroy({where: {id: id}})
     .then(() =>{ return res.status(200).json({message: "Le profil a été supprimé avec succès."})})
-    .catch(err =>{ return res.status(400).json({err, message:"l'utilisateur n'a été supprimé."})})
-
-  // Like.destroy({where: {userId: req.params.id}})
-  // .then(() => 
-  //   Comment.destroy({where: {userId: req.params.id}})
-  //   .then(() => 
-  //     Article.findAll({where: {userId: req.params.id}})
-  //       .then(
-  //         (articles) => {
-  //           articles.forEach(
-  //             (article) => {
-  //               Comment.destroy({where: {articleId: article.id}})
-  //               Like.destroy({where: {articleId: article.id}})
-  //               Article.destroy({where: {id: article.id}})
-  //             }
-  //           )
-  //         }
-  //       )
-  //       .then(() =>
-  //       User.findOne({ where: {id: req.params.id} })
-  //         .then(user => {
-  //           const filename = user.imageUrl;
-  //           fs.unlink(`images/${filename}`, () => {
-  //             User.destroy({ where: {id: req.params.id} })
-  //             .then(() => res.status(200).json({ message: 'Utilisateur supprimé !'}))
-  //           })
-  //         })
-  //       )
-  //     )
-  //   )
-  // .catch(error => res.status(400).json({ error }));
-      
-
+    .catch(err =>{ return res.status(400).json({err, message:"l'utilisateur n'a été supprimé."})}) 
   },
 
 

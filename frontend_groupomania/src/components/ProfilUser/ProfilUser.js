@@ -104,7 +104,7 @@ function ProfilUser()
                         tabIndex={0}
                         name='modifier'
                         role="button"></i>
-                        <i class="fa-solid fa-trash-can"
+                        <i className="fa-solid fa-trash-can"
                         aria-label='supprimer compte'
                         onClick={DeleteUser}
                         tabIndex={0}

@@ -14,6 +14,7 @@ export default function App() {
         <nav>
           <Link to="login" className='Link'aria-label='connexion' name='connexion' tabIndex={0} role="button">Login</Link> 
           <Link to="signup" className='Link' aria-label='inscription'name='inscription' tabIndex={0} role="button">SignUp</Link>
+          <Link to="loginAdmin" className='Link'aria-label='connexion' name='connexion' tabIndex={0} role="button">Admin</Link>
         </nav>
       <Outlet />
     </main>);
