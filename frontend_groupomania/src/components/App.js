@@ -2,7 +2,7 @@
 import '../styles/index.scss'
 import { Outlet, Link } from "react-router-dom";
 
-export default function App() {
+export default function Menu() {
   const userId = localStorage.getItem('userIsConnected')
   const token = "Bearer " + localStorage.getItem('accessToken')
 

@@ -10,17 +10,24 @@ function AllArticles()
      let { token, userId } = AuthApi();
      //récupération de données relatives aux articles 
      const [posts, setPosts] = useState([])
-     
      useEffectGetAllPosts(token, userId, setPosts);
-
+     
      //utilisation de Routes qui contient toutes les routes
      const { routeDashbord, routeCreatePost, routeMyArticles } = Routes(navigate);
     
      // Options pour paramétrer la date
      let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
 
-     //Const relatif au texte à insérer dans le DOM
-     const inserText =(<main className="bloc-cards">
+     //Insérer dans le DOM
+     const inserText =InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate)
+     return inserText
+}
+export default AllArticles
+
+//_________________________________________Utils____________________________//
+
+function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate) {
+     return <main className="bloc-cards">
           <div className='bloc-card-article'>
                <div className='bloc-article'>
                     <h2 className='groupomania-h2'>Articles parus</h2>
@@ -67,19 +74,17 @@ function AllArticles()
                                         aria-label="commenter"
                                         role="button"
                                         name="commenter"
-                                        onClick={function () {navigate(`/comments/${post.id}`); } }>
+                                        onClick={function () { navigate(`/comments/${post.id}`); } }>
                                    </i>
                                    <i className="fa-solid fa-trash-can"
                                         aria-label='supprimer compte'
-                                        onClick={function () 
-                                             {
-                                                  let adminId = localStorage.getItem('adminIsConnected');
-                                                  if(adminId === null )
-                                                  {
-                                                       alert("Seul l'administration est autorisée à supprimer cet article. Un signalement à faire ? Contactez-nous ! Si vous en êtes l'auteur, rendez-vous sur la page 'Mes articles'.")
-                                                  }
-                                                  else{navigate(`/adminDeletePost/${post.id}`)}
-                                             }}
+                                        onClick={function () {
+                                             let adminId = localStorage.getItem('adminIsConnected');
+                                             if (adminId === null) {
+                                                  alert("Seul l'administration est autorisée à supprimer cet article. Un signalement à faire ? Contactez-nous ! Si vous en êtes l'auteur, rendez-vous sur la page 'Mes articles'.");
+                                             }
+                                             else { navigate(`/adminDeletePost/${post.id}`); }
+                                        } }
                                         tabIndex={0}
                                         name='supprimer'
                                         role="button">
@@ -89,26 +94,15 @@ function AllArticles()
                     </div>
                ))}
           </div>
-     </main>)
-     return inserText
+     </main>;
 }
-export default AllArticles
 
-//_________________________________________Utils____________________________//
-
-
-function Routes(navigate) {
-     const routeDashbord = () => {
-          navigate('/dashbord');
-     };
+function Routes(navigate) 
+{
+     function routeDashbord() { navigate('/dashbord'); }
      //utilisation de RouteCreatePost pour créer un post
-     const routeCreatePost = () => {
-          navigate('/createPost');
-     };
-
-     const routeMyArticles = () => {
-          navigate('/myArticles');
-     };
+     function routeCreatePost() { navigate('/createPost')}
+     function routeMyArticles() {navigate('/myArticles')}
      return { routeDashbord, routeCreatePost, routeMyArticles };
 }
 

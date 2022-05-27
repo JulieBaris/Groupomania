@@ -9,10 +9,8 @@ function Comments()
      let { token, userId } = AuthAPI();
      // permet de rediriger l'utilisateur vers la page /articles
      let navigate = useNavigate();
-     function routeArticles() 
-     {
-          navigate('/articles');
-     }
+     function routeArticles() {navigate('/articles');}
+     // récupération de l'id dans l'url
      let {id} = useParams()
      // Options pour paramétrer la date
      let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};

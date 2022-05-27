@@ -13,19 +13,13 @@ function DeletePost(){
      const {id} = useParams()
      // permet de rediriger l'utilisateur vers la page /articles
      let navigate = useNavigate();
-     const routeArticles = () =>
-     {
-        let path = '/dashbord';
-        navigate(path)
-     }
-     //permet d'observer l'état des données
-
+     function routeArticles() {navigate('/dashbord')}
      // Function DelePost permet de supprimer un post au clic de l'utilisateur
      function DeletePost(event)
      {
           // suppression des paramètres par défaut      
           event.preventDefault()
-          // s'il y a un article on envoie la requête de suppression à l'API
+          // s'il y a un article on envoie la requête DELETE à l'API
           if(adminId !== null)
           {
                axios

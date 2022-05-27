@@ -1,10 +1,11 @@
 //___________________________Création des "controllers" pour l'user____________________//
-// Importation de l'outil bcrypt qui permet de sécuriser l'identification et le compte d'un utilisateur
+// permet de sécuriser l'identification et le compte d'un utilisateur
 const bcrypt = require('bcrypt');
+// stock temporairement les données 
 const {Buffer} = require('buffer')
-// Importation de l'outil "jsonwebtocken", permet de créer un tocken et sécuriser l'auth
+// permet de créer un tocken et sécuriser l'auth
 const { sign } = require("jsonwebtoken");
-//Importation du model User
+// importation du model User
 const User = require('../models').User
 
 module.exports = {
@@ -24,15 +25,15 @@ signUp: (req, res, next) => {
       // Masquage de l'adresse mail
         let buff = new Buffer.from(email);
         let emailInbase64 = buff.toString('base64');
-        // vérification si l'user existe dans DB
+        // vérification si l'user existe dans la BDD
         User.findOne({
             attributes: ['email'],
             where: {email: emailInbase64}
         })
         .then((userFound) =>{
-        // si l'utilisateur n'existe pas la DB
+        // si l'utilisateur n'existe pas la BDD
         if(!userFound) {
-            // Hash du mot de passe avec bcrypt
+            // Hashage du mot de passe avec bcrypt
             bcrypt.hash(password, 10)
             .then(hash => {
                 // Masquage de l'adresse mail
@@ -88,8 +89,8 @@ signUp: (req, res, next) => {
                 )
             });
         })
-        .catch(error => res.status(500).json(error={message:"Nous n'avons pas réussi à vous identifier !" }));
+        .catch((error) => res.status(500).json(error={message:"Nous n'avons pas réussi à vous identifier !" }));
     })
-    .catch(error => res.status(500).json(error={message:"Aie, un problème a été rencontré !" }));
+    .catch((error) => res.status(500).json(error={message:"Aie, un problème a été rencontré !" }));
 }
 }

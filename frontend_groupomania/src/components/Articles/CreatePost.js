@@ -6,13 +6,10 @@ function CreatePost()
 {
 
      // Récupération de l'id de l'utilisateur et du token 
-     const { userId, token } = AuthApi();
-     //console.log(userId, token)
-     
+     const { userId, token } = AuthApi();     
      let navigate = useNavigate();
      //utilisation de RouteDashbord pour revenir au menu principal
      const routeArticles = navArticles(navigate)
-
      //On intègre l'userId 
      const [post, setPost] = useStateUser(userId)
      // "handleChangePost" écoute les changements des valeurs des input du formulaire
@@ -26,14 +23,10 @@ function CreatePost()
               }
           })
      }
-     function handleSubmitPost(event) 
-     {
-          event.preventDefault()
-     }
-     // au clique sur le button "Publier", si l'utilisateur est connecté il a la possibilité de créer un article et de la publier 
+     function handleSubmitPost(event) {event.preventDefault()}
+     // au clic , si l'utilisateur est connecté il a la possibilité de créer un article
      function SubmitPost(event)
      {
-          
           // suppression des paramètres par défaut      
           event.preventDefault()
           // Si l'utilisateur n'est pas connecté
@@ -43,8 +36,7 @@ function CreatePost()
           }
           // Si l'utilisateur est connecté
           else
-          {
-               // Si le formulaire est rempli on publie l'article
+          {// Si le formulaire est rempli on publie l'article
                if(post !== undefined)
                {
                     // Requête POST auprès de l'API pour enregistrer les données dans la BDD
@@ -84,13 +76,12 @@ function CreatePost()
                }
           }          
      }
-     // const relative au texte à ajouter au DOM
+     // Insérer au DOM
      const inserText = inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, SubmitPost)
-
      return inserText
 }
 export default CreatePost
-// Function et Const utils
+// ____________________________Utils__________________________//
 function inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, SubmitPost) {
      return <div className="bloc-cards">
           <div className='bloc-btn-article'>

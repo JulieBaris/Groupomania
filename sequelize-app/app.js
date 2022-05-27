@@ -1,9 +1,11 @@
+// Import utils
 const express = require('express');
+// enregistre les demandes et infos
 const morgan = require('morgan');
 const bodyParser = require('body-parser')
 const path = require('path');
 
-// router import
+// routes 
 const auth = require('./routes/auth')
 const user = require('./routes/user')
 const post = require('./routes/post')
@@ -35,10 +37,10 @@ app.use('/api', post)
 app.use('/api', comment)
 app.use('/api', admin)
 
-// simple route
+// route principale
 app.get("/", (req, res) => {res.json({ message: "Bienvenue sur le réseau social Groupomania" });});
 
-// set port, listen for requests
+// PORT 3300 pour l'écoute des requêtes
 const PORT = process.env.PORT || 3300;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);

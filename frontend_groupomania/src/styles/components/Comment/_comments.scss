@@ -1,5 +1,5 @@
-@import "../utils/_variables.scss";
-@import "../utils/_mixins.scss";
+@import "../../utils/_variables.scss";
+@import "../../utils/_mixins.scss";
 .bloc-cards-comment{
      @include bloc-card-user;
      margin-top: 25px

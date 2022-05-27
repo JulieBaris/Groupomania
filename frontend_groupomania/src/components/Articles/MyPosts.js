@@ -63,7 +63,7 @@ function MyPosts()
 }
 
 export default MyPosts
-//_______________________Utils_________________//
+//_______________________Utils_______________________________//
 function InserDOM(posts, options, user, navigate, token, DeleteAllMyPosts) {
      return <main className="bloc-cards">
           <div className='bloc-card-article'>

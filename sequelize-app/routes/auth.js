@@ -1,3 +1,4 @@
+// Imports utils
 const express = require('express')
 const password = require('../middleware/password_validator')
 const router = express.Router()
@@ -6,8 +7,10 @@ const {
      loginUser
     } = require('../controllers/auth')
 
-// -------------------------CUSTOM ROUTE-------------------------
+//Requête POST pour s'inscrire au réseau social
 router.post('/sign-up', password, signUp)
+//Requête POST pour se connecter au réseau social
 router.post('/login', loginUser)
-// -------------------------EXPORT ROUTER-------------------------
+
+
 module.exports = router

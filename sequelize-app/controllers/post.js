@@ -1,5 +1,5 @@
 //___________________________Création des "controllers" pour les posts____________________//
-// Importation du modèle d'un post
+// Importation des models Post, Comment et User
 const Post = require('../models').Post
 const Comment = require('../models').Comment
 const User = require('../models').User
@@ -58,7 +58,7 @@ exports.findAllPosts = (req, res, next) => {
     include : [User],
     order: [['createdAt', 'DESC']]})
   .then(posts => {res.status(200).json(posts)})
-  .catch(error => res.status(400).json({error, message:"Aucun article article n'a été trouvé."} ));
+  .catch(error => res.status(400).json({error, message:"Aucun article n'a été trouvé."} ));
 };
 // controller pour supprimer un article
 exports.deletePost = (req, res, next) => {

@@ -11,10 +11,7 @@ function CreateComment()
      let {id} = useParams()
      // permet de rediriger l'utilisateur vers la page /articles
      let navigate = useNavigate();
-     const routeComments = () =>
-     {
-          navigate(`/comments/${id}`)
-     }
+     function routeComments() { navigate(`/comments/${id}`);}
      //récupération de données relatives aux articles 
      const [comment, setComments] = useState([{}])
      // écouter les changements des valeurs des input lorsqu'un utilisateur écrit un commentaire
@@ -28,10 +25,7 @@ function CreateComment()
                }
           })
      }
-     function handleSubmitComment(event) 
-     {
-          event.preventDefault()
-     }
+     function handleSubmitComment(event) { event.preventDefault()}
      function SubmitComment (event){
           
           // suppression des paramètres par défaut      
@@ -112,7 +106,7 @@ function InserDOM(routeComments, handleSubmitComment, handleChangeComment, comme
                <h2 className='comment-h2'>Commentez !</h2>
                <div className='bloc-input-comment'>
                     <form onSubmit={handleSubmitComment} className='form-comment'>
-                         <input className='input-text-comment'
+                         <textarea className='input-text-comment'
                               type="text"
                               placeholder="100 caractères max"
                               onChange={handleChangeComment}

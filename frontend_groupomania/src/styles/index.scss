@@ -1,7 +1,4 @@
 @charset 'utf-8';
-
-//VERSION MOBILE
-//Import des fichiers _partials relatifs à la version mobile
 // Dossier utils contient: les variables, fonctions et mixins.
 @import "./utils/variables";
 @import "./utils/mixins";
@@ -12,16 +9,20 @@
 @import "./base/base";
 
 // Dossier composants contient: les blocs indépendants
-@import "./components/log";
+@import "./components/Auth/log";
+
 @import "./components/home";
-@import "./components/contacts";
-@import "./components/posts";
-@import "./components/editPost";
-@import './components/createPost';
-@import './components/myPosts';
-@import "./components/profilUser";
-@import "./components/editProfil";
-@import './components/comments';
+   // Articles et commentaire
+@import "./components/Articles/posts";
+@import "./components/Articles/editPost";
+@import './components/Articles/createPost';
+@import './components/Articles/myPosts';
+@import './components/Comment/comments';
+     // Utilisateurs
+@import "./components/ProfilUser/profilUser";
+@import "./components/ProfilUser/editProfil";
+
+@import "./components/Users/contacts";
 
 // Dossier layout contient: les blocs que l'on retrouve sur toutes les pages du site.
 @import "./layout/banner";

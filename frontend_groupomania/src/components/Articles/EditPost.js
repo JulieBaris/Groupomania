@@ -12,11 +12,7 @@ function EditPost(){
      const {id} = useParams()
      // permet de rediriger l'utilisateur vers la page /articles
      let navigate = useNavigate();
-     const routeArticles = () =>
-     {
-        let path = '/myArticles';
-        navigate(path)
-     }
+     function routeArticles() { navigate('/myArticles')}
      //permet d'observer l'état des données
      const [postUpdated, setpostUpdated] = useStatePost()
      // écouter les changements des valeurs des input lorsqu'un utilisateur souhaite créer un post
@@ -30,12 +26,8 @@ function EditPost(){
           })
      }
      
-     function handleSubmitPost(event) 
-     {
-          event.preventDefault()
-          console.log(postUpdated)
-     }
-     //au clic de l'utilisateur, on vérifie son existence(id) et on lui permet de modifier son article
+     function handleSubmitPost(event) {event.preventDefault()}
+     //au clic de l'utilisateur, on vérifie son existence et on lui permet de modifier son article
      function SubmitPost(event)
      {
           // suppression des paramètres par défaut      
@@ -71,14 +63,12 @@ function EditPost(){
                     else
                     {
                          setpostUpdated(response.data)
-                         //console.log(response.data)
                          alert("L'article a été mis à jour avec succès ! ");
                          navigate('/articles')
                     }
                })
                .catch(function (error) {
-                    //console.log(error)
-                    alert("Tous les champs doivent être saisies !");
+                    alert("Tous les champs doivent être saisies !", error);
                });
           }
           else
@@ -128,7 +118,7 @@ function EditPost(){
  }
  
  export default EditPost;
-// Utils
+// ___________________Utils_____________________________//
 function insertDOM(routeArticles, handleSubmitPost, ChangePost, postUpdated, SubmitPost, DeletePost) {
      return <div className="bloc-cards">
           <div className='bloc-btn-article'>

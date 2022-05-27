@@ -1,5 +1,5 @@
 const getAuthUserIdToken = require("../middleware/getAuthUserId");
-// Sécurisation de toutes les routes 
+
 module.exports = (req, res, next) => {
     // on récupère l'userId dans la requête
     const userId = req.body.id;
@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     const reqAuthorization = req.headers.authorization;
     try 
     {
-        // Si l'authorisation n'est pas présente dans le headers, alerte
+        // Si l'autorisation n'est pas présente dans le headers, alerte
         if (!reqAuthorization) throw new Error("Problème d'authentification");
         // On vérifie si l'userId envoyé avec la requête est le même que celui encodé du token
         if (userId && userId !== getAuthUserIdToken(req)) throw new Error("userId est invalide");

@@ -1,7 +1,0 @@
-@import "../utils/_variables.scss";
-@import "../utils/_mixins.scss";
-
-.form-createPost{
-     @include connect-cart;
-     margin: 20px auto;
-}

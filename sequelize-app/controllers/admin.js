@@ -1,10 +1,10 @@
 //___________________________Création des "controllers" pour l'user____________________//
-//Importation des model User, Post, Comment et Like
+//Importation des model User, Post, Comment
 const User = require('../models').User
 const Post = require('../models').Post
 const Comment = require('../models').Comment
 
-//contrôleur dédié à l'administrateur pour supprimer un article
+//contrôleur dédié à l'administrateur pour supprimer un profil
 exports.adminDeleteProfil = (req, res, next) => 
   {
     Comment.destroy({where: {id: req.body.id}})
@@ -31,7 +31,7 @@ exports.adminDeletePost = (req, res, next) =>
     .catch(error => res.status(500).json({error, message:"Une erreur s'est produite."}))
 };
 
-// contrôleur dédié à l'administrateur pour supprimer un article
+// contrôleur dédié à l'administrateur pour supprimer un commentaire
 exports.adminDeleteComment = (req, res, next) => 
 {
   Comment.destroy({where: {id: req.params.id}})

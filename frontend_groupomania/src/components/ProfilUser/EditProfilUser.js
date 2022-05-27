@@ -8,25 +8,15 @@ function EditProfil()
 {
     // permet de rediriger l'utilisateur vers la page /compte
     let navigate = useNavigate();
-    const routeProfilUser = () =>
-    {
+    function routeProfilUser() {
         let path = '/compte';
-        navigate(path)
+        navigate(path);
     }
    // Récupération du token et de l'id de l'utilisateur
-   let userId = localStorage.getItem('userIsConnected');
-   let token = "Bearer " + localStorage.getItem('accessToken');
+   let { userId, token } = AuthApi();
     
     //permet d'observer l'état des données de l'utilisateur
-    const [profilUser, setProfilUser] = React.useState(
-        {
-            userName:'',
-            firstName: "",
-            lastName: "",
-            phone: "",
-            email:"",
-            imageUrl:""
-        })
+    const [profilUser, setProfilUser] = useStateEditProfil()
     
     // écoute les changements des valeurs des input lorsqu'un utilisateur souhaite modifier son profil
     function handleChangePutProfilUser(event) 
@@ -39,12 +29,11 @@ function EditProfil()
             }
         })
     }
-
     function handleSubmitProfil(event) {
         event.preventDefault()
-        console.log(profilUser)
+        // console.log(profilUser)
     }
-    // au clique de l'utilisateur, on vérifie son existence(id) et on lui permet de modifier ses informations
+    // au clique de l'utilisateur, on modifie ses données
     function SubmitProfilUser(event)
     {
         // suppression des paramètres par défaut
@@ -52,7 +41,7 @@ function EditProfil()
         //Si l'id de l'utilisateur existe et que les données saisies par l'utilisateur existent
         if(userId !== undefined && profilUser !== undefined)
         {
-            //Avec la méthode Put de Acios, on envoie les données saisies dans la BBD
+            //Requête PUT pour envoyer les données vers la BDD
             axios
             ({
                 method: 'put',
@@ -88,85 +77,106 @@ function EditProfil()
             });
         }
     }
-    
-    return (
-          <div className="bloc-profilUser">
-            <div className='bloc-btn-contact'>
-                <i className="fa-solid fa-circle-arrow-left"
+    // insérer dans le DOM
+    const inserText = inserDOM(routeProfilUser, handleSubmitProfil, handleChangePutProfilUser, profilUser, SubmitProfilUser);
+    return inserText
+}
+ 
+export default EditProfil;
+
+function AuthApi() {
+    let userId = localStorage.getItem('userIsConnected');
+    let token = "Bearer " + localStorage.getItem('accessToken');
+    return { userId, token };
+}
+
+function useStateEditProfil() {
+    return React.useState(
+        {
+            userName: '',
+            firstName: "",
+            lastName: "",
+            phone: "",
+            email: "",
+            imageUrl: ""
+        });
+}
+
+function inserDOM(routeProfilUser, handleSubmitProfil, handleChangePutProfilUser, profilUser, SubmitProfilUser) {
+    return <div className="bloc-profilUser">
+        <div className='bloc-btn-contact'>
+            <i className="fa-solid fa-circle-arrow-left"
                 aria-label='retour'
                 onClick={routeProfilUser}
                 tabIndex={0}
                 name='retour'
                 role="button"></i>
-            </div>
-            
-            <div className='container-profilUser'>
-                <div className='form-user'>
-                    <h2 className='editProfil-h2'>Mettre à jour le profil</h2>
-                    <form onSubmit={handleSubmitProfil} name = "count-user" className='form-createPost'>
-                        <div className='container-form-pro'>
-                            <input className = "input-form-box" 
-                            aria-label="Image"  
-                            aria-describedby="Image" 
-                            name='imageUrl' 
-                            onChange = {handleChangePutProfilUser} 
-                            type="text" placeholder="copier l'URL de l'image" 
+        </div>
+
+        <div className='container-profilUser'>
+            <div className='form-user'>
+                <h2 className='editProfil-h2'>Mettre à jour le profil</h2>
+                <form onSubmit={handleSubmitProfil} name="count-user" className='form-createPost'>
+                    <div className='container-form-pro'>
+                        <input className="input-form-box"
+                            aria-label="Image"
+                            aria-describedby="Image"
+                            name='imageUrl'
+                            onChange={handleChangePutProfilUser}
+                            type="text" placeholder="copier l'URL de l'image"
                             value={profilUser.imageUrl}
-                            tabIndex={0}/>
-                        </div>
-                        <div >
-                            <input className = "input-form-box"
+                            tabIndex={0} />
+                    </div>
+                    <div>
+                        <input className="input-form-box"
                             aria-describedby="userName"
                             aria-label='userName'
                             name='userName'
-                            onChange = {handleChangePutProfilUser}
+                            onChange={handleChangePutProfilUser}
                             type="text"
                             placeholder="Nom d'utilisateur"
                             value={profilUser.userName}
-                            tabIndex={0}/>
-                        </div>
-                        <div >
-                            <input className = "input-form-box"
+                            tabIndex={0} />
+                    </div>
+                    <div>
+                        <input className="input-form-box"
                             aria-describedby="firstName"
                             aria-label='firstName'
                             name='firstName'
-                            onChange = {handleChangePutProfilUser}
+                            onChange={handleChangePutProfilUser}
                             type="text"
                             placeholder="Prénom"
                             value={profilUser.firstName}
-                            tabIndex={0}/>
-                        </div>
-                        <div>
-                            <input className = "input-form-box"
+                            tabIndex={0} />
+                    </div>
+                    <div>
+                        <input className="input-form-box"
                             aria-describedby="LastName"
                             aria-label='lastName'
                             name='lastName'
-                            onChange = {handleChangePutProfilUser}
+                            onChange={handleChangePutProfilUser}
                             type="text"
                             placeholder="Nom"
                             value={profilUser.lastName}
                             tabIndex={0} />
-                        </div>
-                        <div>
-                            <input className = "input-form-box"
+                    </div>
+                    <div>
+                        <input className="input-form-box"
                             aria-describedby="Phone Number"
                             aria-label='phone number'
                             name='phone'
-                            onChange = {handleChangePutProfilUser}
+                            onChange={handleChangePutProfilUser}
                             type="number"
                             placeholder="Téléphone"
                             value={profilUser.phone}
-                            tabIndex={0}/>
-                        </div>
-                        <div >
-                            <button className='btn' onClick={SubmitProfilUser}>Mettre à jour</button>
-                        </div>
-                    </form>
-                    
-                </div>
+                            tabIndex={0} />
+                    </div>
+                    <div>
+                        <button className='btn' onClick={SubmitProfilUser}>Mettre à jour</button>
+                    </div>
+                </form>
+
             </div>
         </div>
-    );
+    </div>;
 }
- 
-export default EditProfil;

@@ -11,8 +11,6 @@ router.post('/comment', auth, ctrlComment.createComment)
 router.post('/comments',  ctrlComment.findAllComments)
 //Requête GET pour voir tous les commentaires
 router.get('/comment/:id',  ctrlComment.findOneComment)
-//Requête PUT pour modifier tous les commentaires
-router.put('commentUpdated', ctrlComment.modifyComment)
 
 
 module.exports = router

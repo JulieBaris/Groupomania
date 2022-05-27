@@ -1,7 +1,7 @@
 import Loading from '../components/Loading'
 import App from '../components/App'
-import Banner from '../layout/Banner'
-import Footer from '../layout/Footer'
+import Banner from './Banner'
+import Footer from './Footer'
 
 function Menu() {
 	return (

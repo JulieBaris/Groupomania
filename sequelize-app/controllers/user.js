@@ -1,10 +1,11 @@
 //___________________________Création des "controllers" pour l'user____________________//
-//Importation des model User, Post, Comment et Like
+//Importation des model User, Post, Comment
 const User = require('../models').User
 const Post = require('../models').Post
 const Comment = require('../models').Comment
 
-module.exports = {
+module.exports = 
+{
   
   // Controllers pour retrouver tous les profils
   getAllProfils:(req, res, next) => 
@@ -20,7 +21,7 @@ module.exports = {
     .then(user => {res.status(200).json(user)})
     .catch(error => res.status(404).json({ error, message:"L'utilisateur recherché n'a pas été trouvé." }));
   },
-  // Mise à jour du compte utilisateur
+  // Controller pour mettre à jour du profil
   updateProfil: (req, res, next) => 
   {
     // éléments de la requète
@@ -40,8 +41,7 @@ module.exports = {
     User.update({ ...req.body, id:  req.params.id}, { where: {id: req.params.id} })
     .then(() => res.status(200).json({ message: "L'utilisateur a été modifié avec succès !"}))
     .catch(error => res.status(400).json({ error, message:"L'utilisateur n'a pas modifié son profil." }));
-},
-
+  },
   // Controllers pour supprimer un profil en particulier
   deleteSingleProfil: (req, res, next) => 
   {
