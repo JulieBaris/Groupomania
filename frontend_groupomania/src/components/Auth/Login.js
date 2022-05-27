@@ -96,7 +96,7 @@ function Login() {
      const inserText = (
           <div className="bloc-log">
                <h1 className='groupomania-h1'>Réseau Social</h1>
-               <h2 className='groupomania-h2'>Connexion :</h2>
+               <h2 className='log-h2'>Connexion :</h2>
                <legend>* Tous les champs sont obligatoires</legend>
                <div className='connect'>
                

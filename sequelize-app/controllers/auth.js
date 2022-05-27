@@ -1,8 +1,6 @@
 //___________________________Création des "controllers" pour l'user____________________//
 // Importation de l'outil bcrypt qui permet de sécuriser l'identification et le compte d'un utilisateur
 const bcrypt = require('bcrypt');
-// Importation de crypto-js
-//const cryptojs = require('crypto-js');
 const {Buffer} = require('buffer')
 // Importation de l'outil "jsonwebtocken", permet de créer un tocken et sécuriser l'auth
 const { sign } = require("jsonwebtoken");

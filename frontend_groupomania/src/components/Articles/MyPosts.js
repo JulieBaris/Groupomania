@@ -171,7 +171,7 @@ function useEffectUser(userId, token, setUser) {
                .then(res => {
                     if (token !== null && userId !== null) {
                          setUser(res.data);
-                         console.log(res.data);
+                        // console.log(res.data);
                     }
 
                     else {
@@ -201,12 +201,13 @@ function useEffectPostsByUser(token, userId, setPosts) {
                }
           })
                .then(res => {
-                    if (token !== null && userId !== null) {
-                         console.log(res.data);
+                    if (token !== null && userId !== null) 
+                    {
+                        // console.log(res.data);
                          setPosts(res.data);
                     }
-
-                    else {
+                    else 
+                    {
                          alert("Nous n'avons pas trouvé vos articles ! 😭");
                     }
                }

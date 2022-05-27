@@ -16,14 +16,12 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false
         },
         onDelete: 'CASCADE',
-        onUpdate: 'NO ACTION',
       });
       models.Comment.belongsTo(models.Post, {
         foreignKey: {
           allowNull: false
         },
         onDelete: 'CASCADE',
-        onUpdate: 'NO ACTION',
       });
     }
   }

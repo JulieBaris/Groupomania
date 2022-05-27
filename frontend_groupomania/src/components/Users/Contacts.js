@@ -21,34 +21,48 @@ function GetAllUsers()
      //Pour récupérer les informations relatives à l'ensemble des utilisateurs inscrits
      useEffectAllUsers(token, userId, setUsers);
      // Const contenant le texte à insérer dans le DOM
-     const inserText = InsertDOM(routeDashbord, users)
+     const inserText = (<div className="bloc-cards">
+     <div className='bloc-btn-contact'>
+          <i className="fa-solid fa-circle-arrow-left" aria-label='retour' onClick={routeDashbord} tabIndex={0} name='retour' role="button"></i>
+     </div>
+     <div className='bloc-card-user'>
+          <div className='bloc-contact'>
+               <h2 className="contact-h2">Annuaire</h2>
+          </div>
+
+          {users.map((user) => (
+
+               <div key={user.userName} className='card-user'>
+                    <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
+                    <p className='identity'>{user.userName}</p>
+                    <p className='identity'>{user.firstName} {user.lastName}</p>
+                    <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
+                    <div className='container-btn-icone'>
+                              <i className="fa-solid fa-trash-can"
+                                   aria-label='supprimer compte'
+                                   onClick={function () 
+                                        {
+                                             let adminId = localStorage.getItem('adminIsConnected');
+                                             if(adminId === null)
+                                             {
+                                                  alert("Seul l'administration est autorisée à supprimer ce profil. Un signalement à faire ? Contactez-nous !")
+                                             }
+                                             else{navigate(`/AdminDeleteProfil/${user.id}`)}
+                                        }}
+                                   tabIndex={0}
+                                   name='supprimer'
+                                   role="button">
+                              </i>
+                         </div>
+               </div>
+          ))}
+
+     </div>
+</div>)
      return inserText
 }
 export default GetAllUsers
 //________________________________________Utils_____________________________//
-function InsertDOM(routeDashbord, users) {
-     return <div className="bloc-cards">
-          <div className='bloc-btn-contact'>
-               <i className="fa-solid fa-circle-arrow-left" aria-label='retour' onClick={routeDashbord} tabIndex={0} name='retour' role="button"></i>
-          </div>
-          <div className='bloc-card-user'>
-               <div className='bloc-contact'>
-                    <h2 className="contact-h2">Annuaire</h2>
-               </div>
-
-               {users.map((user) => (
-
-                    <div key={user.id} className='card-user'>
-                         <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
-                         <p className='identity'>{user.userName}</p>
-                         <p className='identity'>{user.firstName} {user.lastName}</p>
-                         <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
-                    </div>
-               ))}
-
-          </div>
-     </div>;
-}
 
 function useEffectAllUsers(token, userId, setUsers) {
      useEffect(() => {
@@ -63,7 +77,7 @@ function useEffectAllUsers(token, userId, setUsers) {
                .then(res => {
                     if (token !== null && userId !== null) {
                          setUsers(res.data.users);
-                         console.log(res.data.users);
+                         //console.log(res.data.users);
                     }
 
                     else {

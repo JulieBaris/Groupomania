@@ -1,8 +1,8 @@
 import {useNavigate} from "react-router-dom";
 function Logout ()
 {
-     localStorage.removeItem("userIsConnected")
-     localStorage.removeItem('accessToken')
+     localStorage.clear()
+     alert ("Oooooh, vous partez ? A très vite ! 👋")
 
      const navigate = useNavigate();
      navigate('/login')

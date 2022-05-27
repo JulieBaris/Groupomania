@@ -20,15 +20,7 @@ function AllArticles()
      let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
 
      //Const relatif au texte à insérer dans le DOM
-     const inserText =InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate)
-     return inserText
-}
-export default AllArticles
-
-//_________________________________________Utils____________________________//
-
-function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate) {
-     return <main className="bloc-cards">
+     const inserText =(<main className="bloc-cards">
           <div className='bloc-card-article'>
                <div className='bloc-article'>
                     <h2 className='groupomania-h2'>Articles parus</h2>
@@ -71,16 +63,6 @@ function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, option
                               </div>
                               <div className='container-btn-icone'>
                                    <i tabIndex={0}
-                                        className="fa-solid fa-thumbs-up"
-                                        aria-label="j'aime"
-                                        role="button"
-                                        name="j'aime"></i>
-                                   <i tabIndex={0}
-                                        className="fa-solid fa-thumbs-down"
-                                        aria-label="je n'aime pas"
-                                        role="button"
-                                        name="je n'aime pas"></i>
-                                   <i tabIndex={0}
                                         className="fa-solid fa-message"
                                         aria-label="commenter"
                                         role="button"
@@ -89,19 +71,31 @@ function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, option
                                    </i>
                                    <i className="fa-solid fa-trash-can"
                                         aria-label='supprimer compte'
-                                        //onClick={}
+                                        onClick={function () 
+                                             {
+                                                  let adminId = localStorage.getItem('adminIsConnected');
+                                                  if(adminId === null )
+                                                  {
+                                                       alert("Seul l'administration est autorisée à supprimer cet article. Un signalement à faire ? Contactez-nous ! Si vous en êtes l'auteur, rendez-vous sur la page 'Mes articles'.")
+                                                  }
+                                                  else{navigate(`/adminDeletePost/${post.id}`)}
+                                             }}
                                         tabIndex={0}
                                         name='supprimer'
                                         role="button">
                                    </i>
-                                   
                               </div>
                          </div>
                     </div>
                ))}
           </div>
-     </main>;
+     </main>)
+     return inserText
 }
+export default AllArticles
+
+//_________________________________________Utils____________________________//
+
 
 function Routes(navigate) {
      const routeDashbord = () => {
@@ -130,8 +124,9 @@ function useEffectGetAllPosts(token, userId, setPosts) {
                }
           )
                .then(res => {
-                    if (token !== null || userId !== null || userId === 19) {
+                    if (token !== null || userId !== null) {
                          setPosts(res.data);
+                         //console.log(res.data)
                     }
 
                     else {

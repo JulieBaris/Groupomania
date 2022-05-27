@@ -7,23 +7,13 @@ const User = require('../models').User
 // controller pour créer un commentaire     
 exports.createComment = async (req, res, next) => {
   // éléments de la requète
-  const content =  req.body.content;
-  const imageUrl = req.body.imageUrl
-  // vérification que tous les champs sont remplis
-  // if( content === null || content === '')
-  // {
-  //     return res.status(400).json({message: "Merci d'écrire votre commentaire avant de l'envoyer."});
-  // }
-  // else{
-    const commentObject = req.body;
+  const commentObject = req.body;
   // Création d'un nouvel objet commentaire
   const comment = new Comment({...commentObject});
   // Enregistrement de l'objet commentaire dans la base de données
   comment.save()
     .then(() => res.status(201).json({ message: 'Le commentaire a été créé !'}))
     .catch(error => res.status(400).json({ error }))
-
-  // }
   
 };
 // controller pour modifier un commentaire

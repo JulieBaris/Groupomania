@@ -65,8 +65,11 @@
      border-radius : 20px 20px 0 0;
 }
 
-.author-userName{
+legend.author-userName{
      margin : 3px auto;
+     width: 50px;
+     white-space: pre-line;
+     text-overflow: ellipsis;
 }
 .time{
      height: 15px;
@@ -78,6 +81,7 @@
 
 .text-comment{
      width: 73%;
+     margin-left: 10px
 }
 .p-comment{
      @include p; 

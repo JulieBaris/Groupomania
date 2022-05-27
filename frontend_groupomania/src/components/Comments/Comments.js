@@ -85,7 +85,7 @@ function InserDOM(routeArticles, comments, options, navigate, id) {
                <h2 className='comment-h2'>Les commentaires</h2>
 
                {comments.map((comment) => (
-                    <div key={comment.content} className='card-comment' tabIndex={0}>
+                    <div key={comment.id} className='card-comment' tabIndex={0}>
 
                          <div className='container-comment'>
                               <div className='card-profil-comment'>
@@ -99,6 +99,23 @@ function InserDOM(routeArticles, comments, options, navigate, id) {
                                         <time className='p-time'>{(new Date()).toLocaleDateString(options, comment.updatedAt, "en-FR")}</time>
                                    </div>
                                    <p className='p-comment'>{comment.content}</p>
+                              </div>
+                              <div className='container-btn-icone'>
+                                   <i className="fa-solid fa-trash-can"
+                                        aria-label='supprimer le commentaire'
+                                        onClick={function () 
+                                             {
+                                                  let adminId = localStorage.getItem('adminIsConnected');
+                                                  if(adminId === null )
+                                                  {
+                                                       alert(`Vous n'êtes pas administrateur. Un signalement à faire ? Contactez-nous !`)
+                                                  }
+                                                  else{navigate(`/deleteComment/${comment.id}`)}
+                                             }}
+                                        tabIndex={0}
+                                        name='supprimer'
+                                        role="button">
+                                   </i>
                               </div>
                          </div>
                     </div>

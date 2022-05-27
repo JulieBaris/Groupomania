@@ -3,7 +3,6 @@ const express = require("express");
 const router = express.Router();
 //authentification
 const auth = require("../middleware/auth");
-const authAdmin = require('../middleware/authAdmin')
 
 // importer les controllers
 const postCtrl = require("../controllers/post");
@@ -23,7 +22,6 @@ router.delete("/article/:id", auth, postCtrl.deletePost);
 // Requête DELETE pour supprimer tous les articles publiés par un utilisateur en particulier 
 router.delete("/myArticles", auth, postCtrl.deleteAllMyPosts);
 
-// Requête DELETE de l'administrateur pour supprimer un article
-router.delete('/article/:id', authAdmin, postCtrl.adminDeletePost);
+
 // Export du router
 module.exports = router;

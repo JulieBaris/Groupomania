@@ -6,16 +6,13 @@ const {
      getAllProfils,
      getSingleProfil,
      deleteSingleProfil
-
     } = require('../controllers/user')
 
 // Profils utilisateurs -> 
 router.put('/profil/:id', auth, updateProfil)
 router.get('/profils', auth, getAllProfils)
 router.get('/profil/:id', auth, getSingleProfil)
-router.delete('/profil/:id', auth, deleteSingleProfil)
-//router.delete('/allProfils', auth, deleteAllProfils)
-
+router.delete('/profil/:id',deleteSingleProfil)
 
 // -------------------------EXPORT ROUTER-------------------------
 module.exports = router

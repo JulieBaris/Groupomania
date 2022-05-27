@@ -5,7 +5,6 @@ import axios from 'axios';
 
 function ProfilUser()
 {
-
     let navigate = useNavigate();
     // Récupération du token et de l'id de l'utilisateur
     let userId = localStorage.getItem('userIsConnected');
@@ -58,18 +57,15 @@ function ProfilUser()
                     headers: {"Authorization" : token},
                     url: `http://localhost:3300/api/profil/${userId}`,
                     data: 
-                    {
-                        id: user.id,
-                        userName: user.userName,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        phone: user.phone, 
-                        imageUrl : user.imageUrl
-                    }
+                        {
+                            id: userId
+                        }
             })
             .then(function () 
             {
+                
                 alert("Le profil a été supprimé avec succès ! 👋")
+                localStorage.clear()
                 navigate('/signup')
             })
             .catch(function (error) 

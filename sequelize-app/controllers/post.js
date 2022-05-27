@@ -55,10 +55,7 @@ exports.findOnePost = (req, res, next) => {
 // controller pour trouver tous les articles
 exports.findAllPosts = (req, res, next) => {
   Post.findAll({
-    include : {
-      model : User,
-      attributes : ["id","userName", "imageUrl"]
-    },
+    include : [User],
     order: [['createdAt', 'DESC']]})
   .then(posts => {res.status(200).json(posts)})
   .catch(error => res.status(400).json({error, message:"Aucun article article n'a été trouvé."} ));
@@ -83,17 +80,4 @@ exports.deleteAllMyPosts = (req, res, next) =>
     .catch(error => res.status(400).json({error, message:"Nous n'avons pas pu supprimer vos articles."}))
   )
   .catch(error => res.status(500).json({error, message:"Une erreur s'est produite."}))
-};
-// contrôleur dédié à l'administrateur pour supprimer un article
-exports.adminDeletePost = (req, res, next) => 
-{
-  Comment.destroy({where:{id: req.body.id}})
-  .then(()=> Post.findOne({where: {id: req.params.id}})
-  .then(post =>
-    {
-      post.destroy({where: {id: req.params.id, isAdmin : true}})
-      .then(() => res.status(200).json({message: "Vous avez supprimé la publication de l'utilisateur"}))
-      .catch(error => res.status(400).json({ error, message: "L'article n'a pas été supprimé."}))
-    })
-  .catch(error => res.status(500).json({error, message:"Une erreur s'est produite."})))
 };

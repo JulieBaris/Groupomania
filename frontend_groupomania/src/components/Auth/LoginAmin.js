@@ -41,7 +41,7 @@ function LoginAdmin() {
           // suppression des paramètres par défaut      
           event.preventDefault()
           // Si le formulaire est rempli
-          if(formDataLog !== undefined)
+          if(formDataLog !== undefined && formDataLog.email === "groupomania@admin.com" && formDataLog.password === "AdminGroupomania22"  )
           {
                // On envoie les données à la BDD 
                axios
@@ -60,11 +60,13 @@ function LoginAdmin() {
                {
                     localStorage.setItem('userIsConnected', JSON.stringify(response.data.id));
                     let userId = localStorage.getItem('userIsConnected');
+                    localStorage.setItem('adminIsConnected', JSON.stringify(response.data.id));
+                    let adminId = localStorage.getItem('adminIsConnected');
                     localStorage.setItem('acessToken', JSON.stringify(response.data.token));
                     let token = localStorage.getItem('accessToken');
 
-                    // si l'id et le token sont undefined on retourne une erreur
-                    if(userId === undefined && token === undefined)
+                    // si l'userId, l'adminId et le token sont undefined on retourne une erreur
+                    if(userId === undefined || token === undefined || adminId === undefined)
                     {
                          return(
                              console.log(response.error), 
@@ -91,12 +93,15 @@ function LoginAdmin() {
                     }
                });
           }
+          else{
+               alert(" ✋ Vous n'êtes pas autorisé à vous connecter en tant qu'administrateur ! ")
+          }
      }
 
      const inserText = (
           <div className="bloc-log">
                <h1 className='groupomania-h1'>Réseau Social</h1>
-               <h2 className='groupomania-h2'>Connexion :</h2>
+               <h2 className='log-h2'>Administrateur :</h2>
                <legend>* Tous les champs sont obligatoires</legend>
                <div className='connect'>
                

@@ -3,13 +3,12 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser')
 const path = require('path');
 
-
 // router import
-const validateToken = require('./middleware/auth')
 const auth = require('./routes/auth')
 const user = require('./routes/user')
 const post = require('./routes/post')
 const comment = require('./routes/comment')
+const admin = require('./routes/admin')
 
 const app = express();
 
@@ -34,13 +33,10 @@ app.use('/api', auth)
 app.use('/api', user)
 app.use('/api', post)
 app.use('/api', comment)
-
+app.use('/api', admin)
 
 // simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Bienvenue sur le réseau social Groupomania" });
-});
-
+app.get("/", (req, res) => {res.json({ message: "Bienvenue sur le réseau social Groupomania" });});
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3300;

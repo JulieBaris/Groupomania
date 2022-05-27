@@ -7,8 +7,12 @@ const ctrlComment = require('../controllers/comment')
 // ------------Routes relatives aux commentaires------------------//
 //Requête POST pour créer un commentaire
 router.post('/comment', auth, ctrlComment.createComment)
+//Requête POST pour voir tous les commentaires
+router.post('/comments',  ctrlComment.findAllComments)
 //Requête GET pour voir tous les commentaires
-router.post('/comments', auth, ctrlComment.findAllComments)
+router.get('/comment/:id',  ctrlComment.findOneComment)
+//Requête PUT pour modifier tous les commentaires
+router.put('commentUpdated', ctrlComment.modifyComment)
 
 
 module.exports = router

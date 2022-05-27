@@ -122,15 +122,15 @@ function InserDOM(routeComments, handleSubmitComment, handleChangeComment, comme
                               required={true}
                               tabIndex={0} />
                          {/* <input className='input-text-comment'
-             type="text"
-             placeholder="URL de l'image"
-             onChange={handleChangeComment}
-             name="imageUrl"
-             aria-label='imageUrl'
-             value={comment.imageUrl}
-             required={true}
-             tabIndex={0}
-        /> */}
+                              type="text"
+                              placeholder="URL de l'image"
+                              onChange={handleChangeComment}
+                              name="imageUrl"
+                              aria-label='imageUrl'
+                              value={comment.imageUrl}
+                              required={true}
+                              tabIndex={0}
+                         /> */}
                          <button className='btn-createComment' onClick={SubmitComment}>
                               Publier
                          </button>
