@@ -4,14 +4,14 @@
 //_____________________Connexion au serveur_________________//
 1) sur le dossier frontend, avec la commande - npm start ;
 2) sur le dossier sequelize-app, avec la commande - nodemon app ;
-Peut être y aura-t-il besoin de faire un "npm init" pour que les modules puissent se lancer
+Peut être y aura-t-il besoin de faire un "npm install" pour que les modules puissent se lancer
 
-3) accès à base de donnée MySql pour la chargée de communication  
+3) accès à base de données MySql pour la chargée de communication  
 userName : communication_groupomania ;
 password : ************ (voir avec le développeur).
 
 4) Login personnalisé pour l'administrateur
-userName : AdminGroupomania
+userName : Admin Groupomania
 email : groupomania@admin.com
 password : AdminGroupomania22
 
@@ -22,6 +22,7 @@ Pour faciliter la démonstration, un utilisateur a été créé :
 userName : Démo
 email : demo@test.com
 password : DeMo01
+3) Administrateur : dédié à l'administrateur du site, pour la connexion, se référer aux informations indiquées précédemment.
 
 // __________________Page HOME_____________//
 1) Icone dans le header pour se déconnecter :
@@ -32,21 +33,18 @@ password : DeMo01
   //____ Page "Contacts" ____//
   L'utilisateur voit les fiches profils de ses collègues : 
     - possibilité de consulter l'ensemble des profils ;
+  L'administrateur est en capacité de supprimer un profil.
   
   // ____Page "Articles" ____//
-  L'utilisateur voit l'ensemble des articles publiés classés du plus récents au plus ancien :
-    - possibilité de faire une recherche via la barre de recherche pour trouver un article grâce à son titre ;
-    - possibilité pour l'auteur de la publication de modifier son article en cliquant sur l'icône stylo ;
-    - depuis la page modification, l'auteur est en capacité de supprimer son article et les commentaires qui y son liés.
+  L'utilisateur voit l'ensemble des articles publiés, classés du plus récent au plus ancien :
+    - possibilité de publier un article via l'onglet "publier";
+    - possibilité de commenter un article ;
+    - possibilité d'accéder à la page "Mes articles" :
+        - possibilité pour l'auteur de la publication de modifier son article en cliquant sur l'icône stylo ;
+        - possibilité de supprimer son article ou l'ensemble de ses articles.
+  L'administrateur peut supprimer un article.
   
   // ____Page "Compte"____//
     - Possibilité d'accèder à son profil
     - de configurer son profil
     - de supprimer son profil. 
-
-
-
- __ impossibilité pour le moment d'afficher les commentaires liés aux articles ou de commenter l'article
- __ impossibilité pour le moment de cacher la possibilité de modifier un article aux utilisateurs qui ne l'ont pas créé
- __ impossibilité de faire fonctionner les boutons like et dislike --> suppression du modèle, des routes etc.
- _ impossibilité de modifier les articles en cliquant sur l'icône stylo et en suivant les instructions

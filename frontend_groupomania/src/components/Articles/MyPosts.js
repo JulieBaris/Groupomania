@@ -5,8 +5,9 @@ import axios from "axios"
 
 function MyPosts()
 {
-     // permet de rediriger l'utilisateur
+     // permet de rediriger l'utilisateur vers la page /articles
      let navigate = useNavigate();
+     function routeArticles() { navigate('/articles')}
      // Récupération du token et de l'id de l'utilisateur
      let { userId, token } = AuthApi();
      //récupération de données relatives aux utilisateurs et aux articles 
@@ -57,19 +58,27 @@ function MyPosts()
      let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
 
      // inserText est la constante à retourner dans le DOM
-     const inserText = InserDOM(posts, options, user, navigate, token, DeleteAllMyPosts)
+     const inserText = InserDOM(routeArticles, posts, options, user, navigate, token, DeleteAllMyPosts)
      // On return la constante inserText
      return inserText
 }
 
 export default MyPosts
-//_______________________Utils_______________________________//
-function InserDOM(posts, options, user, navigate, token, DeleteAllMyPosts) {
+
+function InserDOM(routeArticles, posts, options, user, navigate, token, DeleteAllMyPosts) {
      return <main className="bloc-cards">
-          <div className='bloc-card-article'>
-               <div className='bloc-article'>
-                    <h2 className='groupomania-h2'>Mes articles</h2>
+               <div className='bloc-btn-article'>
+                    <i className="fa-solid fa-circle-arrow-left"
+                         aria-label='retour'
+                         onClick={routeArticles}
+                         tabIndex={0}
+                         name='retour'
+                         role="button"></i>
                </div>
+               <div className='bloc-card-article'>
+                    <div className='bloc-article'>
+                         <h2 className='groupomania-h2'>Mes articles</h2>
+                    </div>
                {posts.map((post) => (
                     <div key={post.title} className='card-myArticles' tabIndex={0}>
                          <img src={post.imageUrl} alt={post.title} className='images-myArticles' />
@@ -129,12 +138,13 @@ function InserDOM(posts, options, user, navigate, token, DeleteAllMyPosts) {
                          </div>
                     </div>
                ))}
-               <div className='form-user'>
-                    <button className='btn' onClick={DeleteAllMyPosts} tabIndex={0} aria-label='supprimer'>Supprimer mes articles</button>
+                    <div className='form-user'>
+                         <button className='btn' onClick={DeleteAllMyPosts} tabIndex={0} aria-label='supprimer'>Supprimer mes articles</button>
+                    </div>
                </div>
-          </div>
-     </main>;
+          </main>;
 }
+
 function useStatePosts(userId) {
      return useState([
           {
