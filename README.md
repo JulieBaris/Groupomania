@@ -6,11 +6,18 @@
 2) sur le dossier sequelize-app, avec la commande - nodemon app ;
 Peut être y aura-t-il besoin de faire un "npm install" pour que les modules puissent se lancer
 
-3) accès à base de données MySql pour la chargée de communication  
+3) Les identifiants de la base de données MySQL : 
+DB_USERNAME='root'
+DB_PASSWORD=']-s*U5x7X2Ud'
+DB_HOST='localhost'
+DB_Name='groupomania'
+SECRET_KEY='SECRET_KEY_123'
+
+4) accès à base de données MySql pour la chargée de communication  
 userName : communication_groupomania ;
 password : ************ (voir avec le développeur).
 
-4) Login personnalisé pour l'administrateur
+5) Login personnalisé pour l'administrateur
 userName : Admin Groupomania
 email : groupomania@admin.com
 password : AdminGroupomania22
@@ -45,6 +52,7 @@ password : DeMo01
   L'administrateur peut supprimer un article.
   
   // ____Page "Compte"____//
-    - Possibilité d'accèder à son profil
-    - de configurer son profil
-    - de supprimer son profil. 
+    Possibilité d'accéder à son profil :
+    - de configurer son profil ;
+    - de supprimer son profil ;
+    - les articles et commentaires liés seront également supprimés.

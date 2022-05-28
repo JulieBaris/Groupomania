@@ -1,5 +1,5 @@
 import '../styles/index.scss'
-import logo from '../assets/icon-left-font-monochrome-black.png'
+import logo from '../assets/icon-left-font-monochrome-black.svg'
 import {useNavigate} from "react-router-dom";
 
 function Banner() 

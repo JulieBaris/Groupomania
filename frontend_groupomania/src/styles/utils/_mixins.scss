@@ -13,6 +13,7 @@
 	justify-content: space-between;
 	flex-direction:row;
 	align-items: center;
+    height: 200px;
 }
 //utilisés dans ../components/_log.scss
 @mixin bloc-log
@@ -327,111 +328,4 @@
             -webkit-transform: scale(1.0);
         }
     }
-}
-
-
-
-// utils plus tard
-
-@mixin btn-degrade
-{
-    background: $couleur-degradee;
-    color:$color-white;
-    border-style: none;
-    border-radius: 40px;
-    margin: 20px auto 50px auto;
-    padding: 15px;
-    cursor: pointer;
-    &:hover
-    {
-        opacity: 0.8;
-    }
-}
-@mixin Nouveau 
-{
-    display: inline-block;
-    @include p-petite;
-    z-index: 1;
-    position: absolute;
-    right: 15%;
-    background: $color-optional;
-    color: darken($color-optional,40%);
-    padding: 5px 10px 5px 10px;    
-    border-radius: 5px;
-}
-
-// Les transitions et animations sont les mêmes pour tout type d'écran
-
-@mixin trans_coeur 
-{
-    transition-property: opacity,transform;
-    transition-timing-function: linear;
-    transition-duration: 0.3s;
-    opacity: 1;
-}
-@mixin trans_coeur_disp 
-{
-    transition-property: opacity,transform;
-    transition-timing-function: linear;
-    transition-duration: 0.2s;
-    opacity: 0;
-}
-@mixin icone_pastille //Version mobile
-{
-    position: relative;   
-    color:$color-white;
-    background-color: $color-optional;
-    font-size:1.5em;
-    border-radius: 0px 15px 15px 0px;
-    padding-top: 25px;
-    transform-origin: right;
-    width: 0;
-    transform: scaleX(0);
-    height: 47px;
-    text-align: center;
-}
-@mixin transition_pastille 
-{
-    transition-property: width, transform;
-    transition-timing-function: linear;
-    transition-duration: 0.4s;
-    width: 70px;
-    transform: scaleX(1);
-}
-@mixin anim-menu 
-{
-    transform-origin: top;
-    animation: 2000ms linear 1 forwards;
-    -moz-animation: anim-menu 2000ms linear 1 forwards; /* Firefox */
-    -webkit-animation: anim-menu 2000ms linear 1 forwards; /* Safari et Chrome */
-    -o-animation: anim-menu 2000ms linear 1 forwards; /* Opera */
-    @keyframes anim-menu
-    {
-        0%
-        {
-            transform: scaleY(0);
-            opacity:0;
-        }
-        100%
-        {
-            transform: scaleY(1);
-            opacity:1;
-        }
-    }
-}
-
-@mixin liens_fleche
-{
-    @include liens-apparence;
-    position: absolute;
-    left: 30px;
-}
-@mixin liens-apparence
-{
-    text-decoration: none;
-    border-style: none;
-    cursor: pointer;
-    color: $color-black;
-    padding: 0%;
-    margin: 0%;
 }
