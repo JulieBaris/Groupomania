@@ -35,8 +35,6 @@
 .card-profil-comment{
      display: flex;
      flex-direction: column;
-     width: 60px;
-     height: 68px;
      border : 1.5px solid $color-secondary;
      border-radius: 20px;
      align-items: center;
@@ -53,23 +51,22 @@
 .author-comment{
      display: flex;
     flex-direction: column;
-    width: 50px;
-    height: 100%;
     margin: 0px 5px;
     justify-content: center;
     align-items: center;
 }
 .image-profil-comment{
-     width: 61px;
-     height: 47px;
-     border-radius : 20px 20px 0 0;
+     width: auto;
+     height: 60px;
+     border-radius: 25px;
 }
 
 legend.author-userName{
-     margin : 3px auto;
-     width: 50px;
-     white-space: pre-line;
-     text-overflow: ellipsis;
+     margin: 3px auto;
+    width: auto;
+    white-space: pre-line;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 .time{
      height: 15px;
@@ -81,7 +78,8 @@ legend.author-userName{
 
 .text-comment{
      width: 73%;
-     margin-left: 10px
+    height: auto;
+    margin-left: 10px
 }
 .p-comment{
      @include p; 
@@ -109,16 +107,17 @@ i.fa-message{
      color: $color-white;
      background-color: $color-secondary;
      border-radius: 50%;
-     font-size: 1em;
      padding: 10px;
      margin: 10px;
+     font-size: 1.2em;
+     font-weight: 700;
 }
 .btn-commenter{
      @include p;
-     padding: 0 10px;
-     font-size: 1em;
+     padding: 0 5px;
+     font-size: 1.2em;
      color: $color-white;
-     font-weight: 500;
+     font-weight: 700;
      background-color: $color-secondary;
      background-image: none;
      border : 2px solid $color-secondary;

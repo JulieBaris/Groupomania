@@ -75,9 +75,9 @@ function InserDOM(routeArticles, comments, options, navigate, id) {
                          role="button"></i>
                     <a className="ancre" href='#ancre'><i tabIndex={0}
                          className="fa-solid fa-message"
-                         aria-label="commenter"
+                         aria-label="button"
                          role="button"
-                         name="commenter">
+                         name="ancre">
                     </i></a>
                </div>
                <h2 className='comment-h2'>Les commentaires</h2>

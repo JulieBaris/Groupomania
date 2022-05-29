@@ -99,6 +99,7 @@ time {
      border-radius: 15px;
      .author{
           @include legend;
+          font-size: 0.7em;
           padding: 3px 5px 3px 5px;
           text-align: center
      }
@@ -150,8 +151,6 @@ time {
      }
      
 }
-
-
 .form-createPost{
      @include connect-cart;
      margin: 20px auto;

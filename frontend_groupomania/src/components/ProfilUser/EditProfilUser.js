@@ -123,7 +123,7 @@ function inserDOM(routeProfilUser, handleSubmitProfil, handleChangePutProfilUser
                             aria-describedby="Image"
                             name='imageUrl'
                             onChange={handleChangePutProfilUser}
-                            type="text" placeholder="copier l'URL de l'image"
+                            type="text" placeholder="Copier l'URL de l'image"
                             value={profilUser.imageUrl}
                             tabIndex={0} />
                     </div>

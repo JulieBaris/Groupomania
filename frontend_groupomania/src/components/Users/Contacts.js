@@ -32,7 +32,7 @@ function GetAllUsers()
 
           {users.map((user) => (
 
-               <div key={user.userName} className='card-user'>
+               <div key={user.id} className='card-user'>
                     <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
                     <p className='identity'>{user.userName}</p>
                     <p className='identity'>{user.firstName} {user.lastName}</p>
