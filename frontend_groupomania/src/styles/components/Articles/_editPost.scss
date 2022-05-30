@@ -1,5 +1,29 @@
 @import "../../utils/_variables.scss";
 @import "../../utils/_mixins.scss";
+.bloc-editArticle{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    height: auto;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+.card-editArticle{
+     max-width: 230px;
+     flex-wrap: wrap;
+     height: auto;
+     background-color: white;
+     box-shadow: 7px 7px 12px #091f43;
+     height: auto;
+     border-radius: 20px;
+}
+.form-ediPost{
+     
+     @include connect-cart;
+     max-width: 70%;
+     margin: 10px;
+}
 .editPost-h2{
      @include h2-bold;
      width: 90%;
@@ -26,7 +50,6 @@
 }
 input{
      @include input;
-     margin: 10px auto 10px auto;
      &::placeholder
 	{
 		color: #091F43;

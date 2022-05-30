@@ -1,5 +1,5 @@
 import '../../styles/index.scss'
-import React from "react"
+import React, { useEffect} from "react"
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios"
 
@@ -15,6 +15,7 @@ function EditPost(){
      function routeArticles() { navigate('/myArticles')}
      //permet d'observer l'état des données
      const [postUpdated, setpostUpdated] = useStatePost()
+     const [post, setPost] = useStatePost(["{}"])
      // écouter les changements des valeurs des input lorsqu'un utilisateur souhaite créer un post
      function ChangePost(event) {
           const {name, value, type, checked} = event.target
@@ -28,6 +29,37 @@ function EditPost(){
      
      function handleSubmitPost(event) {event.preventDefault()}
      //au clic de l'utilisateur, on vérifie son existence et on lui permet de modifier son article
+     
+          // suppression des paramètres par défaut      
+      
+
+          useEffect(() => {
+               let endpoints = `http://localhost:3300/api/article/${id}`;
+               axios.get(endpoints,
+                    {
+                         headers: {
+                              'Content-Type': 'application/json',
+                              'Authorization': token
+                         }
+                    }
+               )
+                    .then(res => {
+                         if (token !== null || userId !== null) {
+                              setPost(res.data);
+                              console.log(res.data)
+                         }
+     
+                         else {
+                              alert("Veuillez vous connecter !");
+                         }
+                    }
+                    )
+                    .catch(error => {
+                         //console.log(error.message);
+                         alert(error, "La requête n'a pas pu aboutir");
+                    });
+          }, [id, setPost,userId,token]);
+     
      function SubmitPost(event)
      {
           // suppression des paramètres par défaut      
@@ -113,28 +145,43 @@ function EditPost(){
                });
           }
      }
-     const inserText =  insertDOM(routeArticles, handleSubmitPost, ChangePost, postUpdated, SubmitPost, DeletePost);
-     return inserText
- }
- 
- export default EditPost;
-// ___________________Utils_____________________________//
-function insertDOM(routeArticles, handleSubmitPost, ChangePost, postUpdated, SubmitPost, DeletePost) {
-     return <div className="bloc-cards">
-          <div className='bloc-btn-article'>
-               <i className="fa-solid fa-circle-arrow-left"
-                    aria-label='retour'
-                    onClick={routeArticles}
-                    tabIndex={0}
-                    name='retour'
-                    role="button">
-               </i>
-          </div>
-          <div className='bloc-card-article'>
-               <div className='bloc-article'>
-                    <h2 className='editPost-h2'>Mettre à jour votre article :</h2>
-                    <legend>* Tous les champs sont obligatoires</legend>
-                    <form onSubmit={handleSubmitPost} className='form-createPost'>
+     let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+     const inserText =  
+     (<div className="bloc-cards">
+     <div className='bloc-btn-article'>
+          <i className="fa-solid fa-circle-arrow-left"
+               aria-label='retour'
+               onClick={routeArticles}
+               tabIndex={0}
+               name='retour'
+               role="button">
+          </i>
+     </div>
+     <div className='bloc-card-article'>
+          <div className='bloc-article'>
+               <h2 className='editPost-h2'>Mettre à jour votre article :</h2>
+               <legend>* Tous les champs sont obligatoires</legend>               
+               <div className='bloc-editArticle'>
+                    {<div key={post.id} className='card-editArticle' tabIndex={0}>
+                         <img src={post.imageUrl} alt={post.title} className='imageArticle' />
+                         <time>{(new Date()).toLocaleDateString(options, post.updatedAt, "en-FR")}</time>
+                         <div className='container-article'>
+                              <div className='container-edit'>
+                                   <h3 className='article-title'>{post.title}</h3>
+                              </div>
+                              <div className='container-edit'>
+                                   <p className='article-post'>{post.content}</p>
+                              </div>
+                         </div>
+                         <i className="fa-solid fa-trash-can"
+                              aria-label='supprimer article'
+                              onClick={DeletePost}
+                              tabIndex={0}
+                              name='supprimer'
+                              role="button">      
+                         </i>
+                    </div>}
+                    <form onSubmit={handleSubmitPost} className='form-ediPost'>
                          <input
                               className="input-form-box"
                               type="text"
@@ -166,19 +213,27 @@ function insertDOM(routeArticles, handleSubmitPost, ChangePost, postUpdated, Sub
                               value={postUpdated.imageUrl}
                               tabIndex={0} />
                          <button className='btn-createPost' onClick={SubmitPost} tabIndex={0} aria-label='envoyer'>
-                              Publier
+                              Modifier
                          </button>
                     </form>
                </div>
-               <div className='bloc-article'>
-                    <h2 className='editPost-h2'>Supprimer votre article :</h2>
-                    <button className='btn-createPost' onClick={DeletePost} tabIndex={0} aria-label='supprimer'>
-                         Supprimer
-                    </button>
-               </div>
           </div>
-     </div>;
-}
+          <div className='bloc-article'>
+               <h2 className='editPost-h2'>Supprimer votre article :</h2>
+               <button className='btn-createPost' onClick={DeletePost} tabIndex={0} aria-label='supprimer'>
+                    Supprimer
+               </button>
+          </div>
+     </div>
+</div>);
+     return inserText
+     // Options pour paramétrer la date
+     
+ }
+ 
+ export default EditPost;
+// ___________________Utils_____________________________//
+
 
 function useStatePost() {
      return React.useState(

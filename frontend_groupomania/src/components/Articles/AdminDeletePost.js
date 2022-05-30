@@ -7,8 +7,7 @@ import axios from "axios"
 function DeletePost(){
 
      // Récupération du token et de l'id de l'utilisateur
-     let adminId = localStorage.getItem('adminIsConnected');
-     let token = "Bearer " + localStorage.getItem('accessToken');
+     let { adminId, token } = AuthApi();
      //récupération de l'id de l'article grâce à userParams
      const {id} = useParams()
      // permet de rediriger l'utilisateur vers la page /articles
@@ -34,9 +33,10 @@ function DeletePost(){
                })
                .then(function (response) 
                {
-                    console.log(response.message)
+                  
                     return(alert("L'article a été supprimé avec succès ! "),
-                    navigate("/articles"))
+                    navigate("/articles"),
+                    console.log(response.message))
                })
                .catch(function (error) 
                {
@@ -49,7 +49,13 @@ function DeletePost(){
  }
  
  export default DeletePost;
-// Utils
+
+ // ___________________Utils_________________________//
+function AuthApi() {
+     let adminId = localStorage.getItem('adminIsConnected');
+     let token = "Bearer " + localStorage.getItem('accessToken');
+     return { adminId, token };
+}
 function insertDOM(routeArticles, DeletePost) {
      return <div className="bloc-cards">
           <div className='bloc-btn-article'>

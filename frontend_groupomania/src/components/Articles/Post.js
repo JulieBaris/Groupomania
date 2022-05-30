@@ -122,7 +122,7 @@ function useEffectGetAllPosts(token, userId, setPosts) {
                .then(res => {
                     if (token !== null || userId !== null) {
                          setPosts(res.data);
-                         console.log(res.data)
+                         //console.log(res.data)
                     }
 
                     else {
