@@ -7,7 +7,7 @@ function AllArticles()
 {
      let navigate = useNavigate();
      // Récupération du token et de l'id de l'utilisateur
-     let { token, userId } = AuthApi();
+     let { token, userId, adminId} = AuthApi();
      //récupération de données relatives aux articles 
      const [posts, setPosts] = useState([])
      useEffectGetAllPosts(token, userId, setPosts);
@@ -19,14 +19,12 @@ function AllArticles()
      let options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
 
      //Insérer dans le DOM
-     const inserText =InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate)
+     const inserText =InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate, adminId)
      return inserText
 }
 export default AllArticles
 
-//_________________________________________Utils____________________________//
-
-function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate) {
+function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, options, navigate, adminId) {
      return <main className="bloc-cards">
           <div className='bloc-card-article'>
                <div className='bloc-article'>
@@ -76,19 +74,21 @@ function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, option
                                         name="commenter"
                                         onClick={function () { navigate(`/comments/${post.id}`); } }>
                                    </i>
-                                   <i className="fa-solid fa-trash-can"
-                                        aria-label='supprimer compte'
-                                        onClick={function () {
-                                             let adminId = localStorage.getItem('adminIsConnected');
-                                             if (adminId === null) {
-                                                  alert("Seul l'administration est autorisée à supprimer cet article. Un signalement à faire ? Contactez-nous ! Si vous en êtes l'auteur, rendez-vous sur la page 'Mes articles'.");
-                                             }
-                                             else { navigate(`/adminDeletePost/${post.id}`); }
-                                        } }
-                                        tabIndex={0}
-                                        name='supprimer'
-                                        role="button">
-                                   </i>
+                                   {// si l'administrateur est connecté, on rend visible le btn supprimer
+                                        adminId && (
+                                             <i className="fa-solid fa-trash-can"
+                                                  aria-label='supprimer compte'
+                                                  onClick={function () {
+
+                                                       if (adminId === null) {
+                                                            alert("Seul l'administration est autorisée à supprimer cet article. Un signalement à faire ? Contactez-nous ! Si vous en êtes l'auteur, rendez-vous sur la page 'Mes articles'.");
+                                                       }
+                                                       else { navigate(`/adminDeletePost/${post.id}`); }
+                                                  } }
+                                                  tabIndex={0}
+                                                  name='supprimer'
+                                                  role="button">
+                                             </i>)}
                               </div>
                          </div>
                     </div>
@@ -96,6 +96,8 @@ function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, option
           </div>
      </main>;
 }
+
+//_________________________________________Utils____________________________//
 
 function Routes(navigate) 
 {
@@ -120,7 +122,7 @@ function useEffectGetAllPosts(token, userId, setPosts) {
                .then(res => {
                     if (token !== null || userId !== null) {
                          setPosts(res.data);
-                         //console.log(res.data)
+                         console.log(res.data)
                     }
 
                     else {
@@ -138,6 +140,7 @@ function useEffectGetAllPosts(token, userId, setPosts) {
 function AuthApi() {
      let userId = localStorage.getItem('userIsConnected');
      let token = "Bearer " + localStorage.getItem('accessToken');
-     return { token, userId };
+     let adminId = localStorage.getItem('adminIsConnected');
+     return { token, userId, adminId};
 }
 

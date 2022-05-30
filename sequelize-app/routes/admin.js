@@ -8,7 +8,7 @@ const router = express.Router();
 const adminCtrl = require("../controllers/admin");
 
 // Requête DELETE de l'administrateur pour supprimer un profil
-router.delete('/AdminDeleteProfil/:id',adminCtrl.adminDeleteProfil);
+router.delete('/AdminDeleteProfil/:id', adminCtrl.adminDeleteProfil);
 // Requête DELETE de l'administrateur pour supprimer un article
 router.delete('/AdminDeletePost/:id', auth, adminCtrl.adminDeletePost);
 // Requête DELETE de l'administrateur pour supprimer un commentaire

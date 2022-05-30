@@ -9,7 +9,7 @@ function GetAllUsers()
 {
      let navigate = useNavigate();
      // Récupération du token et de l'id de l'utilisateur
-     let { token, userId } = AuthApi();
+     let { token, userId, adminId} = AuthApi();
      // Pour revenir au menu principal
      const routeDashbord = () =>
     {
@@ -21,47 +21,49 @@ function GetAllUsers()
      //Pour récupérer les informations relatives à l'ensemble des utilisateurs inscrits
      useEffectAllUsers(token, userId, setUsers);
      // Const contenant le texte à insérer dans le DOM
-     const inserText = (<div className="bloc-cards">
-     <div className='bloc-btn-contact'>
-          <i className="fa-solid fa-circle-arrow-left" aria-label='retour' onClick={routeDashbord} tabIndex={0} name='retour' role="button"></i>
-     </div>
-     <div className='bloc-card-user'>
-          <div className='bloc-contact'>
-               <h2 className="contact-h2">Annuaire</h2>
-          </div>
-
-          {users.map((user) => (
-
-               <div key={user.id} className='card-user'>
-                    <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
-                    <p className='identity'>{user.userName}</p>
-                    <p className='identity'>{user.firstName} {user.lastName}</p>
-                    <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
-                    <div className='container-btn-icone'>
-                              <i className="fa-solid fa-trash-can"
-                                   aria-label='supprimer compte'
-                                   onClick={function () 
-                                        {
-                                             let adminId = localStorage.getItem('adminIsConnected');
-                                             if(adminId === null)
-                                             {
-                                                  alert("Seul l'administration est autorisée à supprimer ce profil. Un signalement à faire ? Contactez-nous !")
-                                             }
-                                             else{navigate(`/AdminDeleteProfil/${user.id}`)}
-                                        }}
-                                   tabIndex={0}
-                                   name='supprimer'
-                                   role="button">
-                              </i>
-                         </div>
-               </div>
-          ))}
-
-     </div>
-</div>)
+     const inserText = InserDOM(routeDashbord, users, adminId, navigate)
      return inserText
 }
 export default GetAllUsers
+function InserDOM(routeDashbord, users, adminId, navigate) {
+     return <div className="bloc-cards">
+          <div className='bloc-btn-contact'>
+               <i className="fa-solid fa-circle-arrow-left" aria-label='retour' onClick={routeDashbord} tabIndex={0} name='retour' role="button"></i>
+          </div>
+          <div className='bloc-card-user'>
+               <div className='bloc-contact'>
+                    <h2 className="contact-h2">Annuaire</h2>
+               </div>
+
+               {users.map((user) => (
+
+                    <div key={user.id} className='card-user'>
+                         <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
+                         <p className='identity'>{user.userName}</p>
+                         <p className='identity'>{user.firstName} {user.lastName}</p>
+                         <p className='identity'><i className="fa-solid fa-phone"></i> {user.phone}</p>
+                         <div className='container-btn-icone'>
+                              {adminId && (<i className="fa-solid fa-trash-can"
+                                   aria-label='supprimer compte'
+                                   onClick={function () {
+                                        let adminId = localStorage.getItem('adminIsConnected');
+                                        if (adminId === null) {
+                                             alert("Seul l'administration est autorisée à supprimer ce profil. Un signalement à faire ? Contactez-nous !");
+                                        }
+                                        else { navigate(`/AdminDeleteProfil/${user.id}`); }
+                                   } }
+                                   tabIndex={0}
+                                   name='supprimer'
+                                   role="button">
+                              </i>)}
+                         </div>
+                    </div>
+               ))}
+
+          </div>
+     </div>;
+}
+
 //________________________________________Utils_____________________________//
 
 function useEffectAllUsers(token, userId, setUsers) {
@@ -92,5 +94,6 @@ function useEffectAllUsers(token, userId, setUsers) {
 function AuthApi() {
      let userId = localStorage.getItem('userIsConnected');
      let token = "Bearer " + localStorage.getItem('accessToken');
-     return { token, userId };
+     let adminId = localStorage.getItem('adminIsConnected');
+     return { token, userId, adminId };
 }

@@ -15,18 +15,24 @@ exports.adminDeleteProfil = (req, res, next) =>
         .then(() => res.status(200).json({message: "Le profil et les publications sont supprimés"}))
         .catch(error => res.status(400).json({ error, message: "Le profil n'a pas été supprimé."}))
       })
-    .catch(error => res.status(500).json({error, message:"Une erreur s'est produite."})))
-  
+    .catch(error => res.status(500).json({error, message:"Une erreur s'est produite."})))  
   }
 
 // contrôleur dédié à l'administrateur pour supprimer un article
 exports.adminDeletePost = (req, res, next) => 
 {
   Comment.destroy({where: {id: req.params.id}})
-    .then(() => 
-      Post.destroy({ where: {id: req.params.id} }, { where: {id: req.body.id} })
-      .then(() => res.status(200).json({ message: "L'article a été supprimé avec succès !"}))
-      .catch(error => res.status(400).json({error, message:"L'article n'a pas été supprimé."}))
+   let PostToDelete = Post.findOne({ where: {id: req.params.id} })
+    .then(() =>
+      {
+        if( req.body.adminId !==null || req.body.UserId === PostToDelete.userId )
+        {
+          Post.destroy({ where: {id: req.params.id} }, { where: {id: req.body.id} })
+          .then(() => res.status(200).json({ message: "L'article a été supprimé avec succès !"}))
+          .catch(error => res.status(400).json({error, message:"L'article n'a pas été supprimé."}))
+        }
+        else{ return res.status(402).json({message: "Vous n'êtes ni l'auteur de cet article, ni administrateur. "})}
+      }     
     )
     .catch(error => res.status(500).json({error, message:"Une erreur s'est produite."}))
 };
