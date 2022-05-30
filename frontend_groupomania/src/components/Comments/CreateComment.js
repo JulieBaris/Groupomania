@@ -125,7 +125,7 @@ function InserDOM(routeComments, handleSubmitComment, handleChangeComment, comme
                               required={true}
                               tabIndex={0}
                          /> */}
-                         <button className='btn-createComment' onClick={SubmitComment}>
+                         <button className='btn-createComment' onClick={SubmitComment}  name='publier' tabIndex={0}>
                               Publier
                          </button>
                     </form>

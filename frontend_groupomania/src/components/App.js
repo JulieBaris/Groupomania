@@ -24,9 +24,10 @@ export default function Menu() {
     <div className='bloc'>
         <nav>
           <div className='bloc-Link'>
+          <Link to="/dashbord" className='Link' aria-label='menu' name='menu' tabIndex={0} role="button"><i className="fa-solid fa-house-user"></i>Home</Link>
             <Link to="articles" className='Link' aria-label='articles' name='articles' tabIndex={0} role="button"><i className="fa-solid fa-newspaper"></i>Articles</Link>
             <Link to="contacts" className='Link' aria-label='contacts' name='contacts' tabIndex={0} role="button"><i className="fa-solid fa-address-book"></i>Contacts</Link> 
-            <Link to="compte" className='Link' aria-label='compte' name='compte' tabIndex={0} role="button"><i className="fa-solid fa-circle-user"></i>Profil</Link>
+            <Link to="compte" className='Link' aria-label='profil' name='profil' tabIndex={0} role="button"><i className="fa-solid fa-circle-user"></i>Profil</Link>
           </div>
         </nav>
       <Outlet />

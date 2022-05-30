@@ -27,6 +27,23 @@
      align-items: center;
      flex-wrap: wrap;
 }
-i.fa-right-from-bracket{
-	font-size: 1.5em;
+i.fa-person-walking-arrow-right{
+	font-size: 1.1em;
+    border: 2px solid;
+    border-radius: 50%;
+    padding: 7px;
+    font-weight: 700;
+    &:hover, &:active{
+        
+        &:hover{
+            cursor: pointer;
+            font-size: 1.1em;
+            box-shadow: 7px 7px 12px $color-primary
+       }
+       &:active{
+            cursor: pointer;
+            font-size: 14px;
+            background-image: $color-primary;
+       }
+    }
 }

@@ -39,11 +39,13 @@ function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, option
                          <button className='btn-createPost'
                               tabIndex={0}
                               name='créer'
+                              aria-label='créer'
                               onClick={routeCreatePost}>
                               Publier
                          </button>
                          <button className='btn-createPost'
                               tabIndex={0}
+                              aria-label='mes articles'
                               name='mes articles'
                               onClick={routeMyArticles}>
                               Mes articles
@@ -73,6 +75,14 @@ function InserDOM(routeDashbord, routeCreatePost, routeMyArticles, posts, option
                                         role="button"
                                         name="commenter"
                                         onClick={function () { navigate(`/comments/${post.id}`); } }>
+                                   </i>
+                                   <i tabIndex={0}
+                                        class="fa-solid fa-triangle-exclamation"
+                                        aria-label="signaler"
+                                        role="button"
+                                        name="signaler un abus"
+                                        onClick={function () 
+                                        {alert("Un signalement à faire ? Merci de nous contacter : groupomania@admin.com ! ")}}>
                                    </i>
                                    {// si l'administrateur est connecté, on rend visible le btn supprimer
                                         adminId && (

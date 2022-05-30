@@ -12,7 +12,7 @@ function Footer()
 				<p className='p-footer'>Nous n'attendions plus que vous !</p>
 				<p className='p-footer'>😍</p>
 			</div>
-			<a className='contact-admin' href="mailto:admin@groupomania" tabIndex={0} role="button" name='contact' type='link'>contact</a>
+			<a className='contact-admin' href="mailto:admin@groupomania" tabIndex={0} aria-label="email" role="button" name='contact' type='link'>contact</a>
 		</footer>
 	)
 	const elseUserNotConnected = 
@@ -21,7 +21,7 @@ function Footer()
 			<div className='groupomania-footer-elem'>
 				<p className='p-footer'>Devenez membre du réseau social Goupomania !</p>
 			</div>
-			<a className='contact-admin' href="mailto:admin@groupomania" tabIndex={0} role="button" name='contact' type='link'>contact</a>
+			<a className='contact-admin' href="mailto:admin@groupomania" tabIndex={0} aria-label="email" role="button" name='contact' type='link'>contact</a>
 		</footer>
 	)
 

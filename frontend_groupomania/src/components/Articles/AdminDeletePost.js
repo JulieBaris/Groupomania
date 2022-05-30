@@ -34,9 +34,10 @@ function DeletePost(){
                .then(function (response) 
                {
                   
-                    return(alert("L'article a été supprimé avec succès ! "),
+                    return (alert("L'article a été supprimé avec succès ! "),
                     navigate("/articles"),
                     console.log(response.message))
+                    
                })
                .catch(function (error) 
                {
@@ -62,7 +63,7 @@ function insertDOM(routeArticles, DeletePost) {
                <i className="fa-solid fa-circle-arrow-left"
                     aria-label='retour'
                     onClick={routeArticles}
-                    tabIndex={0}
+                    tabIndex={1}
                     name='retour'
                     role="button">
                </i>
@@ -70,7 +71,7 @@ function insertDOM(routeArticles, DeletePost) {
           <div className='bloc-card-article'>
                <div className='bloc-article'>
                     <h2 className='editPost-h2'>Supprimer l'article :</h2>
-                    <button className='btn-createPost' onClick={DeletePost} tabIndex={0} aria-label='supprimer'>
+                    <button className='btn-createPost' onClick={DeletePost} tabIndex={1} aria-label='supprimer'>
                          Supprimer
                     </button>
                </div>

@@ -88,7 +88,7 @@ function inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, Submi
                <i className="fa-solid fa-circle-arrow-left"
                     aria-label='retour'
                     onClick={routeArticles}
-                    tabIndex={0}
+                    tabIndex={1}
                     name='retour'
                     role="button"></i>
           </div>
@@ -106,7 +106,8 @@ function inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, Submi
                               name="title"
                               value={post.title}
                               required={true}
-                              maxLength={40} />
+                              maxLength={40}
+                              tabIndex={1} />
                          <textarea
                               type="text"
                               placeholder="Votre article ... (180 caractères maximum)"
@@ -115,16 +116,19 @@ function inserDOM(routeArticles, handleSubmitPost, handleChangePost, post, Submi
                               value={post.content}
                               required={true}
                               maxLength={350}
-                              className='input-text-article' />
+                              className='input-text-article'
+                              tabIndex={1}/>
                          <input
                               className="input-form-box"
                               aria-describedby="Image"
                               name='imageUrl'
                               onChange={handleChangePost}
                               type="text"
-                              placeholder="copier l'URL de l'image" value={post.imageUrl} />
+                              placeholder="copier l'URL de l'image"
+                              value={post.imageUrl}
+                              tabIndex={1}/>
 
-                         <button className='btn-createPost' onClick={SubmitPost}>
+                         <button className='btn-createPost' onClick={SubmitPost} tabIndex={1}>
                               Publier
                          </button>
                     </form>

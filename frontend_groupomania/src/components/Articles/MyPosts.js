@@ -71,16 +71,17 @@ function InserDOM(routeArticles, posts, options, user, navigate, token, DeleteAl
                     <i className="fa-solid fa-circle-arrow-left"
                          aria-label='retour'
                          onClick={routeArticles}
-                         tabIndex={0}
                          name='retour'
-                         role="button"></i>
+                         role="button">
+                         tabIndex={0}
+                         </i>
                </div>
                <div className='bloc-card-article'>
                     <div className='bloc-article'>
                          <h2 className='groupomania-h2'>Mes articles</h2>
                     </div>
                {posts.map((post) => (
-                    <div key={post.title} className='card-myArticles' tabIndex={0}>
+                    <div key={post.title} className='card-myArticles'tabIndex={0}>
                          <img src={post.imageUrl} alt={post.title} className='images-myArticles' />
                          <time>{(new Date()).toLocaleDateString(options, post.updatedAt, "en-FR")}</time>
                          <div className='container-article'>

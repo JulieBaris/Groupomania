@@ -94,7 +94,7 @@ function InserDOM(routeArticles, SubmitDelete) {
           <h2 className='comment-h2'>Suppression du commentaire</h2>
           <div className='container-comment'>
                <div className='form-user'>
-                    <button className='btn' onClick={SubmitDelete} tabIndex={0} aria-label='supprimer'>Supprimer ce commentaire</button>
+                    <button className='btn' onClick={SubmitDelete} tabIndex={0} aria-label='supprimer' name='supprimer'>Supprimer ce commentaire</button>
                </div>
           </div>
      </div>;

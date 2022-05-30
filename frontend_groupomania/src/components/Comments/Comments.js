@@ -34,6 +34,14 @@ function Comments()
                     role="button"
                     name="ancre">
                </i></a>
+               <i tabIndex={0}
+                    class="fa-solid fa-triangle-exclamation"
+                    aria-label="signaler"
+                    role="button"
+                    name="signaler un abus"
+                    onClick={function () 
+                    {alert("Un signalement à faire ? Merci de nous contacter : groupomania@admin.com ! ")}}>
+               </i>
           </div>
           <h2 className='comment-h2'>Les commentaires</h2>
 
@@ -54,6 +62,7 @@ function Comments()
                               <p className='p-comment'>{comment.content}</p>
                          </div>
                          <div className='container-btn-icone'>
+                              
                               { adminId &&(<i className="fa-solid fa-trash-can"
                                    aria-label='supprimer le commentaire'
                                    onClick={function () 

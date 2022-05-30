@@ -11,8 +11,8 @@
 }
 .contact-h2{
      @include h2-bold;
-     width:100px;
-     align-items: center;
+     width:50%;
+     text-align: center;
      margin : 5% auto 0% auto;
 }
 //mixin pour l'ensemble du bloc correspondant à l'input search-user
@@ -33,16 +33,30 @@
      @include identity;
 }
 .bloc-btn-contact{
-     width: 30%;
-     display: flex;
-     justify-content: center;
-     font-size: 1.2em;
+     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
 
 }
-i.fa-circle-arrow-left{
-     font-size: 1em;
-     font-weight: 600;
+i.fa-circle-arrow-left,
+i.fa-triangle-exclamation{
      color: $color-white;
+     background-color: $color-secondary;
+     border-radius: 50%;
+     font-size: 1em;
+     padding: 10px;
+     margin: 10px;
+     &:hover{
+          cursor: pointer;
+          font-size: 1.1em;
+          box-shadow: 7px 7px 12px $color-primary
+     }
+     &:active{
+          cursor: pointer;
+          font-size: 14px;
+          background-image: $color-primary;
+     }
 }
 .identity{
      @include identity;

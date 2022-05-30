@@ -212,7 +212,7 @@ function EditPost(){
                               placeholder="copier l'URL de l'image"
                               value={postUpdated.imageUrl}
                               tabIndex={0} />
-                         <button className='btn-createPost' onClick={SubmitPost} tabIndex={0} aria-label='envoyer'>
+                         <button className='btn-createPost' onClick={SubmitPost} tabIndex={1} name='envoyer' aria-label='envoyer'>
                               Modifier
                          </button>
                     </form>

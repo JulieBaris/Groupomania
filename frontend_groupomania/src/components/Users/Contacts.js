@@ -25,10 +25,26 @@ function GetAllUsers()
      return inserText
 }
 export default GetAllUsers
+
+//________________________________________Utils_____________________________//
 function InserDOM(routeDashbord, users, adminId, navigate) {
      return <div className="bloc-cards">
           <div className='bloc-btn-contact'>
-               <i className="fa-solid fa-circle-arrow-left" aria-label='retour' onClick={routeDashbord} tabIndex={0} name='retour' role="button"></i>
+               <i className="fa-solid fa-circle-arrow-left" 
+               aria-label='retour'
+               onClick={routeDashbord}
+               tabIndex={0}
+               name='retour'
+               role="button">
+               </i>
+               <i tabIndex={0}
+                    class="fa-solid fa-triangle-exclamation"
+                    aria-label="signaler"
+                    role="button"
+                    name="signaler un abus"
+                    onClick={function () 
+                    {alert("Un signalement à faire ? Merci de nous contacter : groupomania@admin.com ! ")}}>
+               </i>
           </div>
           <div className='bloc-card-user'>
                <div className='bloc-contact'>
@@ -36,8 +52,7 @@ function InserDOM(routeDashbord, users, adminId, navigate) {
                </div>
 
                {users.map((user) => (
-
-                    <div key={user.id} className='card-user'>
+                    <div key={user.id} className='card-user' tabIndex={0}>
                          <img src={user.imageUrl} alt={user.firstName} className='imageUser' />
                          <p className='identity'>{user.userName}</p>
                          <p className='identity'>{user.firstName} {user.lastName}</p>
@@ -63,8 +78,6 @@ function InserDOM(routeDashbord, users, adminId, navigate) {
           </div>
      </div>;
 }
-
-//________________________________________Utils_____________________________//
 
 function useEffectAllUsers(token, userId, setUsers) {
      useEffect(() => {
