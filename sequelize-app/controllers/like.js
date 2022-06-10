@@ -28,7 +28,7 @@ exports.createLike = (req, res, next) => {
           like.save()
           .then(() => {
             Like.findAll({
-              where: {articleId: req.body.articleId}
+              where: {postId: req.body.postId}
             }).then(likes => {
               res.status(200).json({ like: likes.length});
             })
@@ -40,7 +40,7 @@ exports.createLike = (req, res, next) => {
             userId: req.body.userId }})
             .then(() => {
               Like.findAll({
-                where: {articleId: req.body.articleId}
+                where: {postId: req.body.postId}
               }).then(likes => {
                 res.status(200).json({ like: likes.length});
               })
